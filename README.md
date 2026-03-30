@@ -206,7 +206,7 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 **ITI Team**
 - Mohamed Hamdy (Project Lead & Backend Developer)
-- Team Members: [Ahmed Aamer Front-end devloper]
+- Team Members: [Ahmed Aamer Front-End developer, Ahmed Abd El Aziz Fronte-End Developer, Youssef Hesham Front-End Devloper]
 
 ## 📞 Support
 
