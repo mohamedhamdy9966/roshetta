@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Sidebar = ({selectedUser, setSelectedUser}) => {
+const userDummyData = [
+  { id: '1', name: 'John Doe', status: 'Active' },
+  { id: '2', name: 'Jane Smith', status: 'Offline' },
+  { id: '3', name: 'Dr. Alice', status: 'Busy' },
+]
+
+const Sidebar = ({ selectedUser, setSelectedUser }) => {
   return (
     <div>
       <div className='pb-5'>
@@ -16,7 +22,17 @@ const Sidebar = ({selectedUser, setSelectedUser}) => {
         </div>
       </div>
       <div className='flex flex-col'>
-        {userDummyData}
+        {userDummyData.map((user) => (
+          <button
+            key={user.id}
+            onClick={() => setSelectedUser(user)}
+            className={`text-left p-2 rounded-md hover:bg-gray-700 ${
+              selectedUser?.id === user.id ? 'bg-gray-600' : ''
+            }`}
+          >
+            {user.name} - {user.status}
+          </button>
+        ))}
       </div>
     </div>
   )
