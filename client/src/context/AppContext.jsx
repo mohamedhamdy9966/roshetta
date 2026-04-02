@@ -12,12 +12,23 @@ export const AppContextProvider = (props) => {
     doctors: [],
     labs: [],
   });
+  const getLocalStorageValue = (key) => {
+    if (typeof window === "undefined") return null;
+    const ls = window.localStorage;
+    if (!ls || typeof ls.getItem !== "function") return null;
+    try {
+      return ls.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  };
+
   const [token, setToken] = useState(
-    localStorage.getItem("token") ? localStorage.getItem("token") : false
+    getLocalStorageValue("token") ? getLocalStorageValue("token") : false
   );
   const [userToken, setUserToken] = useState(
-    localStorage.getItem("userToken")
-      ? localStorage.getItem("userToken")
+    getLocalStorageValue("userToken")
+      ? getLocalStorageValue("userToken")
       : false
   );
   const [userData, setUserData] = useState(false);
