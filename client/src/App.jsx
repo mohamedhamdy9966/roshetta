@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Doctors from "./pages/Doctors";
 import Labs from "./pages/Labs";
@@ -26,7 +27,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const App = () => {
   return (
-    <div >
+    <div data-testid="app-root">
       <ToastContainer />
       <Navbar />
       <Routes>
