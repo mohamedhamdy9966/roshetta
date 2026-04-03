@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "admin/components",
-        "admin/context"
+        "admin/context",
+        "admin/pages/lab"
     ]
 }
