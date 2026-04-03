@@ -2,6 +2,8 @@
     "conventionalCommits.scopes": [
         "admin/components",
         "admin/context",
-        "admin/pages/lab"
+        "admin/pages/lab",
+        "admin/pages/doctor",
+        "admin/pages/admin",
     ]
 }
