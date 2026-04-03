@@ -1,5 +1,6 @@
 {
     "conventionalCommits.scopes": [
-        "admin/components"
+        "admin/components",
+        "admin/context"
     ]
 }
