@@ -1,0 +1,51 @@
+name: Lint
+
+on:
+  pull_request:
+    branches: [main, development]
+  push:
+    branches: [main, development]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: admin
+            path: admin
+            script: lint
+          - name: client
+            path: client
+            script: lint
+          - name: mobile
+            path: mobile
+            script: lint
+    name: Lint (${{ matrix.name }})
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ matrix.path }}/package-lock.json
+
+      - name: Install
+        run: npm ci
+        working-directory: ${{ matrix.path }}
+
+      - name: Lint
+        run: npm run ${{ matrix.script }}
+        working-directory: ${{ matrix.path }}
