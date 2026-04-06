@@ -405,7 +405,7 @@ const About = () => {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
               <button className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xl font-bold rounded-full overflow-hidden transition-all duration-500 transform hover:scale-110 hover:shadow-2xl">
-                <span className="relative z-10 flex items-center gap-2">
+                <span className=" z-10 flex items-center justify-center gap-2 ">
                   Explore Platform{" "}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </span>
@@ -690,7 +690,7 @@ const About = () => {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xl font-bold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex justify-center gap-2">
                   Start Your Journey{" "}
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                 </span>
