@@ -5,6 +5,7 @@
         "admin/pages/lab",
         "admin/pages/doctor",
         "admin/pages/admin",
-        "admin/pages"
+        "admin/pages",
+        "client/pages"
     ]
 }

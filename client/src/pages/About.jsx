@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import image1 from "../assets/02-image.jpg";
+import image2 from "../assets/healthcare-or-medicalcare.png";
 import {
   Heart,
   Shield,
@@ -62,10 +64,10 @@ const About = () => {
   const assets = {
     about_image:
       "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    medical_care:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    medical_care: image1,
     mental_health:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    medical_care2: image2,
     integration:
       "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     team1:
@@ -82,16 +84,16 @@ const About = () => {
       subtitle: "Excellence in Physical Health",
       description:
         "Comprehensive medical services featuring specialized consultations and precise diagnostics with the finest doctors and specialists across all medical fields.",
-      image: assets.medical_care,
+      image: assets.medical_care2,
       color: "from-blue-500 via-cyan-500 to-teal-500",
       icon: Stethoscope,
     },
     {
-      title: "Mental Health Solutions",
-      subtitle: "Integrated Psychological Wellness",
+      title: "General Medical Care",
+      subtitle: "Comprehensive Protection",
       description:
-        "Leading mental health platform providing psychotherapy, consultations, and psychological support through innovative digital solutions.",
-      image: assets.mental_health,
+        "Leading general medical care platform providing protection, consultations, and support through innovative digital solutions.",
+      image: assets.medical_care,
       color: "from-purple-500 via-pink-500 to-rose-500",
       icon: Brain,
     },
@@ -99,7 +101,7 @@ const About = () => {
       title: "Integrated Healthcare Ecosystem",
       subtitle: "The Comprehensive Future of Healthcare",
       description:
-        "An integrated system that combines medical and mental healthcare for the first time, providing comprehensive healthcare that treats body and mind as one unit.",
+        "An integrated system that combines medical and general medical care for the first time, providing comprehensive healthcare that treats care and protection as one unit.",
       image: assets.integration,
       color: "from-emerald-500 via-teal-500 to-cyan-500",
       icon: Rocket,
@@ -110,28 +112,28 @@ const About = () => {
     {
       icon: Heart,
       title: "Comprehensive Healthcare",
-      desc: "An integrated system combining medical expertise with mental health innovation, providing unparalleled comprehensive healthcare.",
+      desc: "An integrated system combining medical expertise with protection innovation, providing unparalleled comprehensive healthcare.",
       color: "from-red-400 via-pink-500 to-rose-400",
       badge: "Core Innovation",
     },
     {
       icon: Shield,
       title: "Advanced Security",
-      desc: "High-level encryption protecting both physical and mental health data with advanced privacy protocols across all platforms.",
+      desc: "High-level encryption protecting both physical and general medical care data with advanced privacy protocols across all platforms.",
       color: "from-blue-400 via-cyan-500 to-sky-400",
       badge: "Security First",
     },
     {
       icon: Zap,
       title: "Instant Connection",
-      desc: "Quick access to doctors and mental health specialists, removing barriers between patients and healthcare providers.",
+      desc: "Quick access to doctors and general medical care specialists, removing barriers between patients and healthcare providers.",
       color: "from-yellow-400 via-amber-500 to-orange-400",
       badge: "Speed & Access",
     },
     {
       icon: Globe,
       title: "Global Healthcare Network",
-      desc: "A global platform connecting specialists in medical and mental health fields, making specialized care accessible anywhere.",
+      desc: "A global platform connecting specialists in medical and general medical care fields, making specialized care accessible anywhere.",
       color: "from-green-400 via-emerald-500 to-teal-400",
       badge: "Global Reach",
     },
@@ -149,7 +151,7 @@ const About = () => {
       icon: Users,
       number: "12K+",
       label: "Healthcare Specialists",
-      description: "Medical & Mental",
+      description: "Medical & General Medical Care",
       delay: "delay-100",
     },
     {
@@ -203,11 +205,11 @@ const About = () => {
         </title>
         <meta
           name="description"
-          content="Discover Roshetta, the world's first integrated healthcare ecosystem combining medical excellence with mental health innovation."
+          content="Discover Roshetta, the world's first integrated healthcare ecosystem combining medical excellence with protection innovation."
         />
         <meta
           name="keywords"
-          content="Roshetta, integrated healthcare, medical consultations, mental health, comprehensive care, healthcare platform"
+          content="Roshetta, integrated healthcare, medical consultations, general medical care, comprehensive care, healthcare platform"
         />
         <meta name="author" content="Roshetta Team" />
         <meta
@@ -394,16 +396,16 @@ const About = () => {
             <div className="space-y-4">
               <p className="text-2xl md:text-4xl font-bold text-gray-800">
                 Where <span className="text-blue-600">Medical Care</span> meets{" "}
-                <span className="text-purple-600">Mental Health</span>
+                <span className="text-purple-600">Protection</span>
               </p>
               <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                The world's first integrated healthcare ecosystem uniting body and mind
+                The world's first integrated healthcare ecosystem uniting care and protection
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
               <button className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xl font-bold rounded-full overflow-hidden transition-all duration-500 transform hover:scale-110 hover:shadow-2xl">
-                <span className="relative z-10 flex items-center gap-2">
+                <span className=" z-10 flex items-center justify-center gap-2 ">
                   Explore Platform{" "}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </span>
@@ -411,6 +413,7 @@ const About = () => {
               </button>
               <button className="px-12 py-6 border-2 border-gray-300 text-gray-700 font-bold text-xl rounded-full hover:border-cyan-500 hover:text-cyan-600 transition-all duration-300 transform hover:scale-105">
                 Watch Our Story
+               
               </button>
             </div>
           </div>
@@ -474,9 +477,9 @@ const About = () => {
                     <div key={index} className="space-y-6">
                       <div className="flex items-center gap-4">
                         <div
-                          className={`w-16 h-16 bg-gradient-to-r ${story.color} rounded-2xl flex items-center justify-center shadow-lg`}
+                          className={`w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r ${story.color} rounded-2xl flex items-center justify-center shadow-lg`}
                         >
-                          <IconComponent className="w-8 h-8 text-white" />
+                          <IconComponent className="w-7 h-7 md:w-8 md:h-8 text-white" />
                         </div>
                         <div>
                           <h3 className="text-4xl font-bold text-gray-800">
@@ -682,12 +685,12 @@ const About = () => {
               Ready to Experience the Future?
             </h2>
             <p className="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed max-w-4xl mx-auto">
-              Join millions who have discovered the power of integrated healthcare. Where medical excellence meets mental health innovation.
+              Join millions who have discovered the power of integrated healthcare. Where medical excellence meets protection innovation.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xl font-bold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex justify-center gap-2">
                   Start Your Journey{" "}
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                 </span>
@@ -699,7 +702,7 @@ const About = () => {
               </button>
             </div>
 
-            <div className="pt-12 flex justify-center items-center space-x-8 opacity-80">
+            <div className="pt-12 flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-8 opacity-80">
               <div className="text-center">
                 <div className="text-2xl font-bold text-cyan-400">Medical Care</div>
                 <div className="text-sm">Medical Excellence</div>
@@ -707,9 +710,9 @@ const About = () => {
               <div className="text-4xl font-light text-white">+</div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-400">
-                  Mental Health
+                  Protection
                 </div>
-                <div className="text-sm">Psychological Wellness</div>
+                <div className="text-sm">Comprehensive Protection</div>
               </div>
               <div className="text-4xl font-light text-white">=</div>
               <div className="text-center">
