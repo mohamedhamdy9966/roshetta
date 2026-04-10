@@ -1,0 +1,104 @@
+version: 2
+updates:
+  # Frontend npm directories
+  - package-ecosystem: npm
+    directory: /admin
+    schedule:
+      interval: daily
+      time: "09:00"
+    open-pull-requests-limit: 10
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - npm
+      - frontend
+      - automerge
+  - package-ecosystem: npm
+    directory: /client
+    schedule:
+      interval: daily
+      time: "09:00"
+    open-pull-requests-limit: 10
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - npm
+      - frontend
+      - automerge
+  - package-ecosystem: npm
+    directory: /mobile
+    schedule:
+      interval: daily
+      time: "09:00"
+    open-pull-requests-limit: 10
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - npm
+      - mobile
+      - automerge
+  - package-ecosystem: npm
+    directory: /server
+    schedule:
+      interval: daily
+      time: "09:00"
+    open-pull-requests-limit: 10
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - npm
+      - backend
+      - automerge
+
+  # Docker configurations (admin, client, server have Dockerfiles)
+  - package-ecosystem: docker
+    directory: /admin
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - docker
+      - automerge
+  - package-ecosystem: docker
+    directory: /client
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - docker
+      - automerge
+  - package-ecosystem: docker
+    directory: /server
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - docker
+      - automerge
+
+  # GitHub Actions workflows
+  - package-ecosystem: github-actions
+    directory: /.github
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - github-actions
+      - automerge
+
