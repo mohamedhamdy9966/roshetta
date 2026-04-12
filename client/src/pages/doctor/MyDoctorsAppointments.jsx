@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -55,7 +55,7 @@ const MyDoctorsAppointments = () => {
 
         // Check for recent payments
         const recentlyPaid = data.appointments.filter(
-          (apt) => apt.payment && apt.paymentStatus === "completed"
+          (apt) => apt.payment && apt.paymentStatus === "completed",
         );
 
         if (recentlyPaid.length > 0) {
@@ -100,17 +100,17 @@ const MyDoctorsAppointments = () => {
     if (appointments.length === 0) return;
 
     const pendingPayments = appointments.filter(
-      (apt) => !apt.payment && !apt.cancelled && !apt.isCompleted
+      (apt) => !apt.payment && !apt.cancelled && !apt.isCompleted,
     );
 
     const processingPayments = appointments.filter(
-      (apt) => apt.paymentStatus === "pending" && !apt.cancelled
+      (apt) => apt.paymentStatus === "pending" && !apt.cancelled,
     );
 
     // Refresh more frequently if there are pending/processing payments
     if (pendingPayments.length > 0 || processingPayments.length > 0) {
       console.log(
-        `Auto-refresh active: ${pendingPayments.length} pending, ${processingPayments.length} processing`
+        `Auto-refresh active: ${pendingPayments.length} pending, ${processingPayments.length} processing`,
       );
 
       const interval = setInterval(() => {
@@ -133,7 +133,7 @@ const MyDoctorsAppointments = () => {
 
       if (data.success) {
         const appointment = data.appointments.find(
-          (apt) => apt._id === appointmentId
+          (apt) => apt._id === appointmentId,
         );
         if (
           appointment &&
@@ -154,7 +154,7 @@ const MyDoctorsAppointments = () => {
       const { data } = await axios.post(
         backendUrl + "/api/user/cancel-appointment",
         { appointmentId },
-        { headers: { token } }
+        { headers: { token } },
       );
 
       if (data.success) {
@@ -176,7 +176,7 @@ const MyDoctorsAppointments = () => {
       const { data } = await axios.post(
         backendUrl + "/api/user/pay-appointment-stripe",
         { appointmentId },
-        { headers: { token } }
+        { headers: { token } },
       );
 
       if (data.success) {
@@ -200,7 +200,7 @@ const MyDoctorsAppointments = () => {
       const { data } = await axios.post(
         backendUrl + "/api/user/pay-appointment-paymob",
         { appointmentId },
-        { headers: { token, origin: window.location.origin } }
+        { headers: { token, origin: window.location.origin } },
       );
 
       if (data.success) {
@@ -337,8 +337,8 @@ const MyDoctorsAppointments = () => {
                 item.payment && item.paymentStatus === "completed"
                   ? "border-green-200 bg-green-50"
                   : item.paymentStatus === "pending"
-                  ? "border-yellow-200 bg-yellow-50"
-                  : "border-gray-200 bg-white"
+                    ? "border-yellow-200 bg-yellow-50"
+                    : "border-gray-200 bg-white"
               }`}
             >
               <div className="flex-shrink-0">

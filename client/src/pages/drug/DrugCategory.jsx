@@ -1,6 +1,6 @@
-import { categories } from "../assets/assets";
+import { categories } from "../../assets/assets";
 import ProductCard from "../components/ProductCard";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -8,10 +8,10 @@ const DrugCategory = () => {
   const { products } = useAppContext();
   const { category } = useParams();
   const searchCategory = categories.find(
-    (item) => item.path.toLowerCase() === category
+    (item) => item.path.toLowerCase() === category,
   );
   const filteredProducts = products?.filter(
-    (product) => product.category.toLowerCase() === category
+    (product) => product.category.toLowerCase() === category,
   );
 
   return (

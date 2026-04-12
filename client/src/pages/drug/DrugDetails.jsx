@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
 import { Link, useParams } from "react-router-dom";
-import { assets } from "../assets/assets";
+import { assets } from "../../assets/assets";
 import ProductCard from "../components/ProductCard";
 import { Helmet } from "react-helmet";
 // import { translations } from "./locales";
@@ -18,7 +18,7 @@ const DrugDetails = () => {
     if (products.length > 0) {
       let productsCopy = products.slice();
       productsCopy = productsCopy.filter(
-        (item) => product.category === item.category
+        (item) => product.category === item.category,
       );
       setRelatedProducts(productsCopy.slice(0, 5));
     }

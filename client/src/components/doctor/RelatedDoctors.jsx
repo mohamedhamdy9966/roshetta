@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const RelatedDoctors = ({ specialty, docId }) => {
   useEffect(() => {
     if (doctors.length > 0 && specialty) {
       const doctorsData = doctors.filter(
-        (doc) => doc.specialty === specialty && doc._id !== docId
+        (doc) => doc.specialty === specialty && doc._id !== docId,
       );
       setRealDocs(doctorsData);
     }

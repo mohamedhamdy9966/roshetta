@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
 import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 
@@ -195,7 +195,7 @@ const MyOrders = () => {
                     </div>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${getStatusColor(
-                        order.status
+                        order.status,
                       )}`}
                     >
                       {order.status || "Order Placed"}

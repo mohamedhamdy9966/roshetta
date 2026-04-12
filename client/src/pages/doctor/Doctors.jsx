@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
 
 const Doctors = () => {
@@ -64,7 +64,7 @@ const Doctors = () => {
         urlSpecialtyMap[specialty?.toLowerCase()] ||
         specialty;
       filtered = filtered.filter(
-        (doc) => doc.specialty === normalizedSpecialty
+        (doc) => doc.specialty === normalizedSpecialty,
       );
     }
 
@@ -82,19 +82,19 @@ const Doctors = () => {
     // Availability filter
     if (filters.availability !== "") {
       filtered = filtered.filter(
-        (doc) => doc.available === (filters.availability === "true")
+        (doc) => doc.available === (filters.availability === "true"),
       );
     }
 
     // Fees filter
     if (filters.minFees) {
       filtered = filtered.filter(
-        (doc) => doc.fees >= parseFloat(filters.minFees)
+        (doc) => doc.fees >= parseFloat(filters.minFees),
       );
     }
     if (filters.maxFees) {
       filtered = filtered.filter(
-        (doc) => doc.fees <= parseFloat(filters.maxFees)
+        (doc) => doc.fees <= parseFloat(filters.maxFees),
       );
     }
 

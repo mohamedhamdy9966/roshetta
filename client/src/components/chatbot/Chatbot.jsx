@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
-import { assets } from "../assets/assets";
-import { AppContext } from "../context/AppContext";
+import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
 import { toast } from "react-toastify";
 
 const Chatbot = () => {

@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaRegStar, FaStar } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
-import {CgArrowTopLeftR} from "react-icons/cg";
+import { CgArrowTopLeftR } from "react-icons/cg";
 
 const TopDoctors = () => {
   const navigate = useNavigate();
@@ -18,9 +18,9 @@ const TopDoctors = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const item = {
@@ -28,12 +28,12 @@ const TopDoctors = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
+      transition: {
         type: "spring",
         stiffness: 100,
-        damping: 15
-      }
-    }
+        damping: 15,
+      },
+    },
   };
 
   return (
@@ -51,18 +51,17 @@ const TopDoctors = () => {
 
       <div className="relative max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="flex flex-col items-center mb-16"
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: {
               opacity: 1,
               y: 0,
-              transition: { duration: 0.6, ease: "easeOut" }
-            }
+              transition: { duration: 0.6, ease: "easeOut" },
+            },
           }}
         >
-          
           <h2 className="text-3xl flex  md:text-4xl font-bold text-center text-white mb-4">
             <CgArrowTopLeftR className="text-4xl mr-2 text-white" />
             Our Top Specialists
@@ -73,7 +72,7 @@ const TopDoctors = () => {
         </motion.div>
 
         {/* Doctors Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
           variants={container}
         >
@@ -81,9 +80,9 @@ const TopDoctors = () => {
             <motion.div
               key={uuidv4()}
               variants={item}
-              whileHover={{ 
+              whileHover={{
                 y: -8,
-                transition: { type: "spring", stiffness: 300 }
+                transition: { type: "spring", stiffness: 300 },
               }}
               className="flex justify-center"
             >
@@ -103,11 +102,13 @@ const TopDoctors = () => {
                       alt={doctor.name}
                     />
                     {/* Status Badge */}
-                    <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
-                      doctor.available 
-                        ? "bg-green-100 text-green-800" 
-                        : "bg-gray-100 text-gray-800"
-                    }`}>
+                    <div
+                      className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
+                        doctor.available
+                          ? "bg-green-100 text-green-800"
+                          : "bg-gray-100 text-gray-800"
+                      }`}
+                    >
                       {doctor.available ? "Available" : "Booked"}
                     </div>
                   </div>
@@ -125,7 +126,9 @@ const TopDoctors = () => {
                       </div>
                       <div className="flex items-center bg-[var(--color-primary-light)] bg-opacity-20 px-2 py-1 rounded">
                         <FaStar className="text-yellow-400 mr-1" />
-                        <span className="text-sm font-medium">{doctor.rating || "4.8"}</span>
+                        <span className="text-sm font-medium">
+                          {doctor.rating || "4.8"}
+                        </span>
                       </div>
                     </div>
 
@@ -155,8 +158,8 @@ const TopDoctors = () => {
             visible: {
               opacity: 1,
               y: 0,
-              transition: { delay: 0.4, duration: 0.6 }
-            }
+              transition: { delay: 0.4, duration: 0.6 },
+            },
           }}
         >
           <button
