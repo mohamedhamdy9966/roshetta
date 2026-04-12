@@ -1,7 +1,7 @@
-import labModel from "../models/labModel.js";
+import labModel from "../../models/labModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import appointmentLabModel from "../models/appointmentLabModel.js";
+import appointmentLabModel from "../../models/appointmentLabModel.js";
 
 const changeLabAvailability = async (req, res) => {
   try {

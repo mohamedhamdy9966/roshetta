@@ -1,6 +1,6 @@
-import Drug from "../models/Drug.js";
-import Order from "../models/Order.js";
-import Address from "../models/Address.js";
+import Drug from "../../models/Drug.js";
+import Order from "../../models/Order.js";
+import Address from "../../models/Address.js";
 
 // Place Order COD: /api/order/cod
 const placeOrderCOD = async (req, res) => {

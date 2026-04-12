@@ -1,7 +1,7 @@
 import validator from "validator";
 import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
-import labModel from "../models/labModel.js";
+import labModel from "../../models/labModel.js";
 
 // API for adding lab
 const addLab = async (req, res) => {

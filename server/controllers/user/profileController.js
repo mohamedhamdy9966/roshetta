@@ -1,4 +1,4 @@
-import userModel from "../models/userModel.js";
+import userModel from "../../models/userModel.js";
 import { v2 as cloudinary } from "cloudinary";
 
 // API to get user profile data
@@ -105,7 +105,7 @@ const updateProfile = async (req, res) => {
                   console.log("Cloudinary upload success:", result.secure_url);
                   resolve(result);
                 }
-              }
+              },
             )
             .end(imageFile.buffer);
         });
