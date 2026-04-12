@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { specialtyData } from "../assets/assets";
+import { specialtyData } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
@@ -13,9 +13,9 @@ const DoctorSpecialty = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
@@ -25,9 +25,9 @@ const DoctorSpecialty = () => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -40,7 +40,7 @@ const DoctorSpecialty = () => {
       id="doctorSpecialty"
     >
       {/* Section Header */}
-      <motion.div 
+      <motion.div
         className="flex flex-col   items-center"
         variants={itemVariants}
       >
@@ -51,8 +51,8 @@ const DoctorSpecialty = () => {
           </h2>
         </div>
         <p className="w-full md:w-1/2 text-center text-[var(--color-text-secondary)]">
-          Simply browse through our extensive list of medical specialties and find
-          the right doctor for your needs.
+          Simply browse through our extensive list of medical specialties and
+          find the right doctor for your needs.
         </p>
       </motion.div>
 
@@ -81,7 +81,7 @@ const DoctorSpecialty = () => {
       </Helmet>
 
       {/* Specialty Grid */}
-      <motion.div 
+      <motion.div
         className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 w-full max-w-6xl"
         variants={containerVariants}
       >

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
-import { assets } from "../assets/assets";
+import { AppContext } from "../../context/AppContext";
+import { assets } from "../../assets/assets";
 import { v4 as uuidv4 } from "uuid";
-import RelatedDoctors from "../components/RelatedDoctors";
+import RelatedDoctors from "../../components/doctor/RelatedDoctors";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -43,7 +43,7 @@ const DoctorAppointment = () => {
       const { data } = await axios.post(
         backendUrl + "/api/user/book-appointment",
         { docId, slotDate, slotTime },
-        { headers: { token } }
+        { headers: { token } },
       );
       if (data.success) {
         toast.success(data.message);

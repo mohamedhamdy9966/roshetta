@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { AdminContext } from "../../context/AdminContext";
-import { AppContext } from "../../context/AppContext";
-import { assets } from "../../assets/assets";
+import { AppContext } from "../../../context/AppContext";
+import { assets } from "../../../assets/assets";
 
 const AllAppointments = () => {
   const { aToken, appointments, getAllAppointments, cancelAppointment } =

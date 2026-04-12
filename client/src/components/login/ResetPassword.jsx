@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { assets } from "../assets/assets";
-import { AppContext } from "../context/AppContext";
+import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -51,7 +51,7 @@ const ResetPassword = () => {
           userId,
           otp: values.otp,
           newPassword: values.newPassword,
-        }
+        },
       );
       if (data.success) {
         toast.success(data.message);
@@ -74,7 +74,7 @@ const ResetPassword = () => {
         `${backendUrl}/api/user/send-reset-otp`,
         {
           email,
-        }
+        },
       );
       if (data.success) {
         toast.success(data.message);
