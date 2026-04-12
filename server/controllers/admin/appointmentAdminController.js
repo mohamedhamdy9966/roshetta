@@ -1,7 +1,7 @@
-import appointmentDoctorModel from "../models/appointmentDoctorModel.js";
-import appointmentLabModel from "../models/appointmentLabModel.js";
-import doctorModel from "../models/doctorModel.js";
-import labModel from "../models/labModel.js";
+import appointmentDoctorModel from "../../models/appointmentDoctorModel.js";
+import appointmentLabModel from "../../models/appointmentLabModel.js";
+import doctorModel from "../../models/doctorModel.js";
+import labModel from "../../models/labModel.js";
 
 // API to get all appointments list
 const appointmentsAdmin = async (req, res) => {

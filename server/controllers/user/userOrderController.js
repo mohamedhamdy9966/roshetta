@@ -1,4 +1,4 @@
-import Order from "../models/Order.js";
+import Order from "../../models/Order.js";
 
 // Get User Orders: /api/order/user
 const getUserOrders = async (req, res) => {

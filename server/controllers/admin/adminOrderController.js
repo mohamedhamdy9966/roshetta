@@ -1,6 +1,6 @@
-import Order from "../models/Order.js";
-import User from "../models/userModel.js";
-import Address from "../models/Address.js";
+import Order from "../../models/Order.js";
+import User from "../../models/userModel.js";
+import Address from "../../models/Address.js";
 
 // Get All Orders (Admin): /api/order/all
 const getAllOrders = async (req, res) => {

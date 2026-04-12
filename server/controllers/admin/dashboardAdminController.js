@@ -1,8 +1,8 @@
-import doctorModel from "../models/doctorModel.js";
-import labModel from "../models/labModel.js";
-import userModel from "../models/userModel.js";
-import appointmentDoctorModel from "../models/appointmentDoctorModel.js";
-import appointmentLabModel from "../models/appointmentLabModel.js";
+import doctorModel from "../../models/doctorModel.js";
+import labModel from "../../models/labModel.js";
+import userModel from "../../models/userModel.js";
+import appointmentDoctorModel from "../../models/appointmentDoctorModel.js";
+import appointmentLabModel from "../../models/appointmentLabModel.js";
 
 // API to get dashboard data for admin panel
 const adminDashboard = async (req, res) => {

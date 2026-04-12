@@ -1,4 +1,4 @@
-import doctorModel from "../models/doctorModel.js";
+import doctorModel from "../../models/doctorModel.js";
 
 // API to get doctors by specialty
 const getDoctorsBySpecialty = async (req, res) => {

@@ -1,21 +1,21 @@
 import validator from "validator";
 import bcrypt from "bcrypt";
-import userModel from "../models/userModel.js";
+import userModel from "../../models/userModel.js";
 import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
-import appointmentDoctorModel from "../models/appointmentDoctorModel.js";
-import doctorModel from "../models/doctorModel.js";
-import appointmentLabModel from "../models/appointmentLabModel.js";
+import appointmentDoctorModel from "../../models/appointmentDoctorModel.js";
+import doctorModel from "../../models/doctorModel.js";
+import appointmentLabModel from "../../models/appointmentLabModel.js";
 import axios from "axios";
 import stripe from "stripe";
 import PDFParser from "pdf2json";
-import tempFileModel from "../models/tempFileModel.js";
+import tempFileModel from "../../models/tempFileModel.js";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
 import { Readable } from "stream";
-import transporter from "../config/nodemailer.js";
+import transporter from "../../config/nodemailer.js";
 import FormData from "form-data";
-import labModel from "../models/labModel.js";
+import labModel from "../../models/labModel.js";
 import { OAuth2Client } from "google-auth-library";
 import appleSignin from "apple-signin-auth";
 
@@ -340,7 +340,7 @@ const appleAuth = async (req, res) => {
       // Generate JWT token
       const jwtToken = jwt.sign(
         { id: existingUser._id },
-        process.env.JWT_SECRET
+        process.env.JWT_SECRET,
       );
 
       return res.json({
@@ -454,7 +454,7 @@ const uploadAudio = async (req, res) => {
               console.log("Cloudinary upload success:", result.secure_url);
               resolve(result);
             }
-          }
+          },
         )
         .end(req.file.buffer);
     });
@@ -466,7 +466,7 @@ const uploadAudio = async (req, res) => {
 
     const transcribeWithRetry = async (
       maxRetries = 3,
-      initialDelayMs = 5000
+      initialDelayMs = 5000,
     ) => {
       let attempt = 0;
       let delay = initialDelayMs;
@@ -496,7 +496,7 @@ const uploadAudio = async (req, res) => {
               timeout: 60000,
               maxContentLength: Infinity,
               maxBodyLength: Infinity,
-            }
+            },
           );
 
           if (transcriptionResponse.data?.text) {
@@ -509,7 +509,7 @@ const uploadAudio = async (req, res) => {
             console.warn(
               `429 Too Many Requests - retrying in ${
                 delay / 1000
-              }s... (attempt ${attempt})`
+              }s... (attempt ${attempt})`,
             );
             await new Promise((r) => setTimeout(r, delay));
             delay *= 2; // Exponential backoff
@@ -519,7 +519,7 @@ const uploadAudio = async (req, res) => {
         }
       }
       throw new Error(
-        "Too many requests to transcription API. Please try again later."
+        "Too many requests to transcription API. Please try again later.",
       );
     };
 
@@ -607,7 +607,7 @@ const uploadFile = async (req, res) => {
           (error, result) => {
             if (error) reject(error);
             else resolve(result);
-          }
+          },
         )
         .end(req.file.buffer);
     });
@@ -675,7 +675,7 @@ const analyzeImage = async (req, res) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         },
-      }
+      },
     );
 
     res.json({
@@ -705,7 +705,7 @@ const analyzePdfText = async (req, res) => {
           (error, result) => {
             if (error) reject(error);
             else resolve(result);
-          }
+          },
         )
         .end(req.file.buffer);
     });
@@ -748,7 +748,7 @@ const analyzePdfText = async (req, res) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         },
-      }
+      },
     );
 
     // Store metadata
@@ -834,10 +834,10 @@ Important: When greeting users, always use their name if available. Be personal 
           const status = apt.cancelled
             ? "Cancelled"
             : apt.isCompleted
-            ? "Completed"
-            : apt.payment
-            ? "Paid/Scheduled"
-            : "Pending Payment";
+              ? "Completed"
+              : apt.payment
+                ? "Paid/Scheduled"
+                : "Pending Payment";
           prompt += `\n${index + 1}. Dr. ${apt.docData.name} (${
             apt.docData.specialty
           }) - ${apt.slotDate.replace(/_/g, "/")} at ${
@@ -858,12 +858,12 @@ Important: When greeting users, always use their name if available. Be personal 
       prompt += `\n\nUSER'S UPLOADED FILES:`;
       user.uploadedFiles.forEach((file, index) => {
         prompt += `\n${index + 1}. ${file.type} (${new Date(
-          file.createdAt
+          file.createdAt,
         ).toLocaleDateString()})`;
         if (file.transcription) {
           prompt += ` - Audio transcription: "${file.transcription.substring(
             0,
-            100
+            100,
           )}${file.transcription.length > 100 ? "..." : ""}"`;
         }
       });
@@ -978,7 +978,7 @@ const getChatResponse = async (req, res) => {
           Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
 
     const botReply = response.data.choices[0].message.content.trim();
@@ -1183,7 +1183,7 @@ const updateProfile = async (req, res) => {
                   console.log("Cloudinary upload success:", result.secure_url);
                   resolve(result);
                 }
-              }
+              },
             )
             .end(imageFile.buffer);
         });
@@ -1272,10 +1272,10 @@ const listAppointment = async (req, res) => {
         status: appt.cancelled
           ? "Cancelled"
           : appt.isCompleted
-          ? "Completed"
-          : "Scheduled",
+            ? "Completed"
+            : "Scheduled",
         paymentStatus: appt.payment ? "Paid" : "Not Paid",
-      })
+      }),
     );
     res.json({ success: true, appointments });
   } catch (error) {
@@ -1303,9 +1303,8 @@ const cancelAppointment = async (req, res) => {
       return res.json({ success: false, message: "Unauthorized Action" });
     }
 
-    await (isDoctorAppointment
-      ? appointmentDoctorModel
-      : appointmentLabModel
+    await (
+      isDoctorAppointment ? appointmentDoctorModel : appointmentLabModel
     ).findByIdAndUpdate(appointmentId, {
       cancelled: true,
     });
@@ -1340,7 +1339,7 @@ const getAuthToken = async () => {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-      }
+      },
     );
     return response.data.token;
   } catch (error) {
@@ -1353,7 +1352,7 @@ const getAuthToken = async () => {
     throw new Error(
       `Paymob Auth Token Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
     );
   }
 };
@@ -1362,7 +1361,7 @@ const getAuthToken = async () => {
 const registerAppointment = async (
   authToken,
   amountCents,
-  merchantAppointmentId
+  merchantAppointmentId,
 ) => {
   try {
     const response = await axios.post(
@@ -1373,14 +1372,14 @@ const registerAppointment = async (
         amount_cents: amountCents,
         currency: "EGP",
         merchant_order_id: merchantAppointmentId.toString(),
-      }
+      },
     );
     return response.data.id;
   } catch (error) {
     throw new Error(
       `Paymob register Appointment Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
     );
   }
 };
@@ -1392,7 +1391,7 @@ const getPaymentKey = async (
   appointmentId,
   billingData,
   integrationId,
-  origin
+  origin,
 ) => {
   try {
     const payload = {
@@ -1415,7 +1414,7 @@ const getPaymentKey = async (
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-      }
+      },
     );
     console.log("DEBUG: getPaymentKey Response:", response.data);
     return response.data.token;
@@ -1429,7 +1428,7 @@ const getPaymentKey = async (
     throw new Error(
       `Paymob get payment key Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
     );
   }
 };
@@ -1484,7 +1483,7 @@ const payAppointmentPaymob = async (req, res) => {
     const paymobAppointmentId = await registerAppointment(
       authToken,
       amountCents,
-      appointmentId
+      appointmentId,
     );
     const paymentKey = await getPaymentKey(
       authToken,
@@ -1492,7 +1491,7 @@ const payAppointmentPaymob = async (req, res) => {
       paymobAppointmentId,
       billingData,
       process.env.PAYMOB_INTEGRATION_ID,
-      origin
+      origin,
     );
 
     const paymentUrl = `https://accept.paymobsolutions.com/api/acceptance/iframes/${process.env.PAYMOB_IFRAME_ID}?payment_token=${paymentKey}`;
@@ -1575,7 +1574,7 @@ const payAppointmentStripe = async (req, res) => {
     });
 
     console.log(
-      `✅ Stripe session created: ${session.id} for appointment: ${appointmentId}`
+      `✅ Stripe session created: ${session.id} for appointment: ${appointmentId}`,
     );
 
     res.json({ success: true, url: session.url });
@@ -1662,7 +1661,7 @@ const placeOrderPaymob = async (req, res) => {
         const product = await Product.findById(item.product);
         if (!product) throw new Error(`Product ${item.product} not found`);
         return product.offerPrice * item.quantity;
-      })
+      }),
     );
     let amount = productTotals.reduce((acc, val) => acc + val, 0);
     amount += shippingFee || 0;
@@ -1698,7 +1697,7 @@ const placeOrderPaymob = async (req, res) => {
     const paymobAppointmentId = await registerAppointment(
       authToken,
       amount,
-      Appointment._id
+      Appointment._id,
     );
     console.log("DEBUG: Paymob Appointment ID:", paymobAppointmentId);
 
@@ -1709,8 +1708,8 @@ const placeOrderPaymob = async (req, res) => {
       phone_number: addressDoc.phone
         ? `+2${addressDoc.phone}`
         : user.phone
-        ? `+2${user.phone}`
-        : "+201000000000",
+          ? `+2${user.phone}`
+          : "+201000000000",
       street: addressDoc.street || "Unknown",
       building: addressDoc.building || "Unknown",
       floor: addressDoc.floor || "Unknown",
@@ -1731,7 +1730,7 @@ const placeOrderPaymob = async (req, res) => {
       paymobAppointmentId,
       billingData,
       process.env.PAYMOB_INTEGRATION_ID,
-      origin
+      origin,
     );
     console.log("DEBUG: Payment Key:", paymentKey);
 
