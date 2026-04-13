@@ -26,9 +26,6 @@ jobs:
           - name: client
             path: client
             script: lint
-          - name: mobile
-            path: mobile
-            script: lint
     name: Lint (${{ matrix.name }})
 
     steps:

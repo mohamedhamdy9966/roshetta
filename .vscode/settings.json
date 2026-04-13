@@ -36,4 +36,15 @@
     "root",
     "server"
   ]
+    "conventionalCommits.scopes": [
+        "admin/components",
+        "admin/context",
+        "admin/pages/lab",
+        "admin/pages/doctor",
+        "admin/pages/admin",
+        "admin/pages",
+        "client/pages",
+        "root",
+        "github"
+    ]
 }
