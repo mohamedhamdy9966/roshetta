@@ -20,7 +20,7 @@
       "type": "node",
       "request": "launch",
       "name": "Run Server",
-      "program": "${workspaceFolder}/server/index.js"
+      "program": "${workspaceFolder}/server/server.js"
     }
   ]
 }

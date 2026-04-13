@@ -25,18 +25,7 @@ updates:
       - npm
       - frontend
       - automerge
-  - package-ecosystem: npm
-    directory: /mobile
-    schedule:
-      interval: daily
-      time: "09:00"
-    open-pull-requests-limit: 10
-    rebase-strategy: auto
-    labels:
-      - dependencies
-      - npm
-      - mobile
-      - automerge
+
   - package-ecosystem: npm
     directory: /server
     schedule:
