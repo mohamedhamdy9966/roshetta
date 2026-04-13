@@ -36,6 +36,8 @@
     "root",
     "server",
     "github",
-    "server/controllers/file-upload"
+    "server/controllers/file-upload",
+    "admin/drug/context",
+    "client/pages/lab"
   ]
 }
