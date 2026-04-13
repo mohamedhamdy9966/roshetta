@@ -7,6 +7,7 @@
         "admin/pages/admin",
         "admin/pages",
         "client/pages",
-        "root"
+        "root",
+        "github"
     ]
 }
