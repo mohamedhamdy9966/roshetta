@@ -6,7 +6,7 @@
   "files.autoSave": "afterDelay",
 
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
 
   "eslint.validate": [
@@ -35,6 +35,8 @@
     "client/pages",
     "root",
     "server",
-    "github"
+    "github",
+    "mobile",
+    
   ]
 }
