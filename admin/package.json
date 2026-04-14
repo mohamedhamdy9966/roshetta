@@ -22,7 +22,7 @@
     "react-toastify": "^11.0.5",
     "tailwindcss": "^4.1.11",
     "uuid": "^11.1.0",
-    "validator": "^13.15.15",
+    "validator": "^13.15.35",
     "yup": "^1.6.1"
   },
   "devDependencies": {
