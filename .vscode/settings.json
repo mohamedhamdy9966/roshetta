@@ -36,7 +36,13 @@
     "root",
     "server",
     "github",
+<<<<<<< HEAD
     "mobile",
     
+=======
+    "server/controllers/file-upload",
+    "admin/drug/context",
+    "client/pages/lab"
+>>>>>>> 9665003b6af2923cefa86071e0829032bf7ce95c
   ]
 }
