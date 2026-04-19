@@ -107,7 +107,7 @@ const Contact = () => {
             </div>
             <div className="flex flex-wrap gap-2 md:gap-4 w-full md:w-auto justify-center">
               <button className="bg-white text-red-600 px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl font-bold hover:bg-gray-100 transition-colors text-sm md:text-base flex-1 md:flex-none">
-                Call 911
+                Call 122
               </button>
               <button className="bg-white/20 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl font-bold hover:bg-white/30 transition-colors text-sm md:text-base flex-1 md:flex-none">
                 Emergency Chat
