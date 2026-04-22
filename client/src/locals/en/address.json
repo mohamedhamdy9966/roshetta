@@ -1,0 +1,47 @@
+{
+  "form": {
+    "title": "Add Address",
+    "addressType": "Address Type",
+    "home": "Home",
+    "work": "Work",
+    "other": "Other",
+    "streetAddress": "Street Address",
+    "apartmentNumber": "Apartment/Unit Number",
+    "city": "City",
+    "governorate": "Governorate",
+    "postalCode": "Postal Code",
+    "saveAsDefault": "Save as Default Address",
+    "addAddress": "Add Address",
+    "updateAddress": "Update Address"
+  },
+  "governorates": {
+    "cairo": "Cairo",
+    "alexandria": "Alexandria",
+    "giza": "Giza",
+    "dakahlia": "Dakahlia",
+    "sharqia": "Sharqia",
+    "kalyubia": "Kalyubia",
+    "kafrelSheikh": "Kafr El-Sheikh",
+    "beheira": "Beheira",
+    "ismailia": "Ismailia",
+    "portSaid": "Port Said",
+    "suez": "Suez",
+    "newValley": "New Valley",
+    "matrouh": "Matrouh",
+    "redsea": "Red Sea",
+    "fayoum": "Fayoum",
+    "beniSuef": "Beni Suef",
+    "minufiya": "Minufiya",
+    "qena": "Qena",
+    "sohag": "Sohag",
+    "assiut": "Assiut",
+    "luxor": "Luxor",
+    "aswan": "Aswan"
+  },
+  "validation": {
+    "streetAddressRequired": "Street address is required",
+    "cityRequired": "City is required",
+    "governorateRequired": "Governorate is required",
+    "invalidPostalCode": "Invalid postal code"
+  }
+}

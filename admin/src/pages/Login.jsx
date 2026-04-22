@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { AdminContext } from "../context/AdminContext";
-import { DoctorContext } from "../context/DoctorContext";
-import { LabContext } from "../context/LabContext";
+import { AdminContext } from "../context/admin/AdminContext";
+import { DoctorContext } from "../context/doctor/DoctorContext";
+import { LabContext } from "../context/lab/LabContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";

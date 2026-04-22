@@ -1,0 +1,101 @@
+{
+  "home": {
+    "title": "Home",
+    "heroSubtitle": "Experience the future of medical appointments",
+    "ourTopSpecialists": "Our Top Specialists",
+    "bookWithOurExperts": "Book appointments with our most experienced medical professionals",
+    "findBySpecialty": "Find by Specialty",
+    "simplyBrowse": "Simply browse through our extensive list of medical specialties and find the right doctor for your needs."
+  },
+  "about": {
+    "title": "Roshetta - Integrated Healthcare Ecosystem",
+    "subtitle": "Discover Roshetta, the world's first integrated healthcare ecosystem combining medical excellence with protection innovation.",
+    "advancedMedicalCare": "Advanced Medical Care",
+    "excellenceInPhysicalHealth": "Excellence in Physical Health",
+    "advancedMedicalCareDesc": "Comprehensive medical services featuring specialized consultations and precise diagnostics with the finest doctors and specialists across all medical fields.",
+    "generalMedicalCare": "General Medical Care",
+    "comprehensiveProtection": "Comprehensive Protection",
+    "generalMedicalCareDesc": "Leading general medical care platform providing protection, consultations, and support through innovative digital solutions.",
+    "integratedHealthcareEcosystem": "Integrated Healthcare Ecosystem",
+    "comprehensiveFuture": "The Comprehensive Future of Healthcare",
+    "integratedHealthcareDesc": "An integrated system that combines medical and general medical care for the first time, providing comprehensive healthcare that treats care and protection as one unit.",
+    "comprehensiveHealthcare": "Comprehensive Healthcare",
+    "comprehensiveHealthcareDesc": "An integrated system combining medical expertise with protection innovation, providing unparalleled comprehensive healthcare.",
+    "coreInnovation": "Core Innovation",
+    "advancedSecurity": "Advanced Security",
+    "advancedSecurityDesc": "High-level encryption protecting both physical and general medical care data with advanced privacy protocols across all platforms.",
+    "securityFirst": "Security First",
+    "instantConnection": "Instant Connection",
+    "instantConnectionDesc": "Quick access to doctors and general medical care specialists, removing barriers between patients and healthcare providers.",
+    "speedAccess": "Speed & Access",
+    "globalHealthcareNetwork": "Global Healthcare Network",
+    "globalHealthcareNetworkDesc": "A global platform connecting specialists in medical and general medical care fields, making specialized care accessible anywhere.",
+    "globalReach": "Global Reach",
+    "livesTransformed": "Lives Transformed",
+    "userBase": "User base",
+    "healthcareSpecialists": "Healthcare Specialists",
+    "medicalGeneralMedicalCare": "Medical & General Medical Care",
+    "specialties": "Specialties",
+    "integratedFields": "Integrated fields",
+    "platformReliability": "Platform Reliability",
+    "performanceExcellence": "Performance excellence",
+    "aiPoweredDiagnostics": "AI-Powered Diagnostics",
+    "aiPoweredDiagnosticsDesc": "Advanced machine learning algorithms assist healthcare providers in accurate diagnosis and personalized treatment plans.",
+    "mobileFirstExperience": "Mobile-First Experience",
+    "mobileFirstExperienceDesc": "Seamless healthcare access through our responsive mobile platform, ensuring care is always at your fingertips.",
+    "smartHealthRecords": "Smart Health Records",
+    "smartHealthRecordsDesc": "Intelligent health data management that provides comprehensive insights for both patients and healthcare providers.",
+    "enterpriseGradeSecurity": "Enterprise-Grade Security",
+    "enterpriseGradeSecurityDesc": "Military-level encryption and security protocols ensuring your sensitive health information remains completely protected."
+  },
+  "contact": {
+    "title": "Connect with Excellence",
+    "subtitle": "Experience premium healthcare like never before. Our world-class medical platform connects you with top specialists, cutting-edge treatments, and personalized care.",
+    "specialists": "500+ Specialists",
+    "support24_7": "24/7 Support",
+    "tellemedicineReady": "Telemedicine Ready",
+    "medicalEmergency": "Medical Emergency?",
+    "dontWait": "Don't wait - Get immediate help now",
+    "instantVideoConsultation": "Instant Video Consultation",
+    "connectWithSpecialists": "Connect with specialists in seconds via secure video calls",
+    "responseTime": "Response Time",
+    "twoMinutes": "2 minutes",
+    "availability": "Availability",
+    "available24_7": "24/7 Available"
+  },
+  "doctors": {
+    "title": "Doctors",
+    "ourDoctors": "Our Doctors",
+    "specialties": "Specialties",
+    "experience": "years experience",
+    "availableSlots": "Available Slots",
+    "noAvailableSlots": "No available slots"
+  },
+  "labs": {
+    "title": "Labs",
+    "ourLabs": "Our Labs",
+    "services": "Services",
+    "testTypes": "Test Types"
+  },
+  "drugs": {
+    "title": "Drugs",
+    "ourDrugs": "Our Drugs",
+    "categories": "Categories",
+    "price": "Price",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock"
+  },
+  "profile": {
+    "title": "My Profile",
+    "editProfile": "Edit Profile",
+    "myAppointments": "My Appointments",
+    "medicalHistory": "Medical History",
+    "uploadProfilePicture": "Upload Profile Picture"
+  },
+  "appointments": {
+    "title": "My Appointments",
+    "upcomingAppointments": "Upcoming Appointments",
+    "pastAppointments": "Past Appointments",
+    "noAppointments": "No appointments found"
+  }
+}

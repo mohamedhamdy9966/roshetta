@@ -1,0 +1,21 @@
+{
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated",
+    "introduction": "We are committed to protecting your privacy.",
+    "sections": {
+      "dataCollection": "Data Collection",
+      "dataCollectionDesc": "We collect information to provide and improve our services, including personal information, health data, and usage patterns.",
+      "dataUsage": "Data Usage",
+      "dataUsageDesc": "Your data is used to provide healthcare services, improve our platform, and comply with legal obligations.",
+      "dataSecurity": "Data Security",
+      "dataSecurityDesc": "We employ industry-standard encryption and security measures to protect your information.",
+      "thirdParty": "Third-Party Sharing",
+      "thirdPartyDesc": "We do not share your data with third parties without your explicit consent, except as required by law.",
+      "userRights": "User Rights",
+      "userRightsDesc": "You have the right to access, modify, or delete your personal data at any time.",
+      "contact": "Contact Us",
+      "contactDesc": "For privacy concerns, contact us at support@roshetta.com"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { useContext } from "react";
-import { AdminContext } from "../context/AdminContext";
+import { AdminContext } from "../context/admin/AdminContext";
 import { useNavigate } from "react-router-dom";
-import { DoctorContext } from "../context/DoctorContext";
+import { DoctorContext } from "../context/doctor/DoctorContext";
 
 const Navbar = () => {
   const { aToken, setAToken } = useContext(AdminContext);

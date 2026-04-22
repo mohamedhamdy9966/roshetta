@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { DoctorContext } from "../../context/DoctorContext";
+import { DoctorContext } from "../../context/doctor/DoctorContext";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";

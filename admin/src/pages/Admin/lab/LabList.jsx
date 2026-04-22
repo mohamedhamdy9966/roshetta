@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { AdminContext } from "../../context/AdminContext";
+import { AdminContext } from "../../../context/admin/AdminContext";
 
 const LabsList = () => {
   const { labs, aToken, getAllLabs, changeLabAvailability } =

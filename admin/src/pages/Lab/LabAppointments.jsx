@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { LabContext } from "../../context/LabContext";
+import { LabContext } from "../../context/lab/LabContext";
 import { AppContext } from "../../context/AppContext";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";

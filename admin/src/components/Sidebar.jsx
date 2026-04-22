@@ -1,9 +1,9 @@
 import React from "react";
 import { useContext } from "react";
-import { AdminContext } from "../context/AdminContext";
+import { AdminContext } from "../context/admin/AdminContext";
+import { DoctorContext } from "../context/doctor/DoctorContext";
+import { LabContext } from "../context/lab/LabContext";
 import { NavLink } from "react-router-dom";
-import { DoctorContext } from "../context/DoctorContext";
-import { LabContext } from "../context/LabContext";
 import {
   FiHome,
   FiCalendar,

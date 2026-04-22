@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   FaPhone,
   FaEnvelope,
@@ -8,7 +9,7 @@ import {
   FaInstagram,
   FaLinkedin,
   FaTiktok,
-  FaYoutube
+  FaYoutube,
 } from "react-icons/fa";
 import { MdHealthAndSafety, MdPrivacyTip, MdEmergency } from "react-icons/md";
 import { HiHome, HiInformationCircle } from "react-icons/hi";
@@ -17,6 +18,8 @@ import { RiContactsBookLine } from "react-icons/ri";
 import logo from "../assets/logo7.png";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer
       className="w-full pt-16 pb-8"
@@ -42,12 +45,9 @@ const Footer = () => {
               >
                 Roshetta
               </span>
-            
             </div>
             <p className="text-white text-opacity-90 leading-relaxed mb-4">
-              Roshetta is your trusted platform to easily find and book
-              appointments with doctors, labs, and pharmacies. Explore our
-              network and simplify your healthcare journey.
+              {t("footer_description")}
             </p>
 
             {/* Social Icons */}
@@ -55,35 +55,42 @@ const Footer = () => {
               <a
                 href="#"
                 className="social-icon bg-white bg-opacity-20 hover:bg-opacity-30"
+                aria-label={t("facebook")}
               >
                 <FaFacebook className="text-[#3b5998]" />
               </a>
               <a
                 href="#"
                 className="social-icon bg-white bg-opacity-20 hover:bg-opacity-30"
+                aria-label={t("twitter")}
               >
                 <FaTwitter className="text-[#1da1f2]" />
               </a>
               <a
                 href="#"
                 className="social-icon bg-white bg-opacity-20 hover:bg-opacity-30"
+                aria-label={t("instagram")}
               >
                 <FaInstagram className="text-[#e1306c]" />
               </a>
               <a
                 href="#"
                 className="social-icon bg-white bg-opacity-20 hover:bg-opacity-30"
+                aria-label={t("linkedin")}
               >
                 <FaLinkedin className="text-[#0077b5]" />
               </a>
               <a
                 href="#"
                 className="social-icon bg-white bg-opacity-20 hover:bg-opacity-30"
+                aria-label={t("youtube")}
               >
                 <FaYoutube className="text-[#d11616]" />
-              </a><a
+              </a>
+              <a
                 href="#"
                 className="social-icon bg-white bg-opacity-20 hover:bg-opacity-30"
+                aria-label={t("tiktok")}
               >
                 <FaTiktok className="text-[#000000]" />
               </a>
@@ -93,27 +100,35 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4 flex items-center text-white">
-              <HiInformationCircle className="mr-2 text-white  text-2xl" />
-              Quick Links
+              <HiInformationCircle className="mr-2 text-white text-2xl" />
+              {t("quick_links")}
             </h3>
             <ul className="space-y-2">
               {[
-                { icon: <HiHome className="mr-2 text-white" />, text: "Home" },
+                {
+                  icon: <HiHome className="mr-2 text-white" />,
+                  text: t("home"),
+                  key: "home_link",
+                },
                 {
                   icon: <HiInformationCircle className="mr-2 text-white" />,
-                  text: "About Us",
+                  text: t("about_us"),
+                  key: "about_us",
                 },
                 {
                   icon: <RiContactsBookLine className="mr-2 text-white" />,
-                  text: "Contact Us",
+                  text: t("contact_us"),
+                  key: "contact_us",
                 },
                 {
                   icon: <MdPrivacyTip className="mr-2 text-white" />,
-                  text: "Privacy Policy",
+                  text: t("privacy_policy"),
+                  key: "privacy_policy",
                 },
                 {
                   icon: <MdEmergency className="mr-2 text-white" />,
-                  text: "Emergency",
+                  text: t("emergency"),
+                  key: "emergency",
                 },
               ].map((item, index) => (
                 <li key={index} className="flex items-center">
@@ -130,7 +145,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 flex items-center text-white">
               <BiSupport className="mr-2 text-white text-2xl" />
-              Contact Us
+              {t("contact_us_title")}
             </h3>
             <ul className="space-y-2">
               <li className="flex items-center">
@@ -153,7 +168,9 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <FaMapMarkerAlt className="mr-2 text-white" />
-                <span className="text-white text-opacity-90">Cairo, Egypt</span>
+                <span className="text-white text-opacity-90">
+                  {t("location")}
+                </span>
               </li>
             </ul>
           </div>
@@ -164,8 +181,8 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center text-white text-opacity-80 text-sm">
-          <span className="text-orange-900">TAXI </span> © {new Date().getFullYear()} Roshetta — All Rights
-          Reserved.
+          <span className="text-orange-900">TAXI </span> ©{" "}
+          {new Date().getFullYear()} Roshetta — {t("copyright")}
         </div>
       </div>
 

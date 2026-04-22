@@ -1,0 +1,47 @@
+{
+  "form": {
+    "title": "إضافة عنوان",
+    "addressType": "نوع العنوان",
+    "home": "المنزل",
+    "work": "العمل",
+    "other": "آخر",
+    "streetAddress": "عنوان الشارع",
+    "apartmentNumber": "رقم الشقة/الوحدة",
+    "city": "المدينة",
+    "governorate": "المحافظة",
+    "postalCode": "الرمز البريدي",
+    "saveAsDefault": "احفظه كعنوان افتراضي",
+    "addAddress": "إضافة عنوان",
+    "updateAddress": "تحديث العنوان"
+  },
+  "governorates": {
+    "cairo": "القاهرة",
+    "alexandria": "الإسكندرية",
+    "giza": "الجيزة",
+    "dakahlia": "الدقهلية",
+    "sharqia": "الشرقية",
+    "kalyubia": "القليوبية",
+    "kafrelSheikh": "كفر الشيخ",
+    "beheira": "البحيرة",
+    "ismailia": "الإسماعيلية",
+    "portSaid": "بورسعيد",
+    "suez": "السويس",
+    "newValley": "الوادي الجديد",
+    "matrouh": "مطروح",
+    "redsea": "البحر الأحمر",
+    "fayoum": "الفيوم",
+    "beniSuef": "بني سويف",
+    "minufiya": "المنوفية",
+    "qena": "قنا",
+    "sohag": "سوهاج",
+    "assiut": "أسيوط",
+    "luxor": "الأقصر",
+    "aswan": "أسوان"
+  },
+  "validation": {
+    "streetAddressRequired": "عنوان الشارع مطلوب",
+    "cityRequired": "المدينة مطلوبة",
+    "governorateRequired": "المحافظة مطلوبة",
+    "invalidPostalCode": "رمز بريدي غير صحيح"
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { DoctorContext } from "../../context/DoctorContext";
+import { DoctorContext } from "../../context/doctor/DoctorContext";
 import { assets } from "../../assets/assets";
 import { v4 as uuidv4 } from "uuid";
 import { AppContext } from "../../context/AppContext";

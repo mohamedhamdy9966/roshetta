@@ -1,0 +1,28 @@
+{
+  "labProfile": {
+    "services": "Services",
+    "workingHours": "Working Hours",
+    "location": "Location",
+    "phone": "Phone",
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "bookTest": "Book Test"
+  },
+  "testTypes": {
+    "bloodTest": "Blood Test",
+    "ultrasound": "Ultrasound",
+    "xray": "X-Ray",
+    "mri": "MRI",
+    "ct": "CT Scan",
+    "ecg": "ECG",
+    "echocardiogram": "Echocardiogram"
+  },
+  "appointmentBooking": {
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "selectTest": "Select Test",
+    "noSlotsAvailable": "No slots available for this date",
+    "confirmBooking": "Confirm Booking",
+    "bookingConfirmed": "Booking confirmed successfully"
+  }
+}

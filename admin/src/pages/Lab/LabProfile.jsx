@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { LabContext } from "../../context/LabContext";
+import { LabContext } from "../../context/lab/LabContext";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";

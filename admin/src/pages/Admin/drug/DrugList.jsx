@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDrugContext } from "../../context/DrugContext";
+import { useDrugContext } from "../../../context/drug/DrugContext";
 import toast from "react-hot-toast";
 
 const DrugList = () => {

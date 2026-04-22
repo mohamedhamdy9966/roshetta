@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ import { IoMdTime } from "react-icons/io";
 import { CgArrowTopLeftR } from "react-icons/cg";
 
 const TopDoctors = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { doctors } = useContext(AppContext);
 
@@ -62,12 +64,12 @@ const TopDoctors = () => {
             },
           }}
         >
-          <h2 className="text-3xl flex  md:text-4xl font-bold text-center text-white mb-4">
+          <h2 className="text-3xl flex md:text-4xl font-bold text-center text-white mb-4">
             <CgArrowTopLeftR className="text-4xl mr-2 text-white" />
-            Our Top Specialists
+            {t("our_top_specialists")}
           </h2>
           <p className="text-lg text-center text-[var(--color-text-secondary)] max-w-2xl">
-            Book appointments with our most experienced medical professionals
+            {t("top_specialists_description")}
           </p>
         </motion.div>
 
@@ -109,7 +111,7 @@ const TopDoctors = () => {
                           : "bg-gray-100 text-gray-800"
                       }`}
                     >
-                      {doctor.available ? "Available" : "Booked"}
+                      {doctor.available ? t("available") : t("booked")}
                     </div>
                   </div>
 
@@ -134,12 +136,14 @@ const TopDoctors = () => {
 
                     <div className="flex items-center text-sm text-[var(--color-text-secondary)]">
                       <IoMdTime className="mr-2 text-[var(--color-primary)]" />
-                      <span>{doctor.experience || "10+"} years experience</span>
+                      <span>
+                        {doctor.experience || "10+"} {t("years_experience")}
+                      </span>
                     </div>
 
                     <div className="pt-2">
                       <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[var(--color-primary-light)] hover:bg-[var(--color-primary)] text-[var(--color-primary-dark)] hover:text-white rounded-lg transition-colors duration-300 text-sm font-medium">
-                        Book Appointment
+                        {t("book_appointment")}
                         <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
                       </button>
                     </div>
@@ -169,7 +173,7 @@ const TopDoctors = () => {
             }}
             className="flex items-center gap-3 px-8 py-4 bg-white hover:bg-[var(--color-primary-dark)] text-[#0097A7] hover:text-white font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300"
           >
-            View All Doctors
+            {t("view_all_doctors")}
             <FaArrowRight className="transition-transform group-hover:translate-x-1" />
           </button>
         </motion.div>

@@ -1,0 +1,101 @@
+{
+  "home": {
+    "title": "الرئيسية",
+    "heroSubtitle": "اختبر مستقبل المواعيد الطبية",
+    "ourTopSpecialists": "أفضل المتخصصين",
+    "bookWithOurExperts": "احجز مواعيد مع أطبائنا الأكثر خبرة والمحترفين الطبيين",
+    "findBySpecialty": "البحث حسب التخصص",
+    "simplyBrowse": "ما عليك سوى تصفح قائمتنا الواسعة من التخصصات الطبية وإيجاد الطبيب المناسب لاحتياجاتك."
+  },
+  "about": {
+    "title": "روشيتا - نظام الرعاية الصحية المتكامل",
+    "subtitle": "اكتشف روشيتا، أول نظام رعاية صحية متكامل في العالم يجمع بين التميز الطبي والابتكار في الحماية.",
+    "advancedMedicalCare": "الرعاية الطبية المتقدمة",
+    "excellenceInPhysicalHealth": "التميز في الصحة البدنية",
+    "advancedMedicalCareDesc": "خدمات طبية شاملة تتميز باستشارات متخصصة وتشخيصات دقيقة مع أفضل الأطباء والمتخصصين في جميع المجالات الطبية.",
+    "generalMedicalCare": "الرعاية الطبية العامة",
+    "comprehensiveProtection": "حماية شاملة",
+    "generalMedicalCareDesc": "منصة رعاية طبية عامة رائدة توفر الحماية والاستشارات والدعم من خلال حلول رقمية مبتكرة.",
+    "integratedHealthcareEcosystem": "النظام الصحي المتكامل",
+    "comprehensiveFuture": "مستقبل الرعاية الصحية الشامل",
+    "integratedHealthcareDesc": "نظام متكامل يجمع بين الرعاية الطبية والرعاية الطبية العامة لأول مرة، ويوفر رعاية صحية شاملة تعامل العناية والحماية كوحدة واحدة.",
+    "comprehensiveHealthcare": "الرعاية الصحية الشاملة",
+    "comprehensiveHealthcareDesc": "نظام متكامل يجمع بين الخبرة الطبية والابتكار في مجال الحماية، ويوفر رعاية صحية شاملة بلا مثيل.",
+    "coreInnovation": "الابتكار الأساسي",
+    "advancedSecurity": "الأمان المتقدم",
+    "advancedSecurityDesc": "تشفير عالي المستوى يحمي بيانات الرعاية الطبية والرعاية الطبية العامة من خلال بروتوكولات الخصوصية المتقدمة عبر جميع المنصات.",
+    "securityFirst": "الأمان أولا",
+    "instantConnection": "الاتصال الفوري",
+    "instantConnectionDesc": "وصول سريع للأطباء والمتخصصين في الرعاية الطبية العامة، مما يزيل الحواجز بين المرضى ومقدمي الرعاية الصحية.",
+    "speedAccess": "السرعة والوصول",
+    "globalHealthcareNetwork": "الشبكة الصحية العالمية",
+    "globalHealthcareNetworkDesc": "منصة عالمية تربط المتخصصين في مجالات الرعاية الطبية والرعاية الطبية العامة، مما يجعل الرعاية المتخصصة في متناول الجميع في أي مكان.",
+    "globalReach": "الوصول العالمي",
+    "livesTransformed": "الحيوات المتحولة",
+    "userBase": "قاعدة المستخدمين",
+    "healthcareSpecialists": "متخصصو الرعاية الصحية",
+    "medicalGeneralMedicalCare": "الرعاية الطبية والرعاية الطبية العامة",
+    "specialties": "التخصصات",
+    "integratedFields": "المجالات المتكاملة",
+    "platformReliability": "موثوقية المنصة",
+    "performanceExcellence": "التميز في الأداء",
+    "aiPoweredDiagnostics": "التشخيص المعتمد على الذكاء الاصطناعي",
+    "aiPoweredDiagnosticsDesc": "خوارزميات التعلم الآلي المتقدمة تساعد مقدمي الرعاية الصحية في التشخيص الدقيق ووضع خطط العلاج الشخصية.",
+    "mobileFirstExperience": "تجربة الهاتف المحمول أولا",
+    "mobileFirstExperienceDesc": "وصول سلس للرعاية الصحية من خلال منصتنا سريعة الاستجابة للهاتف المحمول، مما يضمن أن الرعاية تكون في متناول يديك دائما.",
+    "smartHealthRecords": "السجلات الصحية الذكية",
+    "smartHealthRecordsDesc": "إدارة ذكية للبيانات الصحية توفر رؤى شاملة لكل من المرضى ومقدمي الرعاية الصحية.",
+    "enterpriseGradeSecurity": "الأمان من الدرجة الاحترافية",
+    "enterpriseGradeSecurityDesc": "تشفير عسكري وبروتوكولات أمان تضمن بقاء معلوماتك الصحية الحساسة محمية بشكل كامل."
+  },
+  "contact": {
+    "title": "الاتصال بالتميز",
+    "subtitle": "اختبر الرعاية الصحية المتميزة مثل لم تختبرها من قبل. تربطك منصتنا الطبية الحديثة مع أفضل المتخصصين والعلاجات المتقدمة والرعاية الشخصية.",
+    "specialists": "500+ متخصص",
+    "support24_7": "دعم 24/7",
+    "tellemedicineReady": "جاهز للطب عن بعد",
+    "medicalEmergency": "حالة طبية طارئة؟",
+    "dontWait": "لا تنتظر - احصل على مساعدة فورية",
+    "instantVideoConsultation": "استشارة فيديو فورية",
+    "connectWithSpecialists": "تواصل مع المتخصصين في ثوان عبر استدعاءات فيديو آمنة",
+    "responseTime": "وقت الرد",
+    "twoMinutes": "دقيقتان",
+    "availability": "التوفر",
+    "available24_7": "متاح 24/7"
+  },
+  "doctors": {
+    "title": "الأطباء",
+    "ourDoctors": "أطباؤنا",
+    "specialties": "التخصصات",
+    "experience": "سنوات من الخبرة",
+    "availableSlots": "المواعيد المتاحة",
+    "noAvailableSlots": "لا توجد مواعيد متاحة لهذا التاريخ"
+  },
+  "labs": {
+    "title": "المختبرات",
+    "ourLabs": "مختبراتنا",
+    "services": "الخدمات",
+    "testTypes": "أنواع الاختبارات"
+  },
+  "drugs": {
+    "title": "الأدوية",
+    "ourDrugs": "أدويتنا",
+    "categories": "الفئات",
+    "price": "السعر",
+    "inStock": "في المخزون",
+    "outOfStock": "غير متوفر"
+  },
+  "profile": {
+    "title": "ملفي الشخصي",
+    "editProfile": "تحرير الملف الشخصي",
+    "myAppointments": "مواعيدي",
+    "medicalHistory": "السجل الطبي",
+    "uploadProfilePicture": "تحميل صورة الملف الشخصي"
+  },
+  "appointments": {
+    "title": "مواعيدي",
+    "upcomingAppointments": "المواعيد القادمة",
+    "pastAppointments": "المواعيد السابقة",
+    "noAppointments": "لم يتم العثور على مواعيد"
+  }
+}

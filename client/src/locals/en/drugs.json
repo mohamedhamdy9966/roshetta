@@ -1,0 +1,32 @@
+{
+  "drugProfile": {
+    "name": "Drug Name",
+    "manufacturer": "Manufacturer",
+    "price": "Price",
+    "quantity": "Quantity",
+    "activeIngredient": "Active Ingredient",
+    "strength": "Strength",
+    "instructions": "Instructions",
+    "sideEffects": "Side Effects",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock"
+  },
+  "categories": {
+    "painRelief": "Pain Relief",
+    "coldAndFlu": "Cold and Flu",
+    "digestion": "Digestion",
+    "skinCare": "Skin Care",
+    "vitaminsSupplement": "Vitamins & Supplements",
+    "antibiotics": "Antibiotics",
+    "antacids": "Antacids"
+  },
+  "shopping": {
+    "addToCart": "Add to Cart",
+    "removeFromCart": "Remove from Cart",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "proceedToCheckout": "Proceed to Checkout",
+    "continueShoppingShop": "Continue Shopping"
+  }
+}
