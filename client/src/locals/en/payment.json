@@ -1,0 +1,33 @@
+{
+  "paymentMethods": {
+    "creditCard": "Credit Card",
+    "debitCard": "Debit Card",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "bankTransfer": "Bank Transfer",
+    "wallet": "Digital Wallet"
+  },
+  "paymentStatus": {
+    "processing": "Processing Payment...",
+    "success": "Payment Successful!",
+    "failed": "Payment Failed",
+    "cancelled": "Payment Cancelled",
+    "pending": "Payment Pending"
+  },
+  "paymentDetails": {
+    "amount": "Amount",
+    "transactionId": "Transaction ID",
+    "date": "Date",
+    "time": "Time",
+    "receiptNumber": "Receipt Number",
+    "downloadReceipt": "Download Receipt"
+  },
+  "orderSummary": {
+    "orderDetails": "Order Details",
+    "appointmentFee": "Appointment Fee",
+    "serviceFee": "Service Fee",
+    "tax": "Tax",
+    "discount": "Discount",
+    "total": "Total"
+  }
+}

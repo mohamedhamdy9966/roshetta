@@ -1,0 +1,28 @@
+{
+  "labProfile": {
+    "services": "الخدمات",
+    "workingHours": "ساعات العمل",
+    "location": "الموقع",
+    "phone": "الهاتف",
+    "rating": "التقييم",
+    "reviews": "التقييمات",
+    "bookTest": "احجز اختبار"
+  },
+  "testTypes": {
+    "bloodTest": "فحص الدم",
+    "ultrasound": "الموجات فوق الصوتية",
+    "xray": "الأشعة السينية",
+    "mri": "التصوير بالرنين المغناطيسي",
+    "ct": "التصوير المقطعي",
+    "ecg": "رسم القلب الكهربائي",
+    "echocardiogram": "تخطيط صدى القلب"
+  },
+  "appointmentBooking": {
+    "selectDate": "اختر التاريخ",
+    "selectTime": "اختر الوقت",
+    "selectTest": "اختر الاختبار",
+    "noSlotsAvailable": "لا توجد مواعيد متاحة لهذا التاريخ",
+    "confirmBooking": "تأكيد الحجز",
+    "bookingConfirmed": "تم تأكيد الحجز بنجاح"
+  }
+}
