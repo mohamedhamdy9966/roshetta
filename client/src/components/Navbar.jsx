@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { assets } from "../assets/assets";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
@@ -12,6 +13,26 @@ const Navbar = () => {
   const { token, setToken, userData } = useContext(AppContext);
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
+
+  // Add i18n hook
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  // Language switcher function
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    // Handle RTL for Arabic
+    if (lng === "ar") {
+      document.body.dir = "rtl";
+      document.documentElement.lang = "ar";
+      // Add RTL class to body for custom styling
+      document.body.classList.add("rtl");
+    } else {
+      document.body.dir = "ltr";
+      document.documentElement.lang = "en";
+      document.body.classList.remove("rtl");
+    }
+  };
 
   const logout = () => {
     setToken(null);
@@ -50,17 +71,17 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { label: "Home", path: "/", icon: "fa-home" },
-    { label: "Doctors", path: "/doctors", icon: "fa-user-doctor" },
-    { label: "Labs", path: "/labs", icon: "fa-flask" },
+    { label: t("home"), path: "/", icon: "fa-home" },
+    { label: t("doctors"), path: "/doctors", icon: "fa-user-doctor" },
+    { label: t("labs"), path: "/labs", icon: "fa-flask" },
     {
-      label: "Drug Store",
+      label: t("drug_store"),
       path: "/drugs",
       icon: "fa-prescription-bottle-medical",
     },
-    { label: "About", path: "/about", icon: "fa-info-circle" },
-    { label: "Contact", path: "/contact", icon: "fa-phone" },
-    { label: "Privacy Policy", path: "/privacypolicy", icon: "fa-privacy" },
+    { label: t("about"), path: "/about", icon: "fa-info-circle" },
+    { label: t("contact"), path: "/contact", icon: "fa-phone" },
+    { label: t("privacy_policy"), path: "/privacypolicy", icon: "fa-privacy" },
   ];
 
   // Cart component for reusability
@@ -80,14 +101,13 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className="shadow z-50 fixed  top-0 left-0 w-full"
+        className="shadow z-50 fixed top-0 left-0 w-full"
         style={{ backgroundColor: "var(--color-primary-dark)" }}
       >
-        <div className="flex justify-between  items-center h-16  mx-auto max-w-7xl px-4">
+        <div className="flex justify-between items-center h-16 mx-auto max-w-7xl px-4">
           {/* Logo */}
-
           <div
-            className="flex items-center  cursor-pointer"
+            className="flex items-center cursor-pointer"
             onClick={() => navigate("/")}
           >
             <img
@@ -116,9 +136,10 @@ const Navbar = () => {
                       `text-white px-3 py-2 rounded-md text-sm font-medium relative
                       after:content-[''] after:absolute after:left-0 after:bottom-0 
                       after:h-[2px] after:bg-white after:transition-all after:duration-400 
-                      ${isActive
-                        ? "after:w-full"
-                        : "after:w-0 hover:after:w-full"
+                      ${
+                        isActive
+                          ? "after:w-full"
+                          : "after:w-0 hover:after:w-full"
                       }`
                     }
                   >
@@ -130,6 +151,31 @@ const Navbar = () => {
 
             {/* User Profile / Auth */}
             <div className="ml-4 flex items-center space-x-4">
+              {/* Language Switcher - Desktop */}
+              <div className="flex items-center space-x-2 border-l border-white/30 pl-4">
+                <button
+                  onClick={() => changeLanguage("en")}
+                  className={`px-2 py-1 text-sm font-medium rounded transition-colors ${
+                    currentLanguage === "en"
+                      ? "bg-white text-[#0097A7]"
+                      : "text-white hover:bg-white/20"
+                  }`}
+                >
+                  EN
+                </button>
+                <span className="text-white/50">|</span>
+                <button
+                  onClick={() => changeLanguage("ar")}
+                  className={`px-2 py-1 text-sm font-medium rounded transition-colors ${
+                    currentLanguage === "ar"
+                      ? "bg-white text-[#0097A7]"
+                      : "text-white hover:bg-white/20"
+                  }`}
+                >
+                  AR
+                </button>
+              </div>
+
               {/* Cart Icon - Desktop */}
               {token && userData && <CartIcon />}
 
@@ -148,8 +194,9 @@ const Navbar = () => {
                       {userData.name}
                     </span>
                     <i
-                      className={`fas fa-chevron-${showDropdown ? "up" : "down"
-                        } ml-1 text-white text-xs`}
+                      className={`fas fa-chevron-${
+                        showDropdown ? "up" : "down"
+                      } ml-1 text-white text-xs`}
                     ></i>
                   </div>
 
@@ -161,34 +208,34 @@ const Navbar = () => {
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          My Profile
+                          {t("my_profile")}
                         </NavLink>
                         <NavLink
                           to="/my-appointments"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          Doctor Appointments
+                          {t("doctor_appointments")}
                         </NavLink>
                         <NavLink
                           to="/my-lab-appointments"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          Lab Appointments
+                          {t("lab_appointments")}
                         </NavLink>
                         <NavLink
                           to="/my-drug-orders"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          Drug Orders
+                          {t("drug_orders")}
                         </NavLink>
                         <button
                           onClick={logout}
                           className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                         >
-                          Logout
+                          {t("logout")}
                         </button>
                       </div>
                     </div>
@@ -200,7 +247,7 @@ const Navbar = () => {
                   className="ml-4 px-8 py-2 rounded-md text-sm font-medium text-white"
                   style={{ backgroundColor: "var(--color-primary)" }}
                 >
-                  Sign Up
+                  {t("sign_up")}
                 </NavLink>
               )}
             </div>
@@ -217,9 +264,10 @@ const Navbar = () => {
                       `text-white px-2 py-1 rounded-md text-xs font-medium relative
                       after:content-[''] after:absolute after:left-0 after:bottom-0 
                       after:h-[2px] after:bg-white after:transition-all after:duration-400 
-                      ${isActive
-                        ? "after:w-full"
-                        : "after:w-0 hover:after:w-full"
+                      ${
+                        isActive
+                          ? "after:w-full"
+                          : "after:w-0 hover:after:w-full"
                       }`
                     }
                   >
@@ -235,10 +283,11 @@ const Navbar = () => {
                 onClick={() => setShowDropdown(!showDropdown)}
                 className="text-white px-2 py-1 rounded-md text-xs font-medium"
               >
-                More{" "}
+                {t("more")}{" "}
                 <i
-                  className={`fas fa-chevron-${showDropdown ? "up" : "down"
-                    } ml-1 text-xs`}
+                  className={`fas fa-chevron-${
+                    showDropdown ? "up" : "down"
+                  } ml-1 text-xs`}
                 ></i>
               </button>
 
@@ -262,6 +311,30 @@ const Navbar = () => {
 
             {/* Cart Icon and User Profile / Auth for tablet */}
             <div className="ml-2 flex items-center space-x-3">
+              {/* Language Switcher - Tablet */}
+              <div className="flex items-center space-x-1 border-r border-white/30 pr-2">
+                <button
+                  onClick={() => changeLanguage("en")}
+                  className={`px-1.5 py-0.5 text-xs font-medium rounded ${
+                    currentLanguage === "en"
+                      ? "bg-white text-[#0097A7]"
+                      : "text-white hover:bg-white/20"
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => changeLanguage("ar")}
+                  className={`px-1.5 py-0.5 text-xs font-medium rounded ${
+                    currentLanguage === "ar"
+                      ? "bg-white text-[#0097A7]"
+                      : "text-white hover:bg-white/20"
+                  }`}
+                >
+                  AR
+                </button>
+              </div>
+
               {/* Cart Icon - Tablet */}
               {token && userData && <CartIcon size="text-lg" />}
 
@@ -289,34 +362,34 @@ const Navbar = () => {
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          My Profile
+                          {t("my_profile")}
                         </NavLink>
                         <NavLink
                           to="/my-appointments"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          Doctor Appointments
+                          {t("doctor_appointments")}
                         </NavLink>
                         <NavLink
                           to="/my-lab-appointments"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          Lab Appointments
+                          {t("lab_appointments")}
                         </NavLink>
                         <NavLink
                           to="/my-drug-orders"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={handleNavClick}
                         >
-                          Drug Orders
+                          {t("drug_orders")}
                         </NavLink>
                         <button
                           onClick={logout}
                           className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                         >
-                          Logout
+                          {t("logout")}
                         </button>
                       </div>
                     </div>
@@ -328,7 +401,7 @@ const Navbar = () => {
                   className="ml-2 px-3 py-1 rounded-md text-xs font-medium text-white"
                   style={{ backgroundColor: "var(--color-primary)" }}
                 >
-                  Sign Up
+                  {t("sign_up")}
                 </NavLink>
               )}
             </div>
@@ -336,6 +409,30 @@ const Navbar = () => {
 
           {/* Mobile menu button - shown below 768px */}
           <div className="md:hidden flex items-center space-x-3">
+            {/* Language Switcher - Mobile */}
+            <div className="flex items-center space-x-1 bg-white/10 rounded-lg px-2 py-1">
+              <button
+                onClick={() => changeLanguage("en")}
+                className={`px-1.5 py-0.5 text-xs font-medium rounded ${
+                  currentLanguage === "en"
+                    ? "bg-white text-[#0097A7]"
+                    : "text-white"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => changeLanguage("ar")}
+                className={`px-1.5 py-0.5 text-xs font-medium rounded ${
+                  currentLanguage === "ar"
+                    ? "bg-white text-[#0097A7]"
+                    : "text-white"
+                }`}
+              >
+                AR
+              </button>
+            </div>
+
             {/* Cart Icon - Mobile (outside hamburger) */}
             {token && userData && <CartIcon size="text-lg" />}
 
@@ -377,21 +474,22 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      {/* <div className="h-20"></div> */}
 
       {/* Add margin to the top of the content to account for the fixed navbar */}
       <div className="pt-16"></div>
 
       {/* Mobile menu - shown below 768px */}
       <div
-        className={`md:hidden fixed inset-0 z-40 transform ${menuOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out`}
+        className={`md:hidden fixed inset-0 z-40 transform ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
         style={{ top: "64px", width: "65%" }}
         ref={mobileMenuRef}
       >
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 ${menuOpen ? "block" : "hidden"
-            }`}
+          className={`fixed inset-0 bg-black bg-opacity-50 ${
+            menuOpen ? "block" : "hidden"
+          }`}
           onClick={() => setMenuOpen(false)}
         ></div>
         <div className="relative flex flex-col w-full h-full bg-[#0097A7] shadow-xl">
@@ -403,9 +501,10 @@ const Navbar = () => {
                   to={item.path}
                   className={({ isActive }) => `
                     group flex items-center px-3 py-3 my-1 text-sm font-medium rounded-md
-                    ${isActive
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-white hover:text-gray-900 hover:bg-gray-100"
+                    ${
+                      isActive
+                        ? "bg-gray-100 text-gray-900"
+                        : "text-white hover:text-gray-900 hover:bg-gray-100"
                     }
                   `}
                   onClick={handleNavClick}
@@ -413,10 +512,11 @@ const Navbar = () => {
                   {({ isActive }) => (
                     <>
                       <i
-                        className={`fas ${item.icon} mr-3 ${isActive
+                        className={`fas ${item.icon} mr-3 ${
+                          isActive
                             ? "text-gray-500"
                             : "text-gray-400 group-hover:text-gray-500"
-                          }`}
+                        }`}
                       ></i>
                       {item.label}
                     </>
@@ -431,15 +531,16 @@ const Navbar = () => {
                       to="/cart"
                       className={({ isActive }) => `
                         group flex items-center px-3 py-3 text-sm font-medium rounded-md relative
-                        ${isActive
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-white hover:text-gray-900 hover:bg-gray-100"
+                        ${
+                          isActive
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-white hover:text-gray-900 hover:bg-gray-100"
                         }
                       `}
                       onClick={handleNavClick}
                     >
                       <MdShoppingCart className="mr-3 text-gray-400 group-hover:text-gray-500" />
-                      Cart
+                      {t("cart")}
                       {userData.cartItems && userData.cartItems.length > 0 && (
                         <span className="ml-auto bg-red-500 text-white text-xs rounded-full px-2 py-1">
                           {userData.cartItems.length}
@@ -450,64 +551,68 @@ const Navbar = () => {
                       to="/my-profile"
                       className={({ isActive }) => `
                         group flex items-center px-3 py-3 text-sm font-medium rounded-md
-                        ${isActive
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-white hover:text-gray-900 hover:bg-gray-100"
+                        ${
+                          isActive
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-white hover:text-gray-900 hover:bg-gray-100"
                         }
                       `}
                       onClick={handleNavClick}
                     >
                       <i className="fas fa-user mr-3 text-gray-400 group-hover:text-gray-500"></i>
-                      My Profile
+                      {t("my_profile")}
                     </NavLink>
                     <NavLink
                       to="/my-appointments"
                       className={({ isActive }) => `
                         group flex items-center px-3 py-3 text-sm font-medium rounded-md
-                        ${isActive
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-white hover:text-gray-900 hover:bg-gray-100"
+                        ${
+                          isActive
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-white hover:text-gray-900 hover:bg-gray-100"
                         }
                       `}
                       onClick={handleNavClick}
                     >
                       <i className="fas fa-calendar-check mr-3 text-gray-400 group-hover:text-gray-500"></i>
-                      Doctor Appointments
+                      {t("doctor_appointments")}
                     </NavLink>
                     <NavLink
                       to="/my-lab-appointments"
                       className={({ isActive }) => `
                         group flex items-center px-3 py-3 text-sm font-medium rounded-md
-                        ${isActive
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-white hover:text-gray-900 hover:bg-gray-100"
+                        ${
+                          isActive
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-white hover:text-gray-900 hover:bg-gray-100"
                         }
                       `}
                       onClick={handleNavClick}
                     >
                       <i className="fas fa-microscope mr-3 text-gray-400 group-hover:text-gray-500"></i>
-                      Lab Appointments
+                      {t("lab_appointments")}
                     </NavLink>
                     <NavLink
                       to="/my-drug-orders"
                       className={({ isActive }) => `
                         group flex items-center px-3 py-3 text-sm font-medium rounded-md
-                        ${isActive
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-white hover:text-gray-900 hover:bg-gray-100"
+                        ${
+                          isActive
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-white hover:text-gray-900 hover:bg-gray-100"
                         }
                       `}
                       onClick={handleNavClick}
                     >
                       <i className="fas fa-pills mr-3 text-gray-400 group-hover:text-gray-500"></i>
-                      Drug Orders
+                      {t("drug_orders")}
                     </NavLink>
                     <button
                       onClick={logout}
                       className="w-full text-left group flex items-center px-3 py-3 text-sm font-medium rounded-md text-red-600 hover:text-red-800 hover:bg-red-50"
                     >
                       <i className="fas fa-sign-out-alt mr-3"></i>
-                      Logout
+                      {t("logout")}
                     </button>
                   </div>
                 </>
@@ -519,7 +624,7 @@ const Navbar = () => {
                     style={{ backgroundColor: "var(--color-primary)" }}
                     onClick={handleNavClick}
                   >
-                    Sign Up
+                    {t("sign_up")}
                   </NavLink>
                 </div>
               )}

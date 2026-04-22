@@ -1,0 +1,36 @@
+{
+  "specialties": {
+    "cardiology": "Cardiology",
+    "dermatology": "Dermatology",
+    "pediatrics": "Pediatrics",
+    "orthopedics": "Orthopedics",
+    "neurology": "Neurology",
+    "psychiatry": "Psychiatry",
+    "ophthalmology": "Ophthalmology",
+    "otolaryngology": "Otolaryngology",
+    "generalPractitioner": "General Practitioner",
+    "dentistry": "Dentistry",
+    "urology": "Urology",
+    "gastroenterology": "Gastroenterology",
+    "pulmonology": "Pulmonology",
+    "nephrology": "Nephrology",
+    "oncology": "Oncology"
+  },
+  "doctorProfile": {
+    "experience": "Years of Experience",
+    "qualification": "Qualification",
+    "consultationFee": "Consultation Fee",
+    "available": "Available",
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "bookAppointment": "Book Appointment"
+  },
+  "appointmentBooking": {
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "chooseSlot": "Choose a time slot",
+    "noSlotsAvailable": "No slots available for this date",
+    "confirmBooking": "Confirm Booking",
+    "bookingConfirmed": "Booking confirmed successfully"
+  }
+}

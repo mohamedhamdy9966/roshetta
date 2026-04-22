@@ -1,0 +1,36 @@
+{
+  "specialties": {
+    "cardiology": "أمراض القلب",
+    "dermatology": "الأمراض الجلدية",
+    "pediatrics": "طب الأطفال",
+    "orthopedics": "جراحة العظام",
+    "neurology": "الأمراض العصبية",
+    "psychiatry": "الطب النفسي",
+    "ophthalmology": "طب العيون",
+    "otolaryngology": "أنف وأذن وحنجرة",
+    "generalPractitioner": "طبيب عام",
+    "dentistry": "طب الأسنان",
+    "urology": "أمراض المسالك البولية",
+    "gastroenterology": "أمراض الجهاز الهضمي",
+    "pulmonology": "أمراض الجهاز التنفسي",
+    "nephrology": "أمراض الكلى",
+    "oncology": "الأورام"
+  },
+  "doctorProfile": {
+    "experience": "سنوات الخبرة",
+    "qualification": "المؤهلات",
+    "consultationFee": "رسوم الاستشارة",
+    "available": "متاح",
+    "rating": "التقييم",
+    "reviews": "التقييمات",
+    "bookAppointment": "احجز موعد"
+  },
+  "appointmentBooking": {
+    "selectDate": "اختر التاريخ",
+    "selectTime": "اختر الوقت",
+    "chooseSlot": "اختر موعد زمني",
+    "noSlotsAvailable": "لا توجد مواعيد متاحة لهذا التاريخ",
+    "confirmBooking": "تأكيد الحجز",
+    "bookingConfirmed": "تم تأكيد الحجز بنجاح"
+  }
+}

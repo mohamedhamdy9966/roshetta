@@ -1,0 +1,67 @@
+{
+  "paymentMethods": {
+    "creditCard": "بطاقة ائتمان",
+    "debitCard": "بطاقة خصم",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "bankTransfer": "تحويل بنكي",
+    "wallet": "محفظة رقمية"
+  },
+  "paymentStatus": {
+    "processing": "جاري معالجة الدفع...",
+    "success": "تم الدفع بنجاح!",
+    "failed": "فشل الدفع",
+    "cancelled": "تم إلغاء الدفع",
+    "pending": "الدفع قيد الانتظار"
+  },
+  "paymentDetails": {
+    "amount": "المبلغ",
+    "transactionId": "معرف المعاملة",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "receiptNumber": "رقم الإيصال",
+    "downloadReceipt": "تحميل الإيصال"
+  },
+  "orderSummary": {
+    "orderDetails": "تفاصيل الطلب",
+    "appointmentFee": "رسوم الموعد",
+    "serviceFee": "رسوم الخدمة",
+    "tax": "الضريبة",
+    "discount": "الخصم",
+    "total": "الإجمالي"
+  }
+}
+{
+  "payment": "الدفع",
+  "paymentSuccess": "نجح الدفع",
+  "paymentSuccessDesc": "تم معالجة الدفع بنجاح. تم تأكيد موعدك.",
+  "paymentFailed": "فشل الدفع",
+  "paymentFailedDesc": "لم يتمكن من معالجة عملية الدفع. يرجى المحاولة مرة أخرى أو استخدام طريقة دفع مختلفة.",
+  "paymentFailedMessage": "لم يتمكن من معالجة عملية الدفع الخاصة بك. يرجى المحاولة مرة أخرى أو استخدام طريقة دفع مختلفة.",
+  "paymentProcessing": "جاري معالجة الدفع",
+  "paymentProcessingDesc": "جاري معالجة عملية الدفع الخاصة بك. يرجى الانتظار أثناء تأكيد عمليتك.",
+  "paymentCancel": "تم إلغاء الدفع",
+  "orderSuccessful": "تم تقديم طلبك بنجاح",
+  "orderFailed": "لم يتمكن من معالجة طلبك",
+  "orderCancelled": "تم إلغاء عملية الدفع الخاصة بك",
+  "processingOrder": "نحن نعالج طلبك",
+  "orderId": "رقم الطلب",
+  "appointmentId": "رقم الموعد",
+  "transactionId": "معرف المعاملة",
+  "appointmentDetails": "تفاصيل الموعد",
+  "appointmentBookedSuccessfully": "تم حجز موعدك وتمت معالجة الدفع بنجاح.",
+  "amount": "المبلغ",
+  "orderDate": "تاريخ الطلب",
+  "paymentMethod": "طريقة الدفع",
+  "returnHome": "العودة إلى الصفحة الرئيسية",
+  "viewOrder": "عرض الطلب",
+  "tryAgain": "حاول مرة أخرى",
+  "contactSupport": "اتصل بالدعم",
+  "thankYou": "شكراً لك!",
+  "paymentDetails": "تفاصيل الدفع",
+  "retryPayment": "إعادة محاولة الدفع",
+  "checkAppointmentsManually": "تحقق من المواعيد يدويًا",
+  "redirectingMessage": "إعادة التوجيه إلى المواعيد في 5 ثوان...",
+  "processingMessage": "يرجى الانتظار أثناء تأكيد دفعك. لا تغلق هذه الصفحة.",
+  "processingWaitMessage": "قد يستغرق هذا بضع لحظات. سيتم إعادة توجيهك تلقائيًا عند اكتمال العملية."
+}

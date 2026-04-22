@@ -1,0 +1,32 @@
+{
+  "drugProfile": {
+    "name": "اسم الدواء",
+    "manufacturer": "الشركة المنتجة",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "activeIngredient": "المادة الفعالة",
+    "strength": "القوة",
+    "instructions": "التعليمات",
+    "sideEffects": "الآثار الجانبية",
+    "inStock": "في المخزون",
+    "outOfStock": "غير متوفر"
+  },
+  "categories": {
+    "painRelief": "مسكنات الألم",
+    "coldAndFlu": "الزكام والإنفلونزا",
+    "digestion": "الجهاز الهضمي",
+    "skinCare": "العناية بالبشرة",
+    "vitaminsSupplement": "الفيتامينات والمكملات",
+    "antibiotics": "المضادات الحيوية",
+    "antacids": "مضادات الحموضة"
+  },
+  "shopping": {
+    "addToCart": "أضف إلى السلة",
+    "removeFromCart": "إزالة من السلة",
+    "quantity": "الكمية",
+    "subtotal": "المجموع الفرعي",
+    "total": "الإجمالي",
+    "proceedToCheckout": "متابعة الدفع",
+    "continueShoppingShop": "متابعة التسوق"
+  }
+}
