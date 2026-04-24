@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "react-scripts build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
@@ -16,7 +16,7 @@
     "extract-texts": "node scripts/extract-all-text.js",
     "translate-all": "node scripts/translate-all.js",
     "full-translate": "npm run extract-texts && npm run translate-all",
-    "start": "react-scripts start"
+    "start": "vite"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
