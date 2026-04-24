@@ -1,4 +1,4 @@
-# Roshetta MonoRepo - Healthcare Platform
+# Roshetta MonoRepo - Healthcare Platform.
 
 A comprehensive healthcare platform built as a graduation project for ITI ITP Team 5. Roshetta provides a complete solution for healthcare services including doctor appointments, lab tests, drug ordering, and administrative management across web and mobile platforms.
 
