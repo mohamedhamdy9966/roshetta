@@ -72,5 +72,54 @@
   "physical_therapy": "Physical Therapy",
   "nutrition": "Nutrition",
   "gastroenterology": "Gastroenterology",
-  "general_practice": "General Practice"
+  "general_practice": "General Practice",
+
+  "diagnostic_labs": "Diagnostic Labs",
+  "labs_page_title": "Find Diagnostic Labs",
+  "labs_page_title_with_service": "{{service}} Labs",
+  "labs_page_description": "Browse and book appointments at our network of diagnostic labs.",
+  "labs_page_description_with_service": "Find and book {{service}} labs near you.",
+  "labs_hero_title": "Find the Right Lab for Your Tests",
+  "labs_hero_title_with_service": "{{service}} Labs Near Your Care Journey",
+  "labs_hero_description": "Book diagnostic tests with verified laboratories. Quick appointments, reliable results.",
+
+  "filters": "Filters",
+  "show_filters": "Show Filters",
+  "hide_filters": "Hide Filters",
+  "clear_all": "Clear All",
+
+  "search": "Search",
+  "search_placeholder": "Search labs by name or service",
+
+  "service": "Service",
+  "all_services": "All Services",
+  "blood_tests": "Blood Tests",
+  "hormone_panels": "Hormone Panels",
+  "pathology": "Pathology",
+  "genetic_screening": "Genetic Screening",
+  "imaging_support": "Imaging Support",
+  "routine_checkups": "Routine Checkups",
+
+  "availability": "Availability",
+  "all_labs": "All Labs",
+  "available": "Available",
+  "unavailable": "Unavailable",
+
+  "fees_range": "Fees Range",
+  "min": "Min",
+  "max": "Max",
+
+  "minimum_rating": "Minimum Rating",
+  "any": "Any",
+
+  "address_not_available": "Address not available",
+  "new": "New",
+  "more_count": "+{{count}} more",
+  "starting_from": "Starting from ",
+  "egp": "EGP",
+  "book_now": "Book Now",
+
+  "no_labs_found": "No Labs Found",
+  "no_labs_description": "Try widening your search or clearing the current filters to see more diagnostic providers.",
+  "reset_filters": "Reset Filters"
 }
