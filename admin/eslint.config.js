@@ -1,29 +1,37 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import js from "@eslint/js";
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default [
+  // Ignore dist folder
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
+    ignores: ["dist"],
+  },
+  // Base config
+  {
+    files: ["**/*.{js,jsx}"],
+    plugins: {
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
       parserOptions: {
-        ecmaVersion: 'latest',
+        ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },
-        sourceType: 'module',
+        sourceType: "module",
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // Include recommended rules manually
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+
+      // Your custom rules
+      "react-refresh/only-export-components": "warn",
+      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
     },
   },
-])
+];
