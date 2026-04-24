@@ -1,20 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { specialtyData } from "../../assets/assets";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
 import { FaStethoscope } from "react-icons/fa";
 
 const DoctorSpecialty = () => {
   const { t, i18n } = useTranslation();
+  const [data, setData] = useState(null);
 
-  // Debug: Log when language changes
+  useEffect(() => {
+    // Debug: Log what's being imported
+    console.log("Raw specialtyData import:", specialtyData);
+
+    if (specialtyData && Array.isArray(specialtyData)) {
+      console.log("Specialty data loaded:", specialtyData.length, "items");
+      console.log("First specialty:", specialtyData[0]);
+      setData(specialtyData);
+    } else {
+      console.error(
+        "specialtyData is not an array or is undefined:",
+        specialtyData,
+      );
+    }
+  }, []);
+
   useEffect(() => {
     console.log("Language changed to:", i18n.language);
-    console.log("specialtyData:", specialtyData);
-    console.log("specialtyData length:", specialtyData?.length);
   }, [i18n.language]);
 
   const containerVariants = {
@@ -40,12 +53,8 @@ const DoctorSpecialty = () => {
     },
   };
 
-  // Function to translate specialty names - UPDATED VERSION
   const getTranslatedSpecialty = (specialty) => {
-    console.log("Looking up translation for:", specialty); // Debug log
-
     const specialtyMap = {
-      // Common variations
       Cardiologist: t("cardiology"),
       Cardiology: t("cardiology"),
       Dermatologist: t("dermatology"),
@@ -72,28 +81,17 @@ const DoctorSpecialty = () => {
       Oncologist: t("oncology"),
       Oncology: t("oncology"),
       ENT: t("ent"),
-      "ENT Specialist": t("ent"),
       Dentist: t("dentistry"),
       Dentistry: t("dentistry"),
-      "Physical Therapist": t("physical_therapy"),
-      "Physical Therapy": t("physical_therapy"),
-      Nutritionist: t("nutrition"),
-      Nutrition: t("nutrition"),
+      "General physician": t("general_practice"),
+      "General Physician": t("general_practice"),
+      "General Practice": t("general_practice"),
       Gastroenterologist: t("gastroenterology"),
       Gastroenterology: t("gastroenterology"),
-      "General Physician": t("general_practice"),
-      "General Physicians": t("general_practice"),
-      "general physician": t("general_practice"),
-      "general physicians": t("general_practice"),
-      "General physician": t("general_practice"),
-      "General Practice": t("general_practice"),
-      "general practice": t("general_practice"),
-      "General Practitioner": t("general_practice"),
-      "general practitioner": t("general_practice"),
-      GP: t("general_practice"),
-      gp: t("general_practice"),
-      "General Doctor": t("general_practice"),
-      "general doctor": t("general_practice"),
+      "Physical Therapy": t("physical_therapy"),
+      "Physical Therapist": t("physical_therapy"),
+      Nutrition: t("nutrition"),
+      Nutritionist: t("nutrition"),
     };
 
     const translated = specialtyMap[specialty];
@@ -104,14 +102,28 @@ const DoctorSpecialty = () => {
     return translated;
   };
 
-  // If no specialtyData, show loading or nothing
-  if (!specialtyData || specialtyData.length === 0) {
-    console.log("No specialty data found!");
-    return null;
+  // Loading state
+  if (!data) {
+    return (
+      <div className="flex flex-col items-center justify-center py-32">
+        <div className="animate-pulse text-cyan-700">
+          Loading specialties...
+        </div>
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-32">
+        <p className="text-gray-500">No specialties available</p>
+      </div>
+    );
   }
 
   return (
     <motion.div
+      key={i18n.language}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -119,7 +131,6 @@ const DoctorSpecialty = () => {
       className="flex flex-col items-center gap-8 py-32 px-4 sm:px-8 bg-[#B2EBF2] relative"
       id="doctorSpecialty"
     >
-      {/* Section Header */}
       <motion.div
         className="flex flex-col items-center"
         variants={itemVariants}
@@ -135,7 +146,6 @@ const DoctorSpecialty = () => {
         </p>
       </motion.div>
 
-      {/* Helmet for SEO */}
       <Helmet>
         <title>{t("specialty_page_title")}</title>
         <meta name="description" content={t("specialty_page_description")} />
@@ -150,12 +160,11 @@ const DoctorSpecialty = () => {
         <meta property="og:url" content="https://www.roshetta.com/doctors" />
       </Helmet>
 
-      {/* Specialty Grid */}
       <motion.div
         className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 w-full max-w-6xl"
         variants={containerVariants}
       >
-        {specialtyData.map((item, index) => (
+        {data.map((item, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
@@ -183,7 +192,6 @@ const DoctorSpecialty = () => {
         ))}
       </motion.div>
 
-      {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-[var(--color-accent)] opacity-10 rounded-full filter blur-xl -z-0"></div>
       <div className="absolute bottom-0 right-0 w-40 h-40 bg-[var(--color-primary)] opacity-10 rounded-full filter blur-xl -z-0"></div>
     </motion.div>

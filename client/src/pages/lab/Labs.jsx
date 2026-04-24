@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { FaFilter, FaFlask, FaMapMarkerAlt, FaStar } from "react-icons/fa";
 
 import { AppContext } from "../../context/AppContext";
@@ -23,8 +24,8 @@ const ratingOptions = [
 
 const toSlug = (value = "") => value.toLowerCase().replace(/\s+/g, "-");
 
-const formatAddress = (address) => {
-  if (!address) return "Address not available";
+const formatAddress = (address, t) => {
+  if (!address) return t("address_not_available");
 
   return [
     address.line1,
@@ -44,6 +45,7 @@ const getAverageRating = (ratings = []) => {
 };
 
 const Labs = () => {
+  const { t, i18n } = useTranslation();
   const { specialty } = useParams();
   const navigate = useNavigate();
   const { axios } = useContext(AppContext);
@@ -64,7 +66,8 @@ const Labs = () => {
     if (!specialty) return "";
 
     return (
-      serviceOptions.find((service) => toSlug(service) === specialty) || specialty
+      serviceOptions.find((service) => toSlug(service) === specialty) ||
+      specialty
     );
   }, [specialty]);
 
@@ -94,7 +97,9 @@ const Labs = () => {
   const filteredLabs = useMemo(() => {
     let results = [...labs];
     const normalizedService = (
-      filters.service || selectedServiceFromUrl || ""
+      filters.service ||
+      selectedServiceFromUrl ||
+      ""
     ).toLowerCase();
 
     if (normalizedService) {
@@ -161,20 +166,37 @@ const Labs = () => {
     }
   };
 
+  // Translate service options
+  const getTranslatedService = (service) => {
+    const serviceMap = {
+      "Blood Tests": t("blood_tests"),
+      "Hormone Panels": t("hormone_panels"),
+      Pathology: t("pathology"),
+      "Genetic Screening": t("genetic_screening"),
+      "Imaging Support": t("imaging_support"),
+      "Routine Checkups": t("routine_checkups"),
+    };
+    return serviceMap[service] || service;
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 pb-12 pt-8 md:px-16">
       <Helmet>
         <title>
           {selectedServiceFromUrl
-            ? `${selectedServiceFromUrl} Labs - Roshetta`
-            : "Diagnostic Labs - Roshetta"}
+            ? t("labs_page_title_with_service", {
+                service: selectedServiceFromUrl,
+              })
+            : t("labs_page_title")}
         </title>
         <meta
           name="description"
           content={
             selectedServiceFromUrl
-              ? `Browse labs offering ${selectedServiceFromUrl} services on Roshetta. Compare availability, fees, and book the right diagnostic provider.`
-              : "Browse diagnostic labs on Roshetta. Compare services, availability, and pricing for your next medical test."
+              ? t("labs_page_description_with_service", {
+                  service: selectedServiceFromUrl,
+                })
+              : t("labs_page_description")
           }
         />
       </Helmet>
@@ -182,16 +204,17 @@ const Labs = () => {
       <div className="mb-8 rounded-[2rem] bg-gradient-to-r from-cyan-900 via-teal-800 to-sky-700 px-6 py-10 text-white shadow-xl">
         <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-100">
           <FaFlask />
-          Diagnostic Labs
+          {t("diagnostic_labs")}
         </p>
         <h1 className="text-3xl font-bold md:text-4xl">
           {selectedServiceFromUrl
-            ? `${selectedServiceFromUrl} labs near your care journey`
-            : "Find trusted labs for tests, reports, and follow-up care"}
+            ? t("labs_hero_title_with_service", {
+                service: selectedServiceFromUrl,
+              })
+            : t("labs_hero_title")}
         </h1>
         <p className="mt-3 max-w-3xl text-cyan-50/90">
-          Compare services, check availability, and choose the lab that fits
-          your needs with fewer calls and less guesswork.
+          {t("labs_hero_description")}
         </p>
       </div>
 
@@ -206,7 +229,7 @@ const Labs = () => {
             onClick={() => setShowFilter((prev) => !prev)}
           >
             <FaFilter />
-            {showFilter ? "Hide Filters" : "Show Filters"}
+            {showFilter ? t("hide_filters") : t("show_filters")}
           </button>
 
           <div
@@ -215,32 +238,34 @@ const Labs = () => {
             }`}
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-slate-900">Filters</h2>
+              <h2 className="text-lg font-semibold text-slate-900">
+                {t("filters")}
+              </h2>
               <button
                 onClick={clearFilters}
                 className="text-sm font-medium text-cyan-700 hover:text-cyan-800"
               >
-                Clear all
+                {t("clear_all")}
               </button>
             </div>
 
             <div className="space-y-4">
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Search
+                  {t("search")}
                 </label>
                 <input
                   name="search"
                   value={filters.search}
                   onChange={handleFilterChange}
-                  placeholder="Lab name or service"
+                  placeholder={t("search_placeholder")}
                   className="w-full rounded-xl border border-cyan-100 bg-white px-3 py-2 text-slate-800 outline-none transition focus:border-cyan-400"
                 />
               </div>
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Service
+                  {t("service")}
                 </label>
                 <select
                   name="service"
@@ -248,10 +273,10 @@ const Labs = () => {
                   onChange={handleFilterChange}
                   className="w-full rounded-xl border border-cyan-100 bg-white px-3 py-2 text-slate-800 outline-none transition focus:border-cyan-400"
                 >
-                  <option value="">All services</option>
+                  <option value="">{t("all_services")}</option>
                   {serviceOptions.map((service) => (
                     <option key={service} value={service}>
-                      {service}
+                      {getTranslatedService(service)}
                     </option>
                   ))}
                 </select>
@@ -259,7 +284,7 @@ const Labs = () => {
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Availability
+                  {t("availability")}
                 </label>
                 <select
                   name="availability"
@@ -267,15 +292,15 @@ const Labs = () => {
                   onChange={handleFilterChange}
                   className="w-full rounded-xl border border-cyan-100 bg-white px-3 py-2 text-slate-800 outline-none transition focus:border-cyan-400"
                 >
-                  <option value="">All labs</option>
-                  <option value="true">Available</option>
-                  <option value="false">Unavailable</option>
+                  <option value="">{t("all_labs")}</option>
+                  <option value="true">{t("available")}</option>
+                  <option value="false">{t("unavailable")}</option>
                 </select>
               </div>
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Fees Range
+                  {t("fees_range")}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -283,7 +308,7 @@ const Labs = () => {
                     name="minFees"
                     value={filters.minFees}
                     onChange={handleFilterChange}
-                    placeholder="Min"
+                    placeholder={t("min")}
                     className="w-1/2 rounded-xl border border-cyan-100 bg-white px-3 py-2 text-slate-800 outline-none transition focus:border-cyan-400"
                   />
                   <input
@@ -291,7 +316,7 @@ const Labs = () => {
                     name="maxFees"
                     value={filters.maxFees}
                     onChange={handleFilterChange}
-                    placeholder="Max"
+                    placeholder={t("max")}
                     className="w-1/2 rounded-xl border border-cyan-100 bg-white px-3 py-2 text-slate-800 outline-none transition focus:border-cyan-400"
                   />
                 </div>
@@ -299,7 +324,7 @@ const Labs = () => {
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Minimum Rating
+                  {t("minimum_rating")}
                 </label>
                 <select
                   name="minRating"
@@ -309,7 +334,7 @@ const Labs = () => {
                 >
                   {ratingOptions.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.label}
+                      {option.label === "Any" ? t("any") : option.label}
                     </option>
                   ))}
                 </select>
@@ -346,7 +371,7 @@ const Labs = () => {
                         className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                       />
                       <div className="absolute left-4 top-4 rounded-full bg-slate-950/70 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
-                        {lab.available ? "Available" : "Unavailable"}
+                        {lab.available ? t("available") : t("unavailable")}
                       </div>
                     </div>
 
@@ -358,14 +383,16 @@ const Labs = () => {
                           </h3>
                           <p className="mt-1 flex items-center gap-2 text-sm text-slate-500">
                             <FaMapMarkerAlt className="text-cyan-700" />
-                            {formatAddress(lab.address)}
+                            {formatAddress(lab.address, t)}
                           </p>
                         </div>
 
                         <div className="rounded-xl bg-amber-50 px-3 py-2 text-right text-sm font-semibold text-amber-700">
                           <div className="flex items-center gap-1">
                             <FaStar />
-                            {averageRating ? averageRating.toFixed(1) : "New"}
+                            {averageRating
+                              ? averageRating.toFixed(1)
+                              : t("new")}
                           </div>
                         </div>
                       </div>
@@ -376,25 +403,27 @@ const Labs = () => {
                             key={service}
                             className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-medium text-cyan-800"
                           >
-                            {service}
+                            {getTranslatedService(service)}
                           </span>
                         ))}
                         {(lab.services || []).length > 4 && (
                           <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                            +{lab.services.length - 4} more
+                            {t("more_count", {
+                              count: lab.services.length - 4,
+                            })}
                           </span>
                         )}
                       </div>
 
                       <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
                         <p className="text-sm text-slate-500">
-                          Starting from
+                          {t("starting_from")}
                           <span className="ml-2 text-lg font-bold text-cyan-800">
-                            EGP {lab.fees}
+                            {t("egp")} {lab.fees}
                           </span>
                         </p>
                         <span className="text-sm font-semibold text-cyan-700">
-                          Book now
+                          {t("book_now")}
                         </span>
                       </div>
                     </div>
@@ -408,17 +437,14 @@ const Labs = () => {
                 <FaFlask className="text-2xl" />
               </div>
               <h3 className="mt-5 text-xl font-semibold text-slate-900">
-                No labs matched your filters
+                {t("no_labs_found")}
               </h3>
-              <p className="mt-2 text-slate-500">
-                Try widening your search or clearing the current filters to see
-                more diagnostic providers.
-              </p>
+              <p className="mt-2 text-slate-500">{t("no_labs_description")}</p>
               <button
                 onClick={clearFilters}
                 className="mt-6 rounded-full bg-cyan-700 px-6 py-3 font-semibold text-white transition hover:bg-cyan-800"
               >
-                Reset Filters
+                {t("reset_filters")}
               </button>
             </div>
           )}
