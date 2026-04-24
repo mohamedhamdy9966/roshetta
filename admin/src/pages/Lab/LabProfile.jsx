@@ -44,7 +44,7 @@ const LabProfile = () => {
     if (lToken) {
       getProfileData();
     }
-  }, [lToken]);
+  }, [lToken, getProfileData]);
   return (
     profileData && (
       <div>

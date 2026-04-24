@@ -8,7 +8,6 @@ const LabDashboard = () => {
   const {
     lToken,
     dashData,
-    setDashData,
     getDashData,
     cancelAppointment,
     completeAppointment,
@@ -19,7 +18,7 @@ const LabDashboard = () => {
     if (lToken) {
       getDashData();
     }
-  }, [lToken]);
+  }, [lToken, getDashData]);
   return (
     <div className="m-5">
       <div className="flex flex-wrap gap-3">
