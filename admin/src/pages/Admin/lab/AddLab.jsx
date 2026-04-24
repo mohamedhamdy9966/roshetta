@@ -117,7 +117,7 @@ const AddLab = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmitHandler}
       >
-        {({ isSubmitting, setFieldValue, values }) => (
+        {({ isSubmitting, setFieldValue }) => (
           <Form className="space-y-6">
             {/* Image Upload Section */}
             <div className="flex flex-col items-center mb-8">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDrugContext } from "../../../context/drug/DrugContext";
-import toast from "react-hot-toast";
+
 
 const DrugList = () => {
   const { drugs, loading, getAllDrugs, changeStock, removeDrug } =
@@ -9,7 +9,7 @@ const DrugList = () => {
 
   useEffect(() => {
     getAllDrugs();
-  }, []);
+  }, [getAllDrugs]);
 
   const handleStockToggle = async (drugId, currentStock) => {
     const success = await changeStock(drugId, !currentStock);

@@ -8,7 +8,6 @@ const DoctorDashboard = () => {
   const {
     dToken,
     dashData,
-    setDashData,
     getDashData,
     cancelAppointment,
     completeAppointment,
@@ -19,7 +18,7 @@ const DoctorDashboard = () => {
     if (dToken) {
       getDashData();
     }
-  }, [dToken]);
+  }, [dToken, getDashData]);
   return (
     <div className="m-5">
       <div className="flex flex-wrap gap-3">

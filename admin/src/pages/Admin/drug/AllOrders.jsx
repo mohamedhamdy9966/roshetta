@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useAppContext } from "../../../context/AppContext";
 import { assets } from "../../../assets/assets";
 import toast from "react-hot-toast";
@@ -9,7 +9,7 @@ const AllOrders = () => {
   const [orders, setOrders] = useState([]);
   const [hasFetched, setHasFetched] = useState(false);
 
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     try {
       const token = localStorage.getItem("sellerToken");
       const { data } = await axios.get("/api/order/", {
@@ -27,11 +27,11 @@ const AllOrders = () => {
     } finally {
       setHasFetched(true);
     }
-  };
+  }, [axios]);
 
   useEffect(() => {
     fetchOrders();
-  }, []);
+  }, [fetchOrders]);
 
   return (
     <div className="no-scrollbar flex-1 h-[95vh] overflow-y-scroll">

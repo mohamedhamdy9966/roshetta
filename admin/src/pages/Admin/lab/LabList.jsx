@@ -10,7 +10,7 @@ const LabsList = () => {
     if (aToken) {
       getAllLabs();
     }
-  }, [aToken]);
+  }, [aToken, getAllLabs]);
 
   return (
     <div className="m-5 max-h-[90vh] overflow-y-scroll">
