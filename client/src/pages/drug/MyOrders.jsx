@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import { Helmet } from "react-helmet";
@@ -10,7 +10,7 @@ const MyOrders = () => {
   const { currency, axios, user, userToken } = useAppContext();
   const navigate = useNavigate();
 
-  const fetchMyOrders = async () => {
+  const fetchMyOrders = useCallback(async () => {
     try {
       if (!userToken || !user) {
         setLoading(false);
@@ -34,7 +34,7 @@ const MyOrders = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [axios, user, userToken]);
 
   // Helper function to get status color
   const getStatusColor = (status) => {
@@ -87,7 +87,7 @@ const MyOrders = () => {
       // Only navigate if not loading (to avoid redirect during initial load)
       navigate("/login");
     }
-  }, [user, userToken]);
+  }, [user, userToken, fetchMyOrders, loading, navigate]);
 
   if (loading) {
     return (

@@ -38,7 +38,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
-  const [emailForReset, setEmailForReset] = useState("");
 
   // Yup validation schemas
   const loginSchema = Yup.object().shape({
@@ -206,7 +205,6 @@ const Login = () => {
       );
       if (data.success) {
         toast.success(data.message);
-        setEmailForReset(values.email);
         navigate("/reset-password", {
           state: { userId: data.userId, email: values.email },
         });
@@ -239,7 +237,7 @@ const Login = () => {
       } else {
         toast.error(data.message);
       }
-    } catch (error) {
+    } catch {
       toast.error("Google authentication failed");
     }
   };

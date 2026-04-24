@@ -10,7 +10,7 @@ async function translateText(text, retries = 3) {
     try {
       const result = await translate(text, { to: "ar" });
       return result.text;
-    } catch (error) {
+    } catch {
       if (i === retries - 1) {
         console.log(`  ❌ Failed: "${text}"`);
         return text;

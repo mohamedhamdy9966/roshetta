@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -45,7 +45,7 @@ const getAverageRating = (ratings = []) => {
 };
 
 const Labs = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { specialty } = useParams();
   const navigate = useNavigate();
   const { axios } = useContext(AppContext);
@@ -71,7 +71,7 @@ const Labs = () => {
     );
   }, [specialty]);
 
-  const fetchLabs = async () => {
+  const fetchLabs = useCallback(async () => {
     try {
       setLoading(true);
       const { data } = await axios.get("/api/lab/list");
@@ -88,11 +88,11 @@ const Labs = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [axios]);
 
   useEffect(() => {
     fetchLabs();
-  }, []);
+  }, [fetchLabs]);
 
   const filteredLabs = useMemo(() => {
     let results = [...labs];

@@ -9,7 +9,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const VerifyEmail = () => {
-  const { backendUrl, token, setToken } = useContext(AppContext);
+  const { backendUrl, token } = useContext(AppContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);

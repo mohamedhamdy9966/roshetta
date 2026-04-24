@@ -54,7 +54,7 @@ async function translateObject(obj, depth = 0, maxDepth = 5) {
         console.log(
           `✓ Translated: "${value.substring(0, 30)}..." -> "${result.text.substring(0, 30)}..."`,
         );
-      } catch (error) {
+      } catch {
         console.warn(
           `⚠ Translation failed for: "${value}". Using English as fallback.`,
         );

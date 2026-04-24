@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
-import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
 import { toast } from "react-toastify";
 
 const Chatbot = () => {
   axios.defaults.withCredentials = true;
-  const { token, userData, doctors, backendUrl, chatbotContext } =
+  const { token, userData, backendUrl } =
     useContext(AppContext);
   const [isOpen, setIsOpen] = useState(false);
   const getInitialGreeting = () => {
@@ -23,7 +22,6 @@ const Chatbot = () => {
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
-  const [appointments, setAppointments] = useState([]);
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [input, setInput] = useState("");
@@ -59,7 +57,6 @@ const Chatbot = () => {
   // Fetch user's appointments from backend
   const fetchAppointments = async () => {
     if (!token) {
-      setAppointments([]);
       return;
     }
     try {
@@ -67,7 +64,7 @@ const Chatbot = () => {
         headers: { token },
       });
       if (data.success) {
-        setAppointments(data.appointments);
+        // Appointments data can be used if needed in the future
       } else {
         toast.error(data.message);
       }
@@ -153,63 +150,6 @@ const Chatbot = () => {
     }
   };
 
-  // Construct context-aware system prompt
-  const getSystemPrompt = (fileInfo = "") => {
-    let prompt = `You are Roshetta Assistant, a helpful assistant for the Roshetta healthcare platform, which allows users to book appointments with doctors and labs in Egypt. The platform uses Egyptian Pounds (EGP) as currency. Provide accurate and concise answers related to healthcare, doctor appointments, lab bookings, or general queries. Users can send text, voice messages, or upload files (images or PDFs).`;
-
-    if (token && userData) {
-      prompt += `\nThe current user is ${
-        userData.name || "unknown"
-      }, with email ${userData.email || "unknown"}, blood type ${
-        userData.bloodType || "not specified"
-      }, and medical insurance ${
-        userData.medicalInsurance || "not specified"
-      }.`;
-
-      if (userData.allergy && Object.keys(userData.allergy).length > 0) {
-        prompt += `\nUser allergies: ${Object.entries(userData.allergy)
-          .map(([key, value]) => `${key}: ${value}`)
-          .join(", ")}.`;
-      } else {
-        prompt += `\nUser has no recorded allergies.`;
-      }
-
-      if (userData.uploadedFiles && userData.uploadedFiles.length > 0) {
-        prompt += `\nThe user has previously uploaded the following files:\n${userData.uploadedFiles
-          .map(
-            (file, index) =>
-              `${index + 1}. ${file.type} (Uploaded: ${new Date(
-                file.createdAt
-              ).toLocaleDateString()})${
-                file.transcription
-                  ? `, Transcription: ${file.transcription.substring(0, 50)}...`
-                  : ""
-              }`
-          )
-          .join("\n")}.`;
-      }
-    } else {
-      prompt += `\nThis is an unauthenticated user. Do not assume any personal details unless provided in the message.`;
-    }
-
-    if (fileInfo) {
-      prompt += `\nFile info: ${fileInfo}. Analyze it if relevant to the query.`;
-    }
-
-    if (doctors.length > 0) {
-      prompt += `\nAvailable doctors: ${doctors
-        .map((doc) => `${doc.name} (${doc.specialty}, Fees: ${doc.fees} EGP)`)
-        .join(", ")}.`;
-    }
-
-    if (chatbotContext.labs && chatbotContext.labs.length > 0) {
-      prompt += `\nAvailable labs: ${chatbotContext.labs
-        .map((lab) => `${lab.name} (Services: ${lab.services.join(", ")})`)
-        .join(", ")}.`;
-    }
-
-    return prompt;
-  };
 
   // Handle sending message
   // Updated handleSendMessage function for better audio handling
