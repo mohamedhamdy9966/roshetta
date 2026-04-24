@@ -44,7 +44,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.1.0",
     "formik": "^2.4.6",
-    "framer-motion": "^12.23.12",
+    "framer-motion": "^12.38.0",
     "glob": "^13.0.6",
     "google-translate-api-x": "^10.7.2",
     "i18n": "^0.15.1",
