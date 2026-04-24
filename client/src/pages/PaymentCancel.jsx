@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const PaymentCancel = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [errorDetails, setErrorDetails] = useState(null);
 
-  useEffect(() => {
-    // Extract error details from URL parameters if available
+  const errorDetails = useMemo(() => {
     const error = searchParams.get("error");
     const errorDescription = searchParams.get("error_description");
     const appointmentId = searchParams.get("appointment_id");
-
-    setErrorDetails({
+    return {
       error,
       errorDescription,
       appointmentId,
-    });
+    };
   }, [searchParams]);
 
   const handleRetryPayment = () => {

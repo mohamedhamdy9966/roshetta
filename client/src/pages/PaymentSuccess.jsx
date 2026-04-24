@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [paymentDetails, setPaymentDetails] = useState(null);
 
-  useEffect(() => {
-    // Extract payment details from URL parameters if available
+  const paymentDetails = useMemo(() => {
     const sessionId = searchParams.get('session_id');
     const paymentIntentId = searchParams.get('payment_intent');
     const appointmentId = searchParams.get('appointment_id');
-    
-    setPaymentDetails({
+    return {
       sessionId,
       paymentIntentId,
       appointmentId
-    });
+    };
+  }, [searchParams]);
 
+  useEffect(() => {
     // Auto redirect to appointments after 5 seconds
     const timer = setTimeout(() => {
       navigate('/my-appointments');
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, [navigate, searchParams]);
+  }, [navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">

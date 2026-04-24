@@ -3,10 +3,10 @@ import axios from "axios";
 import { AppContext } from "../../context/AppContext";
 import { toast } from "react-toastify";
 
+axios.defaults.withCredentials = true;
+
 const Chatbot = () => {
-  axios.defaults.withCredentials = true;
-  const { token, userData, backendUrl } =
-    useContext(AppContext);
+  const { token, userData, backendUrl } = useContext(AppContext);
   const [isOpen, setIsOpen] = useState(false);
   const getInitialGreeting = () => {
     if (userData && userData.name) {
@@ -150,7 +150,6 @@ const Chatbot = () => {
     }
   };
 
-
   // Handle sending message
   // Updated handleSendMessage function for better audio handling
   const handleSendMessage = async (event) => {
@@ -202,7 +201,7 @@ const Chatbot = () => {
           if (audioResponse.data.transcriptionSuccess) {
             console.log(
               "Transcription successful:",
-              audioResponse.data.transcription
+              audioResponse.data.transcription,
             );
 
             // Successful transcription - proceed with chat
@@ -219,13 +218,13 @@ const Chatbot = () => {
                   ...(token ? { token } : {}),
                   "Content-Type": "application/json",
                 },
-              }
+              },
             );
           } else {
             // Upload succeeded but transcription failed
             console.log(
               "Transcription failed:",
-              audioResponse.data.transcription
+              audioResponse.data.transcription,
             );
 
             const errorMessage = {
@@ -278,7 +277,7 @@ const Chatbot = () => {
                 ...(token ? { token } : {}),
                 "Content-Type": "application/json",
               },
-            }
+            },
           );
         } else {
           throw new Error(fileResponse.data.message);
@@ -297,7 +296,7 @@ const Chatbot = () => {
               ...(token ? { token } : {}),
               "Content-Type": "application/json",
             },
-          }
+          },
         );
       }
 
@@ -347,20 +346,11 @@ const Chatbot = () => {
     }
   }, [messages]);
 
-  useEffect(() => {
-    if (messages.length === 1) {
-      setMessages([
-        {
-          sender: "bot",
-          text: getInitialGreeting(),
-        },
-      ]);
-    }
-  }, [userData]);
-
   // Fetch appointments and context on mount
   useEffect(() => {
-    fetchAppointments();
+    (async () => {
+      await fetchAppointments();
+    })();
   }, [token, userData]);
 
   // Close chatbot when clicking outside

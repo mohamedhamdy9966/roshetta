@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { specialtyData } from "../../assets/assets";
@@ -8,23 +8,7 @@ import { FaStethoscope } from "react-icons/fa";
 
 const DoctorSpecialty = () => {
   const { t, i18n } = useTranslation();
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    // Debug: Log what's being imported
-    console.log("Raw specialtyData import:", specialtyData);
-
-    if (specialtyData && Array.isArray(specialtyData)) {
-      console.log("Specialty data loaded:", specialtyData.length, "items");
-      console.log("First specialty:", specialtyData[0]);
-      setData(specialtyData);
-    } else {
-      console.error(
-        "specialtyData is not an array or is undefined:",
-        specialtyData,
-      );
-    }
-  }, []);
+  const data = specialtyData;
 
   useEffect(() => {
     console.log("Language changed to:", i18n.language);

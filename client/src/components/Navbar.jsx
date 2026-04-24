@@ -6,6 +6,19 @@ import { AppContext } from "../context/AppContext";
 import { MdShoppingCart } from "react-icons/md";
 import logo from "../assets/logo7.png";
 
+const CartIcon = ({ size = "text-2xl", userData }) => (
+  <NavLink to="/cart" className="relative">
+    <MdShoppingCart
+      className={`text-white ${size} hover:text-[gray-300 ] transition-colors`}
+    />
+    {userData?.cartItems && userData.cartItems.length > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+        {userData.cartItems.length}
+      </span>
+    )}
+  </NavLink>
+);
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -83,20 +96,6 @@ const Navbar = () => {
     { label: t("contact"), path: "/contact", icon: "fa-phone" },
     { label: t("privacy_policy"), path: "/privacypolicy", icon: "fa-privacy" },
   ];
-
-  // Cart component for reusability
-  const CartIcon = ({ size = "text-2xl" }) => (
-    <NavLink to="/cart" className="relative">
-      <MdShoppingCart
-        className={`text-white ${size} hover:text-[gray-300 ] transition-colors`}
-      />
-      {userData?.cartItems && userData.cartItems.length > 0 && (
-        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-          {userData.cartItems.length}
-        </span>
-      )}
-    </NavLink>
-  );
 
   return (
     <>
@@ -177,7 +176,7 @@ const Navbar = () => {
               </div>
 
               {/* Cart Icon - Desktop */}
-              {token && userData && <CartIcon />}
+              {token && userData && <CartIcon userData={userData} />}
 
               {token && userData ? (
                 <div className="relative" ref={dropdownRef}>
@@ -336,7 +335,9 @@ const Navbar = () => {
               </div>
 
               {/* Cart Icon - Tablet */}
-              {token && userData && <CartIcon size="text-lg" />}
+              {token && userData && (
+                <CartIcon size="text-lg" userData={userData} />
+              )}
 
               {token && userData ? (
                 <div className="relative" ref={dropdownRef}>
@@ -434,7 +435,9 @@ const Navbar = () => {
             </div>
 
             {/* Cart Icon - Mobile (outside hamburger) */}
-            {token && userData && <CartIcon size="text-lg" />}
+            {token && userData && (
+              <CartIcon size="text-lg" userData={userData} />
+            )}
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}

@@ -63,7 +63,7 @@ const AddAddress = () => {
   const [address, setAddress] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    email: user?.email || "",
     street: "",
     city: "",
     state: "",
@@ -110,7 +110,7 @@ const AddAddress = () => {
     const phoneRegex = /^(010|011|012|015)[0-9]{8}$/;
     if (!phoneRegex.test(address.phone)) {
       toast.error(
-        "Please enter a valid Egyptian mobile number (e.g., 01012345678)"
+        "Please enter a valid Egyptian mobile number (e.g., 01012345678)",
       );
       return;
     }
@@ -128,7 +128,7 @@ const AddAddress = () => {
       const { data } = await axios.post(
         "/api/address/add",
         { address },
-        { headers: { Authorization: `Bearer ${userToken}` } }
+        { headers: { Authorization: `Bearer ${userToken}` } },
       );
 
       if (data.success) {
@@ -151,13 +151,6 @@ const AddAddress = () => {
       navigate("/login");
     }
   }, [user, userToken, navigate]);
-
-  // Pre-fill email from user data if available
-  useEffect(() => {
-    if (user && user.email && !address.email) {
-      setAddress((prev) => ({ ...prev, email: user.email }));
-    }
-  }, [user]);
 
   return (
     <div className="mt-16 pb-16">
