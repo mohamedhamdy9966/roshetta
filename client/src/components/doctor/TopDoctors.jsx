@@ -67,8 +67,8 @@ const TopDoctors = () => {
           <h2 className="text-3xl flex md:text-4xl font-bold text-center text-white mb-4">
             <CgArrowTopLeftR className="text-4xl mr-2 text-white" />
             {t("our_top_specialists")}
-          </h2>
-          <p className="text-lg text-center text-[var(--color-text-secondary)] max-w-2xl">
+          </h2>{" "}
+          <p className="text-lg text-center text-white/80 max-w-2xl">
             {t("top_specialists_description")}
           </p>
         </motion.div>
@@ -142,6 +142,7 @@ const TopDoctors = () => {
                     </div>
 
                     <div className="pt-2">
+                      {" "}
                       <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[var(--color-primary-light)] hover:bg-[var(--color-primary)] text-[var(--color-primary-dark)] hover:text-white rounded-lg transition-colors duration-300 text-sm font-medium">
                         {t("book_appointment")}
                         <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
