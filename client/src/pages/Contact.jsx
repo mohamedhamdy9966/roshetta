@@ -1,58 +1,83 @@
 import { Helmet } from "react-helmet";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-  Mail, Phone, MapPin, Clock, Send, Stethoscope, Calendar,
-  UserCheck, Heart, Shield, Award, Video, MessageCircle,
-  Headphones, Globe, CheckCircle, Star, Users, Building,
-  PhoneCall, Zap, AlertTriangle
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  Stethoscope,
+  Calendar,
+  UserCheck,
+  Heart,
+  Shield,
+  Award,
+  Video,
+  MessageCircle,
+  Headphones,
+  Globe,
+  CheckCircle,
+  Star,
+  Users,
+  Building,
+  PhoneCall,
+  Zap,
+  AlertTriangle,
 } from "lucide-react";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    ageGroup: '',
-    specialty: '',
-    serviceType: '',
-    insurance: '',
-    healthConcern: '',
-    consent: false
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    ageGroup: "",
+    specialty: "",
+    serviceType: "",
+    insurance: "",
+    healthConcern: "",
+    consent: false,
   });
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('شكراً لك! سيتم التواصل معك قريباً من فريقنا الطبي');
+    console.log("Form submitted:", formData);
+    alert("شكراً لك! سيتم التواصل معك قريباً من فريقنا الطبي");
   };
 
   const assets = {
-    contact_image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=800&fit=crop&crop=center"
+    contact_image:
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=800&fit=crop&crop=center",
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50" style={{ "--color-primary": "#00BCD4", "--color-accent": "#009688", "--color-primary-dark": "#00ACC1" }}>
+    <div
+      className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50"
+      style={{
+        "--color-primary": "#00BCD4",
+        "--color-accent": "#009688",
+        "--color-primary-dark": "#00ACC1",
+      }}
+    >
       <Helmet>
-        <title>Contact MedConnect - Premium Healthcare Platform</title>
-        <meta
-          name="description"
-          content="Contact MedConnect for world-class healthcare services. Book appointments with top specialists, access telemedicine, and get 24/7 medical support."
-        />
-        <meta
-          name="keywords"
-          content="healthcare platform, medical appointments, telemedicine, specialist doctors, medical consultation, health services"
-        />
+        <title>{t("contact_page_title")}</title>
+        <meta name="description" content={t("contact_page_description")} /
+        <meta name="keywords" content={t("contact_page_keywords")} />
         <link rel="canonical" href="https://www.medconnect.com/contact" />
-        <meta property="og:title" content="Contact MedConnect - Premium Healthcare Platform" />
+        <meta
+          property="og:title"
+          content="Contact MedConnect - Premium Healthcare Platform"
+        />
         <meta
           property="og:description"
           content="World-class healthcare at your fingertips. Connect with top medical specialists and access premium healthcare services."
@@ -69,25 +94,24 @@ const Contact = () => {
             <Stethoscope size={30} className="text-white md:w-10 md:h-10" />
           </div>
           <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 md:mb-6 bg-gradient-to-r from-gray-800 via-cyan-400 to-teal-500 bg-clip-text text-transparent leading-tight">
-            Connect with Excellence
+            {t("contact_hero_title")}
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light px-2">
-            Experience premium healthcare like never before. Our world-class medical platform
-            connects you with top specialists, cutting-edge treatments, and personalized care.
+            {t("contact_hero_description")}
           </p>
           <div className="flex justify-center mt-6 md:mt-8">
             <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm text-gray-600">
               <div className="flex items-center">
                 <CheckCircle size={16} className="text-teal-500 mr-2" />
-                <span>500+ Specialists</span>
+                <span>{t("contact_specialists")}</span>
               </div>
               <div className="flex items-center">
                 <CheckCircle size={16} className="text-teal-500 mr-2" />
-                <span>24/7 Support</span>
+                <span>{t("contact_24_7_support")}</span>
               </div>
               <div className="flex items-center">
                 <CheckCircle size={16} className="text-teal-500 mr-2" />
-                <span>Telemedicine Ready</span>
+                <span>{t("contact_telemedicine")}</span>
               </div>
             </div>
           </div>
@@ -101,16 +125,20 @@ const Contact = () => {
                 <AlertTriangle size={20} className="md:w-6 md:h-6" />
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold">Medical Emergency?</h3>
-                <p className="text-white/90 text-sm md:text-base">Don't wait - Get immediate help now</p>
+                <h3 className="text-lg md:text-xl font-bold">
+                  {t("contact_emergency_title")}
+                </h3>
+                <p className="text-white/90 text-sm md:text-base">
+                  {t("contact_emergency_subtitle")}
+                </p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2 md:gap-4 w-full md:w-auto justify-center">
               <button className="bg-white text-red-600 px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl font-bold hover:bg-gray-100 transition-colors text-sm md:text-base flex-1 md:flex-none">
-                Call 122
+                {t("contact_call_122")}
               </button>
               <button className="bg-white/20 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl font-bold hover:bg-white/30 transition-colors text-sm md:text-base flex-1 md:flex-none">
-                Emergency Chat
+                {t("contact_emergency_chat")}
               </button>
             </div>
           </div>
@@ -123,25 +151,37 @@ const Contact = () => {
             <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 bg-gradient-to-br from-cyan-400 to-cyan-600">
               <Video size={24} className="text-white md:w-7 md:h-7" />
             </div>
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Instant Video Consultation</h3>
-            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">Connect with specialists in seconds via secure video calls</p>
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">
+              {t("contact_video_title")}
+            </h3>
+            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
+              {t("contact_video_description")}
+            </p>
             <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Response Time</span>
-                <span className="font-semibold text-gray-800">2 minutes</span>
+                <span className="text-gray-600">
+                  {t("contact_response_time")}
+                </span>
+                <span className="font-semibold text-gray-800">
+                  {t("contact_2_minutes")}
+                </span>
               </div>
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Availability</span>
-                <span className="font-semibold text-teal-600">24/7 Available</span>
+                <span className="text-gray-600">
+                  {t("contact_availability")}
+                </span>
+                <span className="font-semibold text-teal-600">
+                  {t("contact_24_7_available")}
+                </span>
               </div>
             </div>
             <button className="w-full py-2 md:py-3 rounded-lg md:rounded-xl font-semibold transition-all duration-300 text-white hover:shadow-lg bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center text-sm md:text-base">
               <Send size={18} className="mr-2 md:mr-3" />
-              Start Video Call
+              {t("contact_start_video_call")}
             </button>
             <p className="text-center text-xs md:text-sm text-gray-600 mt-3 md:mt-4">
               <Shield size={14} className="inline mr-1" />
-              Your information is encrypted and HIPAA compliant.
+              {t("contact_hipaa_compliant")}
             </p>
           </div>
 
@@ -150,20 +190,30 @@ const Contact = () => {
             <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 bg-gradient-to-br from-teal-500 to-teal-700">
               <PhoneCall size={24} className="text-white md:w-7 md:h-7" />
             </div>
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Priority Phone Support</h3>
-            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">Speak directly with our medical coordinators</p>
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">
+              {t("contact_phone_title")}
+            </h3>
+            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
+              {t("contact_phone_description")}
+            </p>
             <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Medical Line</span>
-                <span className="font-bold text-gray-800 text-xs md:text-sm">+1 (800) MED-CARE</span>
+                <span className="text-gray-600">
+                  {t("contact_medical_line")}
+                </span>
+                <span className="font-bold text-gray-800 text-xs md:text-sm">
+                  {t("contact_medical_number")}
+                </span>
               </div>
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Wait Time</span>
-                <span className="font-semibold text-teal-600">Average 30s</span>
+                <span className="text-gray-600">{t("contact_wait_time")}</span>
+                <span className="font-semibold text-teal-600">
+                  {t("contact_average_30s")}
+                </span>
               </div>
             </div>
             <button className="w-full py-2 md:py-3 rounded-lg md:rounded-xl font-semibold transition-all duration-300 text-white hover:shadow-lg bg-gradient-to-r from-teal-500 to-teal-700 text-sm md:text-base">
-              Call Now
+              {t("contact_call_now")}
             </button>
           </div>
 
@@ -172,20 +222,28 @@ const Contact = () => {
             <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
               <MessageCircle size={24} className="text-white md:w-7 md:h-7" />
             </div>
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Smart AI Chat Support</h3>
-            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">Get instant answers with our AI-powered chat</p>
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">
+              {t("contact_chat_title")}
+            </h3>
+            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
+              {t("contact_chat_description")}
+            </p>
             <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Response</span>
-                <span className="font-semibold text-gray-800">Instant</span>
+                <span className="text-gray-600">{t("contact_response")}</span>
+                <span className="font-semibold text-gray-800">
+                  {t("contact_instant")}
+                </span>
               </div>
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Languages</span>
-                <span className="font-semibold text-teal-600">50+ Supported</span>
+                <span className="text-gray-600">{t("contact_languages")}</span>
+                <span className="font-semibold text-teal-600">
+                  {t("contact_50_languages")}
+                </span>
               </div>
             </div>
             <button className="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-2 md:py-3 rounded-lg md:rounded-xl font-semibold hover:shadow-lg transition-all duration-300 text-sm md:text-base">
-              Start Chat
+              {t("contact_start_chat")}
             </button>
           </div>
 
@@ -194,20 +252,32 @@ const Contact = () => {
             <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
               <Award size={24} className="text-white md:w-7 md:h-7" />
             </div>
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">VIP Medical Concierge</h3>
-            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">Dedicated personal health coordinator for premium members</p>
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">
+              {t("contact_concierge_title")}
+            </h3>
+            <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
+              {t("contact_concierge_description")}
+            </p>
             <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Dedicated Manager</span>
-                <span className="font-semibold text-gray-800">Personal</span>
+                <span className="text-gray-600">
+                  {t("contact_dedicated_manager")}
+                </span>
+                <span className="font-semibold text-gray-800">
+                  {t("contact_personal")}
+                </span>
               </div>
               <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">Access Level</span>
-                <span className="font-semibold text-amber-600">Premium Only</span>
+                <span className="text-gray-600">
+                  {t("contact_access_level")}
+                </span>
+                <span className="font-semibold text-amber-600">
+                  {t("contact_premium_only")}
+                </span>
               </div>
             </div>
             <button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2 md:py-3 rounded-lg md:rounded-xl font-semibold hover:shadow-lg transition-all duration-300 text-sm md:text-base">
-              Contact Concierge
+              {t("contact_concierge_button")}
             </button>
           </div>
         </div>
@@ -223,8 +293,12 @@ const Contact = () => {
                   <Building size={20} className="text-white md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-800">Our Medical Network</h3>
-                  <p className="text-gray-600 text-sm md:text-base">World-class facilities across the region</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+                    {t("contact_network_title")}
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    {t("contact_network_subtitle")}
+                  </p>
                 </div>
               </div>
 
@@ -233,21 +307,38 @@ const Contact = () => {
                   <div className="absolute left-0 top-0 w-1 h-full rounded-full bg-cyan-400"></div>
                   <div className="pl-5 md:pl-8">
                     <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-1">
-                      <h4 className="text-base md:text-lg font-bold text-gray-800">MedConnect Premier Center</h4>
+                      <h4 className="text-base md:text-lg font-bold text-gray-800">
+                        {t("contact_premier_center")}
+                      </h4>
                       <div className="flex items-center">
-                        <Star size={14} className="text-yellow-400 mr-1 md:w-4 md:h-4" />
-                        <span className="text-xs md:text-sm font-semibold">4.9</span>
+                        <Star
+                          size={14}
+                          className="text-yellow-400 mr-1 md:w-4 md:h-4"
+                        />
+                        <span className="text-xs md:text-sm font-semibold">
+                          {t("contact_center_rating")}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm md:text-base mb-3">Downtown Medical District, Tower A, Floors 15-25</p>
+                    <p className="text-gray-600 text-sm md:text-base mb-3">
+                      {t("contact_center_address")}
+                    </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm">
                       <div className="bg-blue-50 p-2 md:p-3 rounded-lg">
-                        <div className="font-semibold text-gray-800">Specialties</div>
-                        <div className="text-gray-600">Cardiology, Neurology, Oncology</div>
+                        <div className="font-semibold text-gray-800">
+                          {t("contact_specialties")}
+                        </div>
+                        <div className="text-gray-600">
+                          {t("contact_cardiology_neuro_oncology")}
+                        </div>
                       </div>
                       <div className="bg-green-50 p-2 md:p-3 rounded-lg">
-                        <div className="font-semibold text-gray-800">Technology</div>
-                        <div className="text-gray-600">AI Diagnostics, Robot Surgery</div>
+                        <div className="font-semibold text-gray-800">
+                          {t("contact_technology")}
+                        </div>
+                        <div className="text-gray-600">
+                          {t("contact_ai_diagnostics")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -257,21 +348,38 @@ const Contact = () => {
                   <div className="absolute left-0 top-0 w-1 h-full rounded-full bg-gray-300"></div>
                   <div className="pl-5 md:pl-8">
                     <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-1">
-                      <h4 className="text-base md:text-lg font-bold text-gray-800">Family Care Hub</h4>
+                      <h4 className="text-base md:text-lg font-bold text-gray-800">
+                        {t("contact_family_hub")}
+                      </h4>
                       <div className="flex items-center">
-                        <Star size={14} className="text-yellow-400 mr-1 md:w-4 md:h-4" />
-                        <span className="text-xs md:text-sm font-semibold">4.8</span>
+                        <Star
+                          size={14}
+                          className="text-yellow-400 mr-1 md:w-4 md:h-4"
+                        />
+                        <span className="text-xs md:text-sm font-semibold">
+                          {t("contact_family_rating")}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm md:text-base mb-3">Suburban Health Complex, Building B</p>
+                    <p className="text-gray-600 text-sm md:text-base mb-3">
+                      {t("contact_family_address")}
+                    </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm">
                       <div className="bg-purple-50 p-2 md:p-3 rounded-lg">
-                        <div className="font-semibold text-gray-800">Focus</div>
-                        <div className="text-gray-600">Family Medicine, Pediatrics</div>
+                        <div className="font-semibold text-gray-800">
+                          {t("contact_focus")}
+                        </div>
+                        <div className="text-gray-600">
+                          {t("contact_family_medicine_pediatrics")}
+                        </div>
                       </div>
                       <div className="bg-pink-50 p-2 md:p-3 rounded-lg">
-                        <div className="font-semibold text-gray-800">Services</div>
-                        <div className="text-gray-600">Wellness, Preventive Care</div>
+                        <div className="font-semibold text-gray-800">
+                          {t("contact_services")}
+                        </div>
+                        <div className="text-gray-600">
+                          {t("contact_wellness_preventive")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -281,21 +389,38 @@ const Contact = () => {
                   <div className="absolute left-0 top-0 w-1 h-full rounded-full bg-gray-300"></div>
                   <div className="pl-5 md:pl-8">
                     <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-1">
-                      <h4 className="text-base md:text-lg font-bold text-gray-800">24/7 Emergency Center</h4>
+                      <h4 className="text-base md:text-lg font-bold text-gray-800">
+                        {t("contact_emergency_center")}
+                      </h4>
                       <div className="flex items-center">
-                        <Zap size={14} className="text-red-500 mr-1 md:w-4 md:h-4" />
-                        <span className="text-xs md:text-sm font-semibold text-red-600">Always Open</span>
+                        <Zap
+                          size={14}
+                          className="text-red-500 mr-1 md:w-4 md:h-4"
+                        />
+                        <span className="text-xs md:text-sm font-semibold text-red-600">
+                          {t("contact_always_open")}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm md:text-base mb-3">Emergency Medical Plaza, All Floors</p>
+                    <p className="text-gray-600 text-sm md:text-base mb-3">
+                      {t("contact_emergency_address")}
+                    </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm">
                       <div className="bg-red-50 p-2 md:p-3 rounded-lg">
-                        <div className="font-semibold text-gray-800">Response Time</div>
-                        <div className="text-gray-600">10 minutes</div>
+                        <div className="font-semibold text-gray-800">
+                          {t("contact_emergency_response")}
+                        </div>
+                        <div className="text-gray-600">
+                          {t("contact_emergency_10_minutes")}
+                        </div>
                       </div>
                       <div className="bg-orange-50 p-2 md:p-3 rounded-lg">
-                        <div className="font-semibold text-gray-800">Capabilities</div>
-                        <div className="text-gray-600">Trauma, ICU, Surgery</div>
+                        <div className="font-semibold text-gray-800">
+                          {t("contact_capabilities")}
+                        </div>
+                        <div className="text-gray-600">
+                          {t("contact_trauma_icu_surgery")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -307,24 +432,40 @@ const Contact = () => {
             <div className="bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-white shadow-xl md:shadow-2xl">
               <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 flex items-center">
                 <Globe size={24} className="mr-2 md:mr-3 md:w-7 md:h-7" />
-                Global Healthcare Impact
+                {t("contact_impact_title")}
               </h3>
               <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8">
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">2.5M+</div>
-                  <div className="text-white/80 font-medium text-xs md:text-sm">Patients Served</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+                    2.5M+
+                  </div>
+                  <div className="text-white/80 font-medium text-xs md:text-sm">
+                    {t("contact_patients_served")}
+                  </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">500+</div>
-                  <div className="text-white/80 font-medium text-xs md:text-sm">Expert Doctors</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+                    500+
+                  </div>
+                  <div className="text-white/80 font-medium text-xs md:text-sm">
+                    {t("contact_expert_doctors")}
+                  </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">50+</div>
-                  <div className="text-white/80 font-medium text-xs md:text-sm">Countries</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+                    50+
+                  </div>
+                  <div className="text-white/80 font-medium text-xs md:text-sm">
+                    {t("contact_countries")}
+                  </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">98.5%</div>
-                  <div className="text-white/80 font-medium text-xs md:text-sm">Satisfaction Rate</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+                    98.5%
+                  </div>
+                  <div className="text-white/80 font-medium text-xs md:text-sm">
+                    {t("contact_satisfaction")}
+                  </div>
                 </div>
               </div>
             </div>
@@ -333,86 +474,99 @@ const Contact = () => {
           {/* Right Side - Advanced Contact Form */}
           <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 shadow-xl md:shadow-2xl border border-gray-100">
             <div className="text-center mb-8 md:mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3 md:mb-4">Get Premium Medical Care</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3 md:mb-4">
+                {t("contact_form_title")}
+              </h2>
               <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                Fill out this form to connect with our medical team. We'll match you with the right specialist
-                and provide personalized healthcare solutions.
+                {t("contact_form_subtitle")}
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">First Name *</label>
+                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                    {t("contact_first_name")}
+                  </label>
                   <input
                     type="text"
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
-                    placeholder="Enter first name"
+                    placeholder={t("contact_first_name_placeholder")}
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Last Name *</label>
+                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                    {t("contact_last_name")}
+                  </label>
                   <input
                     type="text"
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
-                    placeholder="Enter last name"
+                    placeholder={t("contact_last_name_placeholder")}
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Email Address *</label>
+                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                  {t("contact_email")}
+                </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
-                  placeholder="your@email.com"
+                  placeholder={t("contact_email_placeholder")}
                   required
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Phone Number *</label>
+                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                    {t("contact_phone")}
+                  </label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
-                    placeholder="+1 (555) 123-4567"
+                    placeholder={t("contact_phone_placeholder")}
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Age Group</label>
+                  <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                    {t("contact_age_group")}
+                  </label>
                   <select
                     name="ageGroup"
                     value={formData.ageGroup}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
                   >
-                    <option value="">Select age group</option>
-                    <option value="0-18">0-18 years</option>
-                    <option value="19-35">19-35 years</option>
-                    <option value="36-55">36-55 years</option>
-                    <option value="56+">56+ years</option>
+                    <option value="">{t("contact_age_select")}</option>
+                    <option value="0-18">{t("contact_age_0_18")}</option>
+                    <option value="19-35">{t("contact_age_19_35")}</option>
+                    <option value="36-55">{t("contact_age_36_55")}</option>
+                    <option value="56+">{t("contact_age_56_plus")}</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Medical Specialty Required *</label>
+                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                  {t("contact_specialty_required")}
+                </label>
                 <select
                   name="specialty"
                   value={formData.specialty}
@@ -420,24 +574,50 @@ const Contact = () => {
                   className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
                   required
                 >
-                  <option value="">Select medical specialty</option>
-                  <option value="cardiology">🫀 Cardiology - Heart & Cardiovascular</option>
-                  <option value="neurology">🧠 Neurology - Brain & Nervous System</option>
-                  <option value="orthopedics">🦴 Orthopedics - Bones & Joints</option>
-                  <option value="pediatrics">👶 Pediatrics - Children's Health</option>
-                  <option value="womens-health">🤱 Women's Health & Gynecology</option>
-                  <option value="oncology">🔬 Oncology - Cancer Treatment</option>
-                  <option value="internal-medicine">😷 Internal Medicine</option>
-                  <option value="pulmonology">🫁 Pulmonology - Respiratory</option>
-                  <option value="endocrinology">💊 Endocrinology - Hormones</option>
-                  <option value="dermatology">🧬 Dermatology - Skin Care</option>
-                  <option value="ophthalmology">👁️ Ophthalmology - Eye Care</option>
-                  <option value="psychiatry">🧠 Psychiatry - Mental Health</option>
+                  <option value="">{t("contact_specialty_select")}</option>
+                  <option value="cardiology">
+                    {t("contact_specialty_cardiology")}
+                  </option>
+                  <option value="neurology">
+                    {t("contact_specialty_neurology")}
+                  </option>
+                  <option value="orthopedics">
+                    {t("contact_specialty_orthopedics")}
+                  </option>
+                  <option value="pediatrics">
+                    {t("contact_specialty_pediatrics")}
+                  </option>
+                  <option value="womens-health">
+                    {t("contact_specialty_womens")}
+                  </option>
+                  <option value="oncology">
+                    {t("contact_specialty_oncology")}
+                  </option>
+                  <option value="internal-medicine">
+                    {t("contact_specialty_internal")}
+                  </option>
+                  <option value="pulmonology">
+                    {t("contact_specialty_pulmonology")}
+                  </option>
+                  <option value="endocrinology">
+                    {t("contact_specialty_endocrinology")}
+                  </option>
+                  <option value="dermatology">
+                    {t("contact_specialty_dermatology")}
+                  </option>
+                  <option value="ophthalmology">
+                    {t("contact_specialty_ophthalmology")}
+                  </option>
+                  <option value="psychiatry">
+                    {t("contact_specialty_psychiatry")}
+                  </option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Service Type *</label>
+                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                  {t("contact_service_type")}
+                </label>
                 <select
                   name="serviceType"
                   value={formData.serviceType}
@@ -445,45 +625,75 @@ const Contact = () => {
                   className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
                   required
                 >
-                  <option value="">Select service type</option>
-                  <option value="appointment">📅 Schedule Appointment</option>
-                  <option value="telemedicine">💻 Telemedicine Consultation</option>
-                  <option value="in-person">🏥 In-Person Visit</option>
-                  <option value="second-opinion">🔄 Second Opinion</option>
-                  <option value="prescription">💊 Prescription Refill</option>
-                  <option value="records">📋 Medical Records</option>
-                  <option value="screening">🩺 Health Screening</option>
-                  <option value="urgent">🚨 Urgent Care</option>
+                  <option value="">{t("contact_service_select")}</option>
+                  <option value="appointment">
+                    {t("contact_service_appointment")}
+                  </option>
+                  <option value="telemedicine">
+                    {t("contact_service_telemedicine")}
+                  </option>
+                  <option value="in-person">
+                    {t("contact_service_in_person")}
+                  </option>
+                  <option value="second-opinion">
+                    {t("contact_service_second_opinion")}
+                  </option>
+                  <option value="prescription">
+                    {t("contact_service_prescription")}
+                  </option>
+                  <option value="records">
+                    {t("contact_service_records")}
+                  </option>
+                  <option value="screening">
+                    {t("contact_service_screening")}
+                  </option>
+                  <option value="urgent">{t("contact_service_urgent")}</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Insurance Information</label>
+                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                  {t("contact_insurance")}
+                </label>
                 <select
                   name="insurance"
                   value={formData.insurance}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 bg-gray-50 focus:bg-white text-sm md:text-base"
                 >
-                  <option value="">Select insurance provider</option>
-                  <option value="private">Private Insurance</option>
-                  <option value="medicare">Medicare</option>
-                  <option value="medicaid">Medicaid</option>
-                  <option value="self-pay">Self-Pay</option>
-                  <option value="corporate">Corporate Insurance</option>
-                  <option value="international">International Insurance</option>
+                  <option value="">{t("contact_insurance_select")}</option>
+                  <option value="private">
+                    {t("contact_insurance_private")}
+                  </option>
+                  <option value="medicare">
+                    {t("contact_insurance_medicare")}
+                  </option>
+                  <option value="medicaid">
+                    {t("contact_insurance_medicaid")}
+                  </option>
+                  <option value="self-pay">
+                    {t("contact_insurance_self_pay")}
+                  </option>
+                  <option value="corporate">
+                    {t("contact_insurance_corporate")}
+                  </option>
+                  <option value="international">
+                    {t("contact_insurance_international")}
+                  </option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">Describe Your Health Concern *</label>
+                <label className="block text-gray-800 font-semibold mb-2 text-sm md:text-base">
+                  {t("contact_health_concern")}
+                </label>
                 <textarea
                   rows={4}
                   name="healthConcern"
                   value={formData.healthConcern}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 md:px-5 md:py-4 border-2 border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-cyan-400 transition-all duration-300 resize-none bg-gray-50 focus:bg-white text-sm md:text-base"
-                  placeholder="Please describe your symptoms, concerns, or medical questions in detail. This helps us match you with the right specialist."
+                  placeholder={t("contact_concern_placeholder")}
                   required
                 />
               </div>
@@ -498,10 +708,11 @@ const Contact = () => {
                   className="mt-1 w-4 h-4 md:w-5 md:h-5"
                   required
                 />
-                <label htmlFor="consent" className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  I consent to the processing of my health information in accordance with HIPAA regulations
-                  and understand that this information will be used to provide me with appropriate medical care.
-                  I also agree to receive appointment reminders and health updates.
+                <label
+                  htmlFor="consent"
+                  className="text-xs md:text-sm text-gray-600 leading-relaxed"
+                >
+                  {t("contact_consent")}
                 </label>
               </div>
 
@@ -511,11 +722,11 @@ const Contact = () => {
                   className="w-full py-3 md:py-4 text-white font-bold text-base md:text-lg rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl hover:shadow-2xl md:hover:shadow-3xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center bg-gradient-to-r from-cyan-400 to-cyan-600"
                 >
                   <Send size={18} className="mr-2 md:mr-3" />
-                  Connect with Medical Expert
+                  {t("contact_submit_button")}
                 </button>
                 <p className="text-center text-xs md:text-sm text-gray-500 mt-3 md:mt-4">
                   <Shield size={14} className="inline mr-1" />
-                  Your information is encrypted and HIPAA compliant. Average response time: 15 minutes.
+                  {t("contact_hipaa_info")}
                 </p>
               </div>
             </form>
@@ -525,9 +736,11 @@ const Contact = () => {
         {/* Premium Features Showcase */}
         <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl md:shadow-2xl border border-gray-100 mb-12 md:mb-16 lg:mb-20">
           <div className="text-center mb-8 md:mb-10 lg:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4">Why Choose MedConnect?</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4">
+              {t("contact_why_choose_title")}
+            </h2>
             <p className="text-gray-600 text-base md:text-xl max-w-3xl mx-auto">
-              Experience healthcare reimagined with cutting-edge technology, world-class expertise, and personalized care.
+              {t("contact_why_choose_subtitle")}
             </p>
           </div>
 
@@ -536,14 +749,15 @@ const Contact = () => {
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 rounded-2xl md:rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 bg-gradient-to-br from-cyan-400 to-teal-500">
                 <Zap size={28} className="text-white md:w-8 md:h-8" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-4">Lightning Fast Response</h3>
+              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-4">
+                {t("contact_feature_fast_title")}
+              </h3>
               <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                Connect with specialists in under 2 minutes. Our AI-powered matching system ensures
-                you're connected to the right doctor instantly.
+                {t("contact_feature_fast_desc")}
               </p>
               <div className="mt-3 md:mt-4 inline-flex items-center text-xs md:text-sm font-semibold text-cyan-600">
                 <CheckCircle size={14} className="mr-1 md:mr-2" />
-                Average 90 seconds connection time
+                {t("contact_feature_fast_note")}
               </div>
             </div>
 
@@ -551,14 +765,15 @@ const Contact = () => {
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 rounded-2xl md:rounded-3xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Award size={28} className="text-white md:w-8 md:h-8" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-4">World-Class Specialists</h3>
+              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-4">
+                {t("contact_feature_specialists_title")}
+              </h3>
               <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                Access to board-certified physicians from top medical institutions worldwide.
-                Each doctor is thoroughly vetted and highly rated.
+                {t("contact_feature_specialists_desc")}
               </p>
               <div className="mt-3 md:mt-4 inline-flex items-center text-xs md:text-sm font-semibold text-purple-600">
                 <CheckCircle size={14} className="mr-1 md:mr-2" />
-                500+ verified specialists available
+                {t("contact_feature_specialists_note")}
               </div>
             </div>
 
@@ -566,14 +781,15 @@ const Contact = () => {
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 rounded-2xl md:rounded-3xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Shield size={28} className="text-white md:w-8 md:h-8" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-4">Bank-Level Security</h3>
+              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-4">
+                {t("contact_feature_security_title")}
+              </h3>
               <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                Your health data is protected with military-grade encryption. HIPAA compliant
-                with zero-knowledge architecture.
+                {t("contact_feature_security_desc")}
               </p>
               <div className="mt-3 md:mt-4 inline-flex items-center text-xs md:text-sm font-semibold text-green-600">
                 <CheckCircle size={14} className="mr-1 md:mr-2" />
-                256-bit encryption & HIPAA certified
+                {t("contact_feature_security_note")}
               </div>
             </div>
           </div>
@@ -583,64 +799,87 @@ const Contact = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-12 md:mb-16 lg:mb-20">
           <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl md:rounded-2xl lg:rounded-3xl p-4 md:p-6 text-white text-center shadow-lg">
             <Users size={36} className="mx-auto mb-2 md:mb-3 md:w-12 md:h-12" />
-            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">2.5M+</div>
-            <div className="text-blue-100 font-medium text-xs md:text-sm">Patients Treated</div>
-            <div className="text-blue-200 text-xs mt-1">Across 50+ countries</div>
+            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+              2.5M+
+            </div>
+            <div className="text-blue-100 font-medium text-xs md:text-sm">
+              {t("contact_stats_patients")}
+            </div>
+            <div className="text-blue-200 text-xs mt-1">
+              {t("contact_stats_countries")}
+            </div>
           </div>
 
           <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl md:rounded-2xl lg:rounded-3xl p-4 md:p-6 text-white text-center shadow-lg">
             <Heart size={36} className="mx-auto mb-2 md:mb-3 md:w-12 md:h-12" />
-            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">98.5%</div>
-            <div className="text-green-100 font-medium text-xs md:text-sm">Success Rate</div>
-            <div className="text-green-200 text-xs mt-1">Patient satisfaction</div>
+            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+              98.5%
+            </div>
+            <div className="text-green-100 font-medium text-xs md:text-sm">
+              {t("contact_stats_success")}
+            </div>
+            <div className="text-green-200 text-xs mt-1">
+              {t("contact_stats_satisfaction")}
+            </div>
           </div>
 
           <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl md:rounded-2xl lg:rounded-3xl p-4 md:p-6 text-white text-center shadow-lg">
             <Clock size={36} className="mx-auto mb-2 md:mb-3 md:w-12 md:h-12" />
-            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">24/7</div>
-            <div className="text-purple-100 font-medium text-xs md:text-sm">Available</div>
-            <div className="text-purple-200 text-xs mt-1">Emergency support</div>
+            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+              24/7
+            </div>
+            <div className="text-purple-100 font-medium text-xs md:text-sm">
+              {t("contact_stats_available")}
+            </div>
+            <div className="text-purple-200 text-xs mt-1">
+              {t("contact_stats_emergency")}
+            </div>
           </div>
 
           <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl md:rounded-2xl lg:rounded-3xl p-4 md:p-6 text-white text-center shadow-lg">
             <Star size={36} className="mx-auto mb-2 md:mb-3 md:w-12 md:h-12" />
-            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">4.9/5</div>
-            <div className="text-orange-100 font-medium text-xs md:text-sm">Rating</div>
-            <div className="text-orange-200 text-xs mt-1">From 50K+ reviews</div>
+            <div className="text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2">
+              4.9/5
+            </div>
+            <div className="text-orange-100 font-medium text-xs md:text-sm">
+              {t("contact_stats_rating")}
+            </div>
+            <div className="text-orange-200 text-xs mt-1">
+              {t("contact_stats_reviews")}
+            </div>
           </div>
         </div>
 
         {/* Final CTA Section */}
         <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 xl:p-12 text-white text-center shadow-xl md:shadow-2xl">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Ready to Experience Premium Healthcare?</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
+            {t("contact_cta_title")}
+          </h2>
           <p className="text-gray-300 text-base md:text-xl mb-6 md:mb-8 max-w-3xl mx-auto">
-            Join millions of patients who trust MedConnect for their healthcare needs.
-            Get matched with the perfect specialist in minutes, not days.
+            {t("contact_cta_subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 lg:gap-6">
-            <button
-              className="px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5 font-bold text-base md:text-lg rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center text-gray-800 bg-cyan-400 hover:bg-cyan-300 w-full sm:w-auto justify-center"
-            >
+            <button className="px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5 font-bold text-base md:text-lg rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center text-gray-800 bg-cyan-400 hover:bg-cyan-300 w-full sm:w-auto justify-center">
               <Calendar size={18} className="mr-2 md:mr-3" />
-              Book Appointment Now
+              {t("contact_cta_book")}
             </button>
             <button className="px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5 bg-white/10 backdrop-blur-sm border-2 border-white/20 font-bold text-base md:text-lg rounded-xl md:rounded-2xl hover:bg-white/20 transition-all duration-300 flex items-center w-full sm:w-auto justify-center">
               <Video size={18} className="mr-2 md:mr-3" />
-              Start Video Consultation
+              {t("contact_cta_video")}
             </button>
           </div>
           <div className="flex flex-wrap items-center justify-center mt-6 md:mt-8 gap-3 md:gap-4 lg:gap-8 text-xs md:text-sm text-gray-400">
             <div className="flex items-center">
               <CheckCircle size={14} className="mr-1 md:mr-2 text-cyan-400" />
-              <span>No waiting lists</span>
+              <span>{t("contact_cta_no_waiting")}</span>
             </div>
             <div className="flex items-center">
               <CheckCircle size={14} className="mr-1 md:mr-2 text-cyan-400" />
-              <span>Insurance accepted</span>
+              <span>{t("contact_cta_insurance")}</span>
             </div>
             <div className="flex items-center">
               <CheckCircle size={14} className="mr-1 md:mr-2 text-cyan-400" />
-              <span>100% confidential</span>
+              <span>{t("contact_cta_confidential")}</span>
             </div>
           </div>
         </div>
