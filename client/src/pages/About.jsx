@@ -22,7 +22,7 @@ import {
   ArrowRight,
   Play,
   Pause,
-  Code,
+  Code, 
   Smartphone,
   Database,
   Lock,
