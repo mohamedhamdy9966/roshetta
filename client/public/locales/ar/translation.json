@@ -112,5 +112,99 @@
   "book_now": "احجز الآن",
   "no_labs_found": "لم يتم العثور على مختبرات",
   "no_labs_description": "حاول تعديل عوامل التصفية أو معايير البحث.",
-  "reset_filters": "إعادة تعيين التصفيات"
+  "reset_filters": "إعادة تعيين التصفيات",
+
+  "about_page_title": "عن روشيتا - نظام الرعاية الصحية المتكامل",
+  "about_page_description": "اكتشف روشيتا، أول نظام رعاية صحية متكامل في العالم يجمع بين التميز الطبي وابتكار الحماية.",
+  "about_page_keywords": "روشيتا، الرعاية الصحية المتكاملة، الاستشارات الطبية، الرعاية الصحية العامة، الرعاية الشاملة، منصة الرعاية الصحية",
+  "about_discover_description": "اكتشف منصة روشيتا الثورية للرعاية الصحية الشاملة للجسم والعقل.",
+  "about_join_millions": "انضم إلى ملايين الأشخاص الذين اكتشفوا قوة الرعاية الصحية المتكاملة مع روشيتا.",
+
+  "about_where_medical_meets": "حيث تلتقي الرعاية الطبية بالحماية",
+  "about_ecosystem_description": "أول نظام رعاية صحية متكامل في العالم يجمع الرعاية والحماية",
+  "about_explore_platform": "استكشف المنصة",
+  "about_watch_story": "شاهد قصتنا",
+
+  "about_journey_title": "رحلة الرعاية الصحية المتكاملة",
+  "about_journey_subtitle": "اكتشف الثورة التي تعيد تشكيل الرعاية الصحية",
+
+  "about_medical_care_title": "الرعاية الطبية المتقدمة",
+  "about_medical_care_subtitle": "التميز في الصحة البدنية",
+  "about_medical_care_description": "خدمات طبية شاملة تتضمن استشارات متخصصة وتشخيص دقيق مع أفضل الأطباء والمتخصصين في جميع المجالات الطبية.",
+
+  "about_general_care_title": "الرعاية الطبية العامة",
+  "about_general_care_subtitle": "حماية شاملة",
+  "about_general_care_description": "منصة رعاية طبية عامة رائدة توفر الحماية والاستشارات والدعم من خلال حلول رقمية مبتكرة.",
+
+  "about_integrated_title": "نظام الرعاية الصحية المتكامل",
+  "about_integrated_subtitle": "مستقبل الرعاية الصحية الشامل",
+  "about_integrated_description": "نظام متكامل يجمع بين الرعاية الطبية والرعاية الطبية العامة لأول مرة، مما يوفر رعاية صحية شاملة تعامل الرعاية والحماية كوحدة واحدة.",
+
+  "about_step_of": "الخطوة {{number}} من 3",
+
+  "about_capabilities_title": "القدرات الثورية",
+  "about_capabilities_subtitle": "تقنيات متطورة ولدت من التكامل المثالي",
+
+  "about_comprehensive_healthcare_title": "الرعاية الصحية الشاملة",
+  "about_comprehensive_healthcare_description": "نظام متكامل يجمع بين الخبرة الطبية وابتكار الحماية، مما يوفر رعاية صحية شاملة لا مثيل لها.",
+  "about_healthcare_badge": "الابتكار الأساسي",
+
+  "about_advanced_security_title": "الأمان المتقدم",
+  "about_advanced_security_description": "تشفير عالي المستوى يحمي بيانات الرعاية الطبية والحماية من خلال بروتوكولات خصوصية متقدمة عبر جميع المنصات.",
+  "about_security_badge": "الأمان أولاً",
+
+  "about_instant_connection_title": "الاتصال الفوري",
+  "about_instant_connection_description": "وصول سريع إلى الأطباء والمتخصصين في الرعاية الصحية العامة، مما يزيل الحواجز بين المرضى ومقدمي الرعاية الصحية.",
+  "about_connection_badge": "السرعة والوصول",
+
+  "about_global_network_title": "شبكة الرعاية الصحية العالمية",
+  "about_global_network_description": "منصة عالمية تربط المتخصصين في المجالات الطبية والرعاية الصحية العامة، مما يجعل الرعاية المتخصصة في متناول الجميع في أي مكان.",
+  "about_network_badge": "الوصول العالمي",
+
+  "about_impact_title": "التأثير المتكامل",
+  "about_impact_subtitle": "قوة التكامل بالأرقام",
+
+  "about_lives_transformed": "الأرواح المتحولة",
+  "about_lives_transformed_count": "3.2 مليون+",
+  "about_lives_transformed_desc": "قاعدة المستخدمين",
+
+  "about_healthcare_specialists": "المتخصصون الصحيون",
+  "about_healthcare_specialists_count": "12 ألف+",
+  "about_healthcare_specialists_desc": "الرعاية الطبية والرعاية الصحية العامة",
+
+  "about_specialties": "التخصصات",
+  "about_specialties_count": "150+",
+  "about_specialties_desc": "المجالات المتكاملة",
+
+  "about_platform_reliability": "موثوقية المنصة",
+  "about_platform_reliability_count": "99.9%",
+  "about_platform_reliability_desc": "تميز الأداء",
+
+  "about_technology_title": "التكنولوجيا والابتكار",
+  "about_technology_subtitle": "مدعوم بتقنية متطورة لتقديم تجارب رعاية صحية استثنائية",
+
+  "about_ai_diagnostics_title": "التشخيص بمساعدة الذكاء الاصطناعي",
+  "about_ai_diagnostics_description": "خوارزميات التعلم الآلي المتقدمة تساعد مقدمي الرعاية الصحية في التشخيص الدقيق وخطط العلاج الشخصية.",
+
+  "about_mobile_title": "تجربة تطبيق الهاتف أولاً",
+  "about_mobile_description": "وصول سلس إلى الرعاية الصحية من خلال منصتنا المتجاوبة، مما يضمن أن الرعاية دائماً في متناول يديك.",
+
+  "about_smart_records_title": "السجلات الصحية الذكية",
+  "about_smart_records_description": "إدارة بيانات صحية ذكية توفر رؤى شاملة لكل من المرضى ومقدمي الرعاية الصحية.",
+
+  "about_security_title": "أمان بمستوى المؤسسات",
+  "about_security_description": "تشفير وبروتوكولات أمان عسكرية المستوى تضمن حماية معلوماتك الصحية الحساسة بشكل كامل.",
+
+  "about_ready_title": "هل أنت مستعد لتجربة المستقبل؟",
+  "about_ready_description": "انضم إلى ملايين الأشخاص الذين اكتشفوا قوة الرعاية الصحية المتكاملة. حيث يلتقي التميز الطبي بابتكار الحماية.",
+
+  "about_start_journey": "ابدأ رحلتك",
+  "about_discover_integration": "اكتشف التكامل",
+
+  "about_medical_care_label": "الرعاية الطبية",
+  "about_medical_care_label_desc": "التميز الطبي",
+  "about_protection_label": "الحماية",
+  "about_protection_label_desc": "الحماية الشاملة",
+  "about_roshetta_label": "روشيتا",
+  "about_comprehensive_label": "الرعاية الصحية الشاملة"
 }
