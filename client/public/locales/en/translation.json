@@ -121,5 +121,99 @@
 
   "no_labs_found": "No Labs Found",
   "no_labs_description": "Try widening your search or clearing the current filters to see more diagnostic providers.",
-  "reset_filters": "Reset Filters"
+  "reset_filters": "Reset Filters",
+
+  "about_page_title": "About Roshetta - Integrated Healthcare Ecosystem",
+  "about_page_description": "Discover Roshetta, the world's first integrated healthcare ecosystem combining medical excellence with protection innovation.",
+  "about_page_keywords": "Roshetta, integrated healthcare, medical consultations, general medical care, comprehensive care, healthcare platform",
+  "about_discover_description": "Explore Roshetta's revolutionary platform for comprehensive healthcare for body and mind.",
+  "about_join_millions": "Join millions experiencing the power of integrated healthcare with Roshetta.",
+
+  "about_where_medical_meets": "Where Medical Care meets Protection",
+  "about_ecosystem_description": "The world's first integrated healthcare ecosystem uniting care and protection",
+  "about_explore_platform": "Explore Platform",
+  "about_watch_story": "Watch Our Story",
+
+  "about_journey_title": "The Integrated Healthcare Journey",
+  "about_journey_subtitle": "Discover the revolution reshaping healthcare forever",
+
+  "about_medical_care_title": "Advanced Medical Care",
+  "about_medical_care_subtitle": "Excellence in Physical Health",
+  "about_medical_care_description": "Comprehensive medical services featuring specialized consultations and precise diagnostics with the finest doctors and specialists across all medical fields.",
+
+  "about_general_care_title": "General Medical Care",
+  "about_general_care_subtitle": "Comprehensive Protection",
+  "about_general_care_description": "Leading general medical care platform providing protection, consultations, and support through innovative digital solutions.",
+
+  "about_integrated_title": "Integrated Healthcare Ecosystem",
+  "about_integrated_subtitle": "The Comprehensive Future of Healthcare",
+  "about_integrated_description": "An integrated system that combines medical and general medical care for the first time, providing comprehensive healthcare that treats care and protection as one unit.",
+
+  "about_step_of": "Step {{number}} of 3",
+
+  "about_capabilities_title": "Revolutionary Capabilities",
+  "about_capabilities_subtitle": "Cutting-edge technologies born from perfect integration",
+
+  "about_comprehensive_healthcare_title": "Comprehensive Healthcare",
+  "about_comprehensive_healthcare_description": "An integrated system combining medical expertise with protection innovation, providing unparalleled comprehensive healthcare.",
+  "about_healthcare_badge": "Core Innovation",
+
+  "about_advanced_security_title": "Advanced Security",
+  "about_advanced_security_description": "High-level encryption protecting both physical and general medical care data with advanced privacy protocols across all platforms.",
+  "about_security_badge": "Security First",
+
+  "about_instant_connection_title": "Instant Connection",
+  "about_instant_connection_description": "Quick access to doctors and general medical care specialists, removing barriers between patients and healthcare providers.",
+  "about_connection_badge": "Speed & Access",
+
+  "about_global_network_title": "Global Healthcare Network",
+  "about_global_network_description": "A global platform connecting specialists in medical and general medical care fields, making specialized care accessible anywhere.",
+  "about_network_badge": "Global Reach",
+
+  "about_impact_title": "Integrated Impact",
+  "about_impact_subtitle": "The power of integration in numbers",
+
+  "about_lives_transformed": "Lives Transformed",
+  "about_lives_transformed_count": "3.2M+",
+  "about_lives_transformed_desc": "User base",
+
+  "about_healthcare_specialists": "Healthcare Specialists",
+  "about_healthcare_specialists_count": "12K+",
+  "about_healthcare_specialists_desc": "Medical & General Medical Care",
+
+  "about_specialties": "Specialties",
+  "about_specialties_count": "150+",
+  "about_specialties_desc": "Integrated fields",
+
+  "about_platform_reliability": "Platform Reliability",
+  "about_platform_reliability_count": "99.9%",
+  "about_platform_reliability_desc": "Performance excellence",
+
+  "about_technology_title": "Technology & Innovation",
+  "about_technology_subtitle": "Powered by cutting-edge technology to deliver exceptional healthcare experiences",
+
+  "about_ai_diagnostics_title": "AI-Powered Diagnostics",
+  "about_ai_diagnostics_description": "Advanced machine learning algorithms assist healthcare providers in accurate diagnosis and personalized treatment plans.",
+
+  "about_mobile_title": "Mobile-First Experience",
+  "about_mobile_description": "Seamless healthcare access through our responsive mobile platform, ensuring care is always at your fingertips.",
+
+  "about_smart_records_title": "Smart Health Records",
+  "about_smart_records_description": "Intelligent health data management that provides comprehensive insights for both patients and healthcare providers.",
+
+  "about_security_title": "Enterprise-Grade Security",
+  "about_security_description": "Military-level encryption and security protocols ensuring your sensitive health information remains completely protected.",
+
+  "about_ready_title": "Ready to Experience the Future?",
+  "about_ready_description": "Join millions who have discovered the power of integrated healthcare. Where medical excellence meets protection innovation.",
+
+  "about_start_journey": "Start Your Journey",
+  "about_discover_integration": "Discover Integration",
+
+  "about_medical_care_label": "Medical Care",
+  "about_medical_care_label_desc": "Medical Excellence",
+  "about_protection_label": "Protection",
+  "about_protection_label_desc": "Comprehensive Protection",
+  "about_roshetta_label": "Roshetta",
+  "about_comprehensive_label": "Comprehensive Healthcare"
 }

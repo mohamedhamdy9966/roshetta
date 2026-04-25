@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import image1 from "../assets/02-image.jpg";
 import image2 from "../assets/healthcare-or-medicalcare.png";
 import {
@@ -21,13 +22,14 @@ import {
   ArrowRight,
   Play,
   Pause,
-  Code,
+  Code, 
   Smartphone,
   Database,
   Lock,
 } from "lucide-react";
 
 const About = () => {
+  const { t } = useTranslation();
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeSection, setActiveSection] = useState(0);
@@ -80,28 +82,25 @@ const About = () => {
 
   const healthcareStory = [
     {
-      title: "Advanced Medical Care",
-      subtitle: "Excellence in Physical Health",
-      description:
-        "Comprehensive medical services featuring specialized consultations and precise diagnostics with the finest doctors and specialists across all medical fields.",
+      title: t("about_medical_care_title"),
+      subtitle: t("about_medical_care_subtitle"),
+      description: t("about_medical_care_description"),
       image: assets.medical_care2,
       color: "from-blue-500 via-cyan-500 to-teal-500",
       icon: Stethoscope,
     },
     {
-      title: "General Medical Care",
-      subtitle: "Comprehensive Protection",
-      description:
-        "Leading general medical care platform providing protection, consultations, and support through innovative digital solutions.",
+      title: t("about_general_care_title"),
+      subtitle: t("about_general_care_subtitle"),
+      description: t("about_general_care_description"),
       image: assets.medical_care,
       color: "from-purple-500 via-pink-500 to-rose-500",
       icon: Brain,
     },
     {
-      title: "Integrated Healthcare Ecosystem",
-      subtitle: "The Comprehensive Future of Healthcare",
-      description:
-        "An integrated system that combines medical and general medical care for the first time, providing comprehensive healthcare that treats care and protection as one unit.",
+      title: t("about_integrated_title"),
+      subtitle: t("about_integrated_subtitle"),
+      description: t("about_integrated_description"),
       image: assets.integration,
       color: "from-emerald-500 via-teal-500 to-cyan-500",
       icon: Rocket,
@@ -111,61 +110,61 @@ const About = () => {
   const coreFeatures = [
     {
       icon: Heart,
-      title: "Comprehensive Healthcare",
-      desc: "An integrated system combining medical expertise with protection innovation, providing unparalleled comprehensive healthcare.",
+      title: t("about_comprehensive_healthcare_title"),
+      desc: t("about_comprehensive_healthcare_description"),
       color: "from-red-400 via-pink-500 to-rose-400",
-      badge: "Core Innovation",
+      badge: t("about_healthcare_badge"),
     },
     {
       icon: Shield,
-      title: "Advanced Security",
-      desc: "High-level encryption protecting both physical and general medical care data with advanced privacy protocols across all platforms.",
+      title: t("about_advanced_security_title"),
+      desc: t("about_advanced_security_description"),
       color: "from-blue-400 via-cyan-500 to-sky-400",
-      badge: "Security First",
+      badge: t("about_security_badge"),
     },
     {
       icon: Zap,
-      title: "Instant Connection",
-      desc: "Quick access to doctors and general medical care specialists, removing barriers between patients and healthcare providers.",
+      title: t("about_instant_connection_title"),
+      desc: t("about_instant_connection_description"),
       color: "from-yellow-400 via-amber-500 to-orange-400",
-      badge: "Speed & Access",
+      badge: t("about_connection_badge"),
     },
     {
       icon: Globe,
-      title: "Global Healthcare Network",
-      desc: "A global platform connecting specialists in medical and general medical care fields, making specialized care accessible anywhere.",
+      title: t("about_global_network_title"),
+      desc: t("about_global_network_description"),
       color: "from-green-400 via-emerald-500 to-teal-400",
-      badge: "Global Reach",
+      badge: t("about_network_badge"),
     },
   ];
 
   const stats = [
     {
       icon: TrendingUp,
-      number: "3.2M+",
-      label: "Lives Transformed",
-      description: "User base",
+      number: t("about_lives_transformed_count"),
+      label: t("about_lives_transformed"),
+      description: t("about_lives_transformed_desc"),
       delay: "delay-0",
     },
     {
       icon: Users,
-      number: "12K+",
-      label: "Healthcare Specialists",
-      description: "Medical & General Medical Care",
+      number: t("about_healthcare_specialists_count"),
+      label: t("about_healthcare_specialists"),
+      description: t("about_healthcare_specialists_desc"),
       delay: "delay-100",
     },
     {
       icon: Star,
-      number: "150+",
-      label: "Specialties",
-      description: "Integrated fields",
+      number: t("about_specialties_count"),
+      label: t("about_specialties"),
+      description: t("about_specialties_desc"),
       delay: "delay-200",
     },
     {
       icon: Award,
-      number: "99.9%",
-      label: "Platform Reliability",
-      description: "Performance excellence",
+      number: t("about_platform_reliability_count"),
+      label: t("about_platform_reliability"),
+      description: t("about_platform_reliability_desc"),
       delay: "delay-300",
     },
   ];
@@ -173,26 +172,26 @@ const About = () => {
   const technologies = [
     {
       icon: Code,
-      title: "AI-Powered Diagnostics",
-      description: "Advanced machine learning algorithms assist healthcare providers in accurate diagnosis and personalized treatment plans.",
+      title: t("about_ai_diagnostics_title"),
+      description: t("about_ai_diagnostics_description"),
       color: "from-blue-500 to-purple-600",
     },
     {
       icon: Smartphone,
-      title: "Mobile-First Experience",
-      description: "Seamless healthcare access through our responsive mobile platform, ensuring care is always at your fingertips.",
+      title: t("about_mobile_title"),
+      description: t("about_mobile_description"),
       color: "from-green-500 to-teal-600",
     },
     {
       icon: Database,
-      title: "Smart Health Records",
-      description: "Intelligent health data management that provides comprehensive insights for both patients and healthcare providers.",
+      title: t("about_smart_records_title"),
+      description: t("about_smart_records_description"),
       color: "from-orange-500 to-red-600",
     },
     {
       icon: Lock,
-      title: "Enterprise-Grade Security",
-      description: "Military-level encryption and security protocols ensuring your sensitive health information remains completely protected.",
+      title: t("about_security_title"),
+      description: t("about_security_description"),
       color: "from-purple-500 to-pink-600",
     },
   ];
@@ -200,38 +199,21 @@ const About = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900 overflow-hidden">
       <Helmet>
-        <title>
-          Roshetta - Integrated Healthcare Ecosystem
-        </title>
-        <meta
-          name="description"
-          content="Discover Roshetta, the world's first integrated healthcare ecosystem combining medical excellence with protection innovation."
-        />
-        <meta
-          name="keywords"
-          content="Roshetta, integrated healthcare, medical consultations, general medical care, comprehensive care, healthcare platform"
-        />
+        <title>{t("about_page_title")}</title>
+        <meta name="description" content={t("about_page_description")} />
+        <meta name="keywords" content={t("about_page_keywords")} />
         <meta name="author" content="Roshetta Team" />
-        <meta
-          property="og:title"
-          content="Roshetta - Integrated Healthcare Ecosystem"
-        />
+        <meta property="og:title" content={t("about_page_title")} />
         <meta
           property="og:description"
-          content="Explore Roshetta's revolutionary platform for comprehensive healthcare for body and mind."
+          content={t("about_discover_description")}
         />
         <meta property="og:image" content={assets.about_image} />
         <meta property="og:url" content="https://www.roshetta.com/about" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Roshetta - Integrated Healthcare Ecosystem"
-        />
-        <meta
-          name="twitter:description"
-          content="Join millions experiencing the power of integrated healthcare with Roshetta."
-        />
+        <meta name="twitter:title" content={t("about_page_title")} />
+        <meta name="twitter:description" content={t("about_join_millions")} />
         <meta name="twitter:image" content={assets.about_image} />
         <link rel="canonical" href="https://www.roshetta.com/about" />
       </Helmet>
@@ -395,25 +377,23 @@ const About = () => {
 
             <div className="space-y-4">
               <p className="text-2xl md:text-4xl font-bold text-gray-800">
-                Where <span className="text-blue-600">Medical Care</span> meets{" "}
-                <span className="text-purple-600">Protection</span>
+                {t("about_where_medical_meets")}
               </p>
               <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                The world's first integrated healthcare ecosystem uniting care and protection
+                {t("about_ecosystem_description")}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
               <button className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xl font-bold rounded-full overflow-hidden transition-all duration-500 transform hover:scale-110 hover:shadow-2xl">
                 <span className=" z-10 flex items-center justify-center gap-2 ">
-                  Explore Platform{" "}
+                  {t("about_explore_platform")}{" "}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </button>
               <button className="px-12 py-6 border-2 border-gray-300 text-gray-700 font-bold text-xl rounded-full hover:border-cyan-500 hover:text-cyan-600 transition-all duration-300 transform hover:scale-105">
-                Watch Our Story
-               
+                {t("about_watch_story")}
               </button>
             </div>
           </div>
@@ -433,10 +413,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6">
-              The Integrated Healthcare Journey
+              {t("about_journey_title")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover the revolution reshaping healthcare forever
+              {t("about_journey_subtitle")}
             </p>
           </div>
 
@@ -459,10 +439,11 @@ const About = () => {
                     <button
                       key={index}
                       onClick={() => setActiveSection(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${activeSection === index
-                        ? "bg-gradient-to-r from-cyan-500 to-teal-500 scale-125"
-                        : "bg-gray-300 hover:bg-gray-400"
-                        }`}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        activeSection === index
+                          ? "bg-gradient-to-r from-cyan-500 to-teal-500 scale-125"
+                          : "bg-gray-300 hover:bg-gray-400"
+                      }`}
                     />
                   ))}
                 </div>
@@ -500,7 +481,7 @@ const About = () => {
                           className={`h-1 w-20 bg-gradient-to-r ${story.color} rounded-full`}
                         ></div>
                         <span className="text-sm text-gray-500 font-medium">
-                          Step {index + 1} of 3
+                          {t("about_step_of", { number: index + 1 })}
                         </span>
                       </div>
                     </div>
@@ -538,10 +519,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6">
-              Revolutionary Capabilities
+              {t("about_capabilities_title")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cutting-edge technologies born from perfect integration
+              {t("about_capabilities_subtitle")}
             </p>
           </div>
 
@@ -597,11 +578,9 @@ const About = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Integrated Impact
+              {t("about_impact_title")}
             </h2>
-            <p className="text-xl opacity-90">
-              The power of integration in numbers
-            </p>
+            <p className="text-xl opacity-90">{t("about_impact_subtitle")}</p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -635,10 +614,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold text-gradient mb-6">
-              Technology & Innovation
+              {t("about_technology_title")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Powered by cutting-edge technology to deliver exceptional healthcare experiences
+              {t("about_technology_subtitle")}
             </p>
           </div>
 
@@ -650,9 +629,13 @@ const About = () => {
                   key={index}
                   className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100 relative overflow-hidden"
                 >
-                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${tech.color}`}></div>
+                  <div
+                    className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${tech.color}`}
+                  ></div>
 
-                  <div className={`w-16 h-16 bg-gradient-to-r ${tech.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-r ${tech.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
 
@@ -664,7 +647,9 @@ const About = () => {
                     {tech.description}
                   </p>
 
-                  <div className={`absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-r ${tech.color} opacity-5 rounded-full group-hover:scale-125 transition-transform duration-700`}></div>
+                  <div
+                    className={`absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-r ${tech.color} opacity-5 rounded-full group-hover:scale-125 transition-transform duration-700`}
+                  ></div>
                 </div>
               );
             })}
@@ -682,42 +667,50 @@ const About = () => {
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="space-y-8 slide-up">
             <h2 className="text-4xl md:text-6xl font-bold mb-8">
-              Ready to Experience the Future?
+              {t("about_ready_title")}
             </h2>
             <p className="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed max-w-4xl mx-auto">
-              Join millions who have discovered the power of integrated healthcare. Where medical excellence meets protection innovation.
+              {t("about_ready_description")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xl font-bold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 <span className="relative z-10 flex justify-center gap-2">
-                  Start Your Journey{" "}
+                  {t("about_start_journey")}{" "}
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full opacity-75 blur-xl group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
               <button className="px-12 py-6 glass-morphism text-white font-bold text-xl rounded-full hover:bg-white hover:bg-opacity-20 transition-all duration-300 transform hover:scale-105 border border-white/30">
-                Discover Integration
+                {t("about_discover_integration")}
               </button>
             </div>
 
             <div className="pt-12 flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-8 opacity-80">
               <div className="text-center">
-                <div className="text-2xl font-bold text-cyan-400">Medical Care</div>
-                <div className="text-sm">Medical Excellence</div>
+                <div className="text-2xl font-bold text-cyan-400">
+                  {t("about_medical_care_label")}
+                </div>
+                <div className="text-sm">
+                  {t("about_medical_care_label_desc")}
+                </div>
               </div>
               <div className="text-4xl font-light text-white">+</div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-400">
-                  Protection
+                  {t("about_protection_label")}
                 </div>
-                <div className="text-sm">Comprehensive Protection</div>
+                <div className="text-sm">
+                  {t("about_protection_label_desc")}
+                </div>
               </div>
               <div className="text-4xl font-light text-white">=</div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gradient">Roshetta</div>
-                <div className="text-sm">Comprehensive Healthcare</div>
+                <div className="text-2xl font-bold text-gradient">
+                  {t("about_roshetta_label")}
+                </div>
+                <div className="text-sm">{t("about_comprehensive_label")}</div>
               </div>
             </div>
           </div>
