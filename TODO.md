@@ -1,27 +1,52 @@
-# Fix ESLint Errors & Warnings - TODO
+# Lint Fix TODO
 
-## In Progress
+## Goal
 
-### Batch 1: Simple fixes (derived state → useMemo, move module-level code)
+Fix all ESLint errors and warnings in the client codebase.
 
-- [ ] client/src/components/Navbar.jsx - Move CartIcon outside Navbar
-- [ ] client/src/components/chatbot/Chatbot.jsx - Move axios.defaults, fix effects
-- [ ] client/src/components/doctor/DoctorSpecialty.jsx - Remove data state & effect
-- [ ] client/src/components/doctor/RelatedDoctors.jsx - Replace state+effect with useMemo
-- [ ] client/src/pages/AddAddress.jsx - Remove setAddress effect
-- [ ] client/src/pages/PaymentCancel.jsx - Replace state+effect with useMemo
-- [ ] client/src/pages/PaymentSuccess.jsx - Replace state+effect with useMemo
-- [ ] client/src/pages/drug/DrugDetails.jsx - Replace related products effect with useMemo
+## Files to Fix
 
-### Batch 2: Context and complex pages
+### 1. `client/src/context/AppContext.jsx`
 
-- [ ] client/src/context/AppContext.jsx - Wrap async calls in IIFEs
-- [ ] client/src/pages/Cart.jsx - useMemo for cartArray, IIFE for getUserAddress
-- [ ] client/src/pages/doctor/DoctorAppointment.jsx - useMemo for docInfo and docSlots
-- [ ] client/src/pages/doctor/Doctors.jsx - useMemo for filterDoc
-- [ ] client/src/pages/doctor/MyDoctorsAppointments.jsx - IIFE for getUserAppointments
-- [ ] client/src/pages/drug/MyOrders.jsx - IIFE for fetchMyOrders
-- [ ] client/src/pages/lab/LabAppointment.jsx - useMemo for labSlots
-- [ ] client/src/pages/lab/Labs.jsx - IIFE for fetchLabs
+- [ ] Memoize `axiosInstance` with `useMemo`
+- [ ] Restructure initial data loading effect (lines 337-341) to avoid synchronous setState in effect
+- [ ] Restructure token effect (lines 344-350) to avoid synchronous setState in effect
+- [ ] Restructure userToken effect (lines 353-357) to avoid synchronous setState in effect
+- [ ] Restructure fetchCart effect (lines 360-368) to avoid synchronous setState in effect
 
-## Done
+### 2. `client/src/pages/lab/Labs.jsx`
+
+- [ ] Inline fetch logic in useEffect using `.then().catch()` chains
+- [ ] Remove `fetchLabs` `useCallback` wrapper
+
+### 3. `client/src/components/chatbot/Chatbot.jsx`
+
+- [ ] Wrap `fetchAppointments` in `useCallback`
+- [ ] Add `fetchAppointments` to useEffect dependency array
+
+### 4. `client/src/pages/Cart.jsx`
+
+- [ ] Wrap `getCart` in `useCallback`
+- [ ] Wrap `getUserAddress` in `useCallback`
+- [ ] Add dependencies to useEffect arrays
+
+### 5. `client/src/pages/doctor/Doctors.jsx`
+
+- [ ] Wrap `applyFilter` in `useCallback`
+- [ ] Add to useEffect dependency array
+
+### 6. `client/src/pages/doctor/MyDoctorsAppointments.jsx`
+
+- [ ] Wrap `getUserAppointments` in `useCallback`
+- [ ] Wrap `verifyPaymentStatus` in `useCallback`
+- [ ] Add dependencies to all useEffect arrays
+
+### 7. `client/src/pages/drug/DrugDetails.jsx`
+
+- [ ] Memoize `product` with `useMemo`
+- [ ] Add `product` to useEffect dependency array
+
+## Verification
+
+- [ ] Run `npm run lint` in client/ — should pass with 0 errors, 0 warnings
+- [ ] Run `npm run build` to ensure no runtime regressions
