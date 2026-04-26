@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -24,12 +30,12 @@ export const AppContextProvider = (props) => {
   };
 
   const [token, setToken] = useState(
-    getLocalStorageValue("token") ? getLocalStorageValue("token") : false
+    getLocalStorageValue("token") ? getLocalStorageValue("token") : false,
   );
   const [userToken, setUserToken] = useState(
     getLocalStorageValue("userToken")
       ? getLocalStorageValue("userToken")
-      : false
+      : false,
   );
   const [userData, setUserData] = useState(false);
   const [user, setUser] = useState(false);
@@ -39,31 +45,35 @@ export const AppContextProvider = (props) => {
   const [showUserLogin, setShowUserLogin] = useState(false);
 
   // Create axios instance with base URL
-  const axiosInstance = axios.create({
-    baseURL: backendUrl,
-  });
+  const axiosInstance = useMemo(
+    () =>
+      axios.create({
+        baseURL: backendUrl,
+      }),
+    [backendUrl],
+  );
 
   // Navigation function (you'll need to import useNavigate in your components)
   const navigate = (path) => {
     window.location.href = path;
   };
 
-const getDoctorsData = async () => {
-  try {
-    const { data } = await axiosInstance.get("/api/doctor/list");
-    if (data.success) {
-      setDoctors(data?.doctors || []); // Ensure doctors is an array
-    } else {
-      toast.error(data.message);
-      setDoctors([]); // Set to empty array on failure
+  const getDoctorsData = useCallback(async () => {
+    try {
+      const { data } = await axiosInstance.get("/api/doctor/list");
+      if (data.success) {
+        setDoctors(data?.doctors || []); // Ensure doctors is an array
+      } else {
+        toast.error(data.message);
+        setDoctors([]); // Set to empty array on failure
+      }
+    } catch (error) {
+      toast.error(error.message);
+      setDoctors([]); // Set to empty array on error
     }
-  } catch (error) {
-    toast.error(error.message);
-    setDoctors([]); // Set to empty array on error
-  }
-};
+  }, [axiosInstance]);
 
-  const getChatbotContext = async () => {
+  const getChatbotContext = useCallback(async () => {
     try {
       const { data } = await axiosInstance.get("/api/user/chatbot-context");
       if (data.success) {
@@ -74,9 +84,9 @@ const getDoctorsData = async () => {
     } catch (error) {
       toast.error(error.message);
     }
-  };
+  }, [axiosInstance]);
 
-  const fetchDrugs = async () => {
+  const fetchDrugs = useCallback(async () => {
     try {
       const { data } = await axiosInstance.get("/api/drug/list");
       if (data.success) {
@@ -88,10 +98,10 @@ const getDoctorsData = async () => {
       console.error("Error fetching drugs:", error);
       toast.error(error.message);
     }
-  };
+  }, [axiosInstance]);
 
   // Fetch cart from backend
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     try {
       if (!userToken || !user) return;
 
@@ -105,7 +115,7 @@ const getDoctorsData = async () => {
     } catch (error) {
       console.error("Error fetching cart:", error);
     }
-  };
+  }, [axiosInstance, userToken, user]);
 
   // Sync cart with backend
   const syncCart = async (cartData) => {
@@ -115,7 +125,7 @@ const getDoctorsData = async () => {
       await axiosInstance.patch(
         "/api/cart/update",
         { cartItems: cartData },
-        { headers: { Authorization: `Bearer ${userToken}` } }
+        { headers: { Authorization: `Bearer ${userToken}` } },
       );
     } catch (error) {
       console.error("Error syncing cart:", error);
@@ -144,7 +154,7 @@ const getDoctorsData = async () => {
       const { data } = await axiosInstance.post(
         "/api/cart/add",
         { drugId: itemId, quantity },
-        { headers: { Authorization: `Bearer ${userToken}` } }
+        { headers: { Authorization: `Bearer ${userToken}` } },
       );
 
       if (data.success) {
@@ -257,7 +267,7 @@ const getDoctorsData = async () => {
     }
   };
 
-  const loadUserProfileData = async () => {
+  const loadUserProfileData = useCallback(async () => {
     try {
       const { data } = await axiosInstance.get("/api/user/get-profile", {
         headers: { token },
@@ -270,10 +280,10 @@ const getDoctorsData = async () => {
     } catch (error) {
       toast.error(error.message);
     }
-  };
+  }, [axiosInstance, token]);
 
   // Load user profile with userToken
-  const loadUserProfile = async () => {
+  const loadUserProfile = useCallback(async () => {
     try {
       if (!userToken) return;
 
@@ -296,7 +306,7 @@ const getDoctorsData = async () => {
       setUserToken(false);
       setUser(false);
     }
-  };
+  }, [axiosInstance, userToken]);
 
   const value = {
     doctors,
@@ -338,7 +348,7 @@ const getDoctorsData = async () => {
     getDoctorsData();
     getChatbotContext();
     fetchDrugs();
-  }, []);
+  }, [getDoctorsData, getChatbotContext, fetchDrugs]);
 
   // Load user profile when token changes
   useEffect(() => {
@@ -347,7 +357,7 @@ const getDoctorsData = async () => {
     } else {
       setUserData(false);
     }
-  }, [token]);
+  }, [token, loadUserProfileData]);
 
   useEffect(() => {
     if (userToken) {
@@ -356,14 +366,14 @@ const getDoctorsData = async () => {
       setUser(false);
       setCartItems({});
     }
-  }, [userToken]);
+  }, [userToken, loadUserProfile]);
 
   // Fetch cart when user is loaded
   useEffect(() => {
     if (user && userToken) {
       fetchCart();
     }
-  }, [user, userToken]);
+  }, [user, userToken, fetchCart]);
 
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>

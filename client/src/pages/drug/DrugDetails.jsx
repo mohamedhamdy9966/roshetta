@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useAppContext } from "../../context/AppContext";
 import { Link, useParams } from "react-router-dom";
 import { assets } from "../../assets/assets";
@@ -11,7 +11,10 @@ const DrugDetails = () => {
   // const t = translations[lang];
   const { id } = useParams();
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const product = products.find((item) => item._id === id);
+  const product = useMemo(
+    () => products.find((item) => item._id === id),
+    [products, id],
+  );
   const [thumbnail, setThumbnail] = useState(null);
 
   useEffect(() => {
@@ -22,7 +25,7 @@ const DrugDetails = () => {
       );
       setRelatedProducts(productsCopy.slice(0, 5));
     }
-  }, [products]);
+  }, [products, product]);
 
   useEffect(() => {
     product?.image?.length

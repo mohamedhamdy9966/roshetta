@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
@@ -29,7 +29,7 @@ const Cart = () => {
   const [paymentOption, setPaymentOption] = useState("COD");
   const [isLoading, setIsLoading] = useState(false);
 
-  const getCart = () => {
+  const getCart = useCallback(() => {
     let tempArray = [];
     for (const key in cartItems) {
       const drug = drugs.find((item) => item._id === key);
@@ -39,9 +39,9 @@ const Cart = () => {
       }
     }
     setCartArray(tempArray);
-  };
+  }, [drugs, cartItems]);
 
-  const getUserAddress = async () => {
+  const getUserAddress = useCallback(async () => {
     try {
       if (!userToken || !user) return;
 
@@ -60,7 +60,7 @@ const Cart = () => {
       console.error("Error fetching addresses:", error);
       toast.error("Failed to fetch addresses");
     }
-  };
+  }, [axios, userToken, user]);
 
   const getShippingFee = () => {
     const stateFee = {
@@ -135,7 +135,7 @@ const Cart = () => {
             items: orderItems,
             address: selectedAddress._id,
           },
-          { headers: { Authorization: `Bearer ${userToken}` } }
+          { headers: { Authorization: `Bearer ${userToken}` } },
         );
 
         if (data.success) {
@@ -158,7 +158,7 @@ const Cart = () => {
             headers: {
               Authorization: `Bearer ${userToken}`,
             },
-          }
+          },
         );
 
         if (data.success && data.url) {
@@ -181,13 +181,13 @@ const Cart = () => {
     if (drugs?.length > 0 && cartItems) {
       getCart();
     }
-  }, [drugs, cartItems]);
+  }, [drugs, cartItems, getCart]);
 
   useEffect(() => {
     if (user && userToken) {
       getUserAddress();
     }
-  }, [user, userToken]);
+  }, [user, userToken, getUserAddress]);
 
   // Show loading or empty state
   if (!drugs || drugs.length === 0) {
@@ -291,7 +291,7 @@ const Cart = () => {
                       >
                         {Array.from(
                           { length: Math.max(9, cartItems[drug._id] || 1) },
-                          (_, i) => i + 1
+                          (_, i) => i + 1,
                         ).map((num) => (
                           <option key={num} value={num}>
                             {num}
@@ -468,8 +468,8 @@ const Cart = () => {
           {isLoading
             ? "Processing..."
             : paymentOption === "COD"
-            ? "Place Order"
-            : "Proceed to Checkout"}
+              ? "Place Order"
+              : "Proceed to Checkout"}
         </button>
 
         {!selectedAddress && (

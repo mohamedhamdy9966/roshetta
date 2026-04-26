@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
@@ -53,7 +53,7 @@ const Doctors = () => {
     { label: "5 Stars", value: "5" },
   ];
 
-  const applyFilter = () => {
+  const applyFilter = useCallback(() => {
     let filtered = doctors;
 
     // Specialty filter
@@ -111,7 +111,7 @@ const Doctors = () => {
     }
 
     setFilterDoc(filtered);
-  };
+}, [doctors, specialty, filters, urlSpecialtyMap]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -132,7 +132,7 @@ const Doctors = () => {
 
   useEffect(() => {
     applyFilter();
-  }, [doctors, specialty, filters]);
+  }, [applyFilter]);
 
   if (!doctors || doctors.length === 0) {
     return (

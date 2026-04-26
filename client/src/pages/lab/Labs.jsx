@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState, useCallback } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -71,28 +71,25 @@ const Labs = () => {
     );
   }, [specialty]);
 
-  const fetchLabs = useCallback(async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get("/api/lab/list");
-
-      if (data.success) {
-        setLabs(data.labs || []);
-        return;
-      }
-
-      setLabs([]);
-    } catch (error) {
-      console.error("Error fetching labs:", error);
-      setLabs([]);
-    } finally {
-      setLoading(false);
-    }
-  }, [axios]);
-
   useEffect(() => {
-    fetchLabs();
-  }, [fetchLabs]);
+    setLoading(true);
+    axios
+      .get("/api/lab/list")
+      .then(({ data }) => {
+        if (data.success) {
+          setLabs(data.labs || []);
+        } else {
+          setLabs([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching labs:", error);
+        setLabs([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [axios]);
 
   const filteredLabs = useMemo(() => {
     let results = [...labs];

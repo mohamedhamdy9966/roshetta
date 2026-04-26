@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import axios from "axios";
 import { AppContext } from "../../context/AppContext";
 import { toast } from "react-toastify";
@@ -55,7 +61,7 @@ const Chatbot = () => {
   };
 
   // Fetch user's appointments from backend
-  const fetchAppointments = async () => {
+  const fetchAppointments = useCallback(async () => {
     if (!token) {
       return;
     }
@@ -72,7 +78,7 @@ const Chatbot = () => {
       console.error("Error fetching appointments:", error);
       toast.error("Failed to fetch appointments.");
     }
-  };
+  }, [token, backendUrl]);
 
   // Start audio recording
   // Updated startRecording function
@@ -351,7 +357,7 @@ const Chatbot = () => {
     (async () => {
       await fetchAppointments();
     })();
-  }, [token, userData]);
+  }, [fetchAppointments]);
 
   // Close chatbot when clicking outside
   useEffect(() => {

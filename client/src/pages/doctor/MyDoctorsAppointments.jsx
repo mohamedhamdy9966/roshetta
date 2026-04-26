@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
@@ -37,39 +37,45 @@ const MyDoctorsAppointments = () => {
     );
   };
 
-  const getUserAppointments = async (showLoader = false) => {
-    try {
-      if (showLoader) {
-        setLoading(true);
-      } else {
-        setRefreshing(true);
-      }
+  const getUserAppointments = useCallback(
+    async (showLoader = false) => {
+      try {
+        if (showLoader) {
+          setLoading(true);
+        } else {
+          setRefreshing(true);
+        }
 
-      const { data } = await axios.get(backendUrl + "/api/user/appointments", {
-        headers: { token },
-      });
-
-      if (data.success) {
-        console.log("Appointments loaded:", data.appointments.length);
-        setAppointments(data.appointments.reverse());
-
-        // Check for recent payments
-        const recentlyPaid = data.appointments.filter(
-          (apt) => apt.payment && apt.paymentStatus === "completed",
+        const { data } = await axios.get(
+          backendUrl + "/api/user/appointments",
+          {
+            headers: { token },
+          },
         );
 
-        if (recentlyPaid.length > 0) {
-          console.log("Recently paid appointments:", recentlyPaid.length);
+        if (data.success) {
+          console.log("Appointments loaded:", data.appointments.length);
+          setAppointments(data.appointments.reverse());
+
+          // Check for recent payments
+          const recentlyPaid = data.appointments.filter(
+            (apt) => apt.payment && apt.paymentStatus === "completed",
+          );
+
+          if (recentlyPaid.length > 0) {
+            console.log("Recently paid appointments:", recentlyPaid.length);
+          }
         }
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
+        setRefreshing(false);
       }
-    } catch (error) {
-      console.error("Error fetching appointments:", error);
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
-  };
+    },
+    [backendUrl, token],
+  );
 
   // Enhanced payment success handling
   useEffect(() => {
@@ -93,7 +99,7 @@ const MyDoctorsAppointments = () => {
         }, delay);
       });
     }
-  }, [searchParams, navigate]);
+  }, [searchParams, navigate, getUserAppointments]);
 
   // Enhanced auto-refresh logic
   useEffect(() => {
@@ -120,34 +126,40 @@ const MyDoctorsAppointments = () => {
 
       return () => clearInterval(interval);
     }
-  }, [appointments]);
+  }, [appointments, getUserAppointments]);
 
   // Verify specific appointment status
-  const verifyPaymentStatus = async (appointmentId) => {
-    try {
-      console.log("Verifying payment status for:", appointmentId);
+  const verifyPaymentStatus = useCallback(
+    async (appointmentId) => {
+      try {
+        console.log("Verifying payment status for:", appointmentId);
 
-      const { data } = await axios.get(backendUrl + "/api/user/appointments", {
-        headers: { token },
-      });
-
-      if (data.success) {
-        const appointment = data.appointments.find(
-          (apt) => apt._id === appointmentId,
+        const { data } = await axios.get(
+          backendUrl + "/api/user/appointments",
+          {
+            headers: { token },
+          },
         );
-        if (
-          appointment &&
-          appointment.payment &&
-          appointment.paymentStatus === "completed"
-        ) {
-          toast.success("Payment confirmed! Refreshing appointments...");
-          getUserAppointments();
+
+        if (data.success) {
+          const appointment = data.appointments.find(
+            (apt) => apt._id === appointmentId,
+          );
+          if (
+            appointment &&
+            appointment.payment &&
+            appointment.paymentStatus === "completed"
+          ) {
+            toast.success("Payment confirmed! Refreshing appointments...");
+            getUserAppointments();
+          }
         }
+      } catch (error) {
+        console.error("Error verifying payment:", error);
       }
-    } catch (error) {
-      console.error("Error verifying payment:", error);
-    }
-  };
+    },
+    [backendUrl, token, getUserAppointments],
+  );
 
   const cancelAppointment = async (appointmentId) => {
     try {
@@ -271,13 +283,13 @@ const MyDoctorsAppointments = () => {
         verifyPaymentStatus(pendingPayment);
       }, 2000);
     }
-  }, [token]);
+  }, [token, verifyPaymentStatus]);
 
   useEffect(() => {
     if (token) {
       getUserAppointments(true);
     }
-  }, [token]);
+  }, [token, getUserAppointments]);
 
   if (loading) {
     return (
