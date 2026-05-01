@@ -6,7 +6,7 @@ import {
   drugById,
   drugList,
   removeDrug,
-} from "../controllers/drugController.js";
+} from "../controllers/drug/drugController.js";
 import authAdmin from "../middlewares/authAdmin.js";
 
 const DrugRouter = express.Router();

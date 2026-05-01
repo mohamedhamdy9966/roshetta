@@ -1,10 +1,10 @@
 import express from "express";
 import authUser from "../middlewares/authUser.js";
 import authAdmin from "../middlewares/authAdmin.js";
-import { placeOrderCOD } from "../controllers/codOrderController.js";
+import { placeOrderCOD } from "../controllers/drug/codOrderController.js";
 import { paymobWebhook, placeOrderPaymob } from "../controllers/paymobOrderController.js";
-import { getUserOrders } from "../controllers/userOrderController.js";
-import { getAllOrders, updateOrderStatus } from "../controllers/adminOrderController.js";
+import { getUserOrders } from "../controllers/user/userOrderController.js";
+import { getAllOrders, updateOrderStatus } from "../controllers/admin/adminOrderController.js";
 
 const orderRouter = express.Router();
 

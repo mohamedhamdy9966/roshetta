@@ -2,11 +2,11 @@
 import express from "express";
 import upload from "../middlewares/multer.js";
 import authAdmin from "../middlewares/authAdmin.js";
-import { addDoctor, allDoctors, changeDoctorAvailability } from "../controllers/doctorAdminController.js";
-import { addLab, allLabs, changeLabAvailability } from "../controllers/labAdminController.js";
-import { adminDashboard } from "../controllers/dashboardAdminController.js";
-import { appointmentCancel, appointmentsAdmin } from "../controllers/appointmentAdminController.js";
-import { loginAdmin } from "../controllers/authAdminController.js";
+import { addDoctor, allDoctors, changeDoctorAvailability } from "../controllers/admin/doctorAdminController.js";
+import { addLab, allLabs, changeLabAvailability } from "../controllers/admin/labAdminController.js";
+import { adminDashboard } from "../controllers/admin/dashboardAdminController.js";
+import { appointmentCancel, appointmentsAdmin } from "../controllers/admin/appointmentAdminController.js";
+import { loginAdmin } from "../controllers/admin/authAdminController.js";
 
 const adminRouter = express.Router();
 

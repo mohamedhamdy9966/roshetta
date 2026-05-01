@@ -24,7 +24,7 @@ import {
   getChatResponse,
   googleAuth,
   appleAuth
-} from "../controllers/userController.js";
+} from "../controllers/user/userController.js";
 import authUser from "../middlewares/authUser.js";
 import upload from "../middlewares/multer.js";
 import doctorModel from "../models/doctorModel.js";
