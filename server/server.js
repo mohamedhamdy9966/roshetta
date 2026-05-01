@@ -10,7 +10,7 @@ import labRouter from "./routes/labRoute.js";
 import { paymobWebhook } from "./hooks/paymobWebhooks.js";
 import { stripeWebhooks } from "./hooks/stripeWebhooks.js";
 import rateLimit from "express-rate-limit";
-import cleanupTempFiles from "./cleanup.js";
+// import cleanupTempFiles from "./cleanup.js";
 import session from "express-session";
 import DrugRouter from "./routes/DrugRoute.js";
 import cartRouter from "./routes/cartRoute.js";

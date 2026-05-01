@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
@@ -13,55 +13,21 @@ const DoctorAppointment = () => {
   const { doctors, currencySymbol, backendUrl, token, getDoctorsData } =
     useContext(AppContext);
   const daysOfWeek = ["SAT", "SUN", "MON", "TUE", "WED", "THU", "FRI"];
-  const [docInfo, setDocInfo] = useState(null);
-  const [docSlots, setDocSlots] = useState([]);
+
+  const docInfo = useMemo(
+    () => doctors.find((doc) => doc._id === docId),
+    [doctors, docId],
+  );
+
   const [slotIndex, setSlotIndex] = useState(0);
   const [slotTime, setSlotTime] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const doc = doctors.find((doc) => doc._id === docId);
-    setDocInfo(doc);
-  }, [doctors, docId]);
+  const docSlots = useMemo(() => {
+    if (!docInfo) return [];
 
-  const bookAppointment = async () => {
-    if (!token) {
-      toast.warn("Login to book appointment");
-      return navigate("/login");
-    }
-    if (!slotTime) {
-      toast.warn("Please select a time slot");
-      return;
-    }
-    try {
-      const date = docSlots[slotIndex][0].dateTime;
-      let day = date.getDate();
-      let month = date.getMonth() + 1;
-      let year = date.getFullYear();
-
-      const slotDate = day + "_" + month + "_" + year;
-      const { data } = await axios.post(
-        backendUrl + "/api/user/book-appointment",
-        { docId, slotDate, slotTime },
-        { headers: { token } },
-      );
-      if (data.success) {
-        toast.success(data.message);
-        getDoctorsData();
-        navigate("/my-appointments");
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
-
-  useEffect(() => {
-    if (!docInfo) return;
-
-    setDocSlots([]);
     const today = new Date();
+    let allSlots = [];
 
     for (let i = 0; i < 7; i++) {
       const currentDate = new Date(today);
@@ -107,10 +73,43 @@ const DoctorAppointment = () => {
 
         currentDate.setMinutes(currentDate.getMinutes() + 30);
       }
-
-      setDocSlots((prev) => [...prev, timeSlots]);
+      allSlots.push(timeSlots);
     }
+    return allSlots;
   }, [docInfo]);
+
+  const bookAppointment = async () => {
+    if (!token) {
+      toast.warn("Login to book appointment");
+      return navigate("/login");
+    }
+    if (!slotTime) {
+      toast.warn("Please select a time slot");
+      return;
+    }
+    try {
+      const date = docSlots[slotIndex][0].dateTime;
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+
+      const slotDate = day + "_" + month + "_" + year;
+      const { data } = await axios.post(
+        backendUrl + "/api/user/book-appointment",
+        { docId, slotDate, slotTime },
+        { headers: { token } },
+      );
+      if (data.success) {
+        toast.success(data.message);
+        getDoctorsData();
+        navigate("/my-appointments");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   if (!docInfo) return null;
 
@@ -134,7 +133,7 @@ const DoctorAppointment = () => {
         />
         <meta
           property="og:title"
-          content={`Book Appointment with ${docInfo.name} - Your Healthcare Platform`}
+          content={`Book Appointment with {docInfo.name} - Your Healthcare Platform`}
         />
         <meta
           property="og:description"

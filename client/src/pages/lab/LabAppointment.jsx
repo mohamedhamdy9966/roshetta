@@ -88,7 +88,6 @@ const LabAppointment = () => {
 
   const [labInfo, setLabInfo] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [labSlots, setLabSlots] = useState([]);
   const [slotIndex, setSlotIndex] = useState(0);
   const [slotTime, setSlotTime] = useState("");
 
@@ -116,12 +115,17 @@ const LabAppointment = () => {
     fetchLab();
   }, [axios, labId]);
 
+  const labSlots = useMemo(() => {
+    if (!labInfo) return [];
+    return buildAvailableSlots(labInfo);
+  }, [labInfo]);
+
   useEffect(() => {
-    if (!labInfo) return;
-    const generatedSlots = buildAvailableSlots(labInfo);
-    setLabSlots(generatedSlots);
-    setSlotTime("");
-    setSlotIndex(0);
+    const reset = async () => {
+      setSlotTime("");
+      setSlotIndex(0);
+    };
+    reset();
   }, [labInfo]);
 
   const averageRating = useMemo(

@@ -1,37 +1,32 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useAppContext } from "../../context/AppContext";
 import { Link, useParams } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import ProductCard from "../components/ProductCard";
 import { Helmet } from "react-helmet";
-// import { translations } from "./locales";
 
 const DrugDetails = () => {
   const { products, navigate, currency, addToCart, lang } = useAppContext();
-  // const t = translations[lang];
   const { id } = useParams();
-  const [relatedProducts, setRelatedProducts] = useState([]);
+
   const product = useMemo(
     () => products.find((item) => item._id === id),
     [products, id],
   );
-  const [thumbnail, setThumbnail] = useState(null);
 
-  useEffect(() => {
-    if (products.length > 0) {
-      let productsCopy = products.slice();
-      productsCopy = productsCopy.filter(
-        (item) => product.category === item.category,
-      );
-      setRelatedProducts(productsCopy.slice(0, 5));
-    }
-  }, [products, product]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  useEffect(() => {
-    product?.image?.length
-      ? setThumbnail(product.image[0])
-      : setThumbnail(null);
-  }, [product]);
+  const thumbnail = useMemo(
+    () => selectedImage || product?.image?.[0] || null,
+    [selectedImage, product],
+  );
+
+  const relatedProducts = useMemo(() => {
+    if (!product || !products.length) return [];
+    return products
+      .filter((item) => item.category === product.category && item._id !== id)
+      .slice(0, 5);
+  }, [products, product, id]);
 
   return (
     product && (
@@ -145,11 +140,11 @@ const DrugDetails = () => {
               {product.image.map((image, index) => (
                 <div
                   key={index}
-                  onClick={() => setThumbnail(image)}
+                  onClick={() => setSelectedImage(image)}
                   className="border max-w-24 border-gray-500/30 rounded overflow-hidden cursor-pointer"
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && setThumbnail(image)}
+                  onKeyDown={(e) => e.key === "Enter" && setSelectedImage(image)}
                   aria-label={
                     lang === "ar"
                       ? `عرض الصورة المصغرة ${index + 1}`

@@ -4,6 +4,7 @@ import userModel from "../../models/userModel.js";
 import jwt from "jsonwebtoken";
 import transporter from "../../config/nodemailer.js";
 import { OAuth2Client } from "google-auth-library";
+import appleSignin from "apple-signin-auth";
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 

@@ -82,7 +82,10 @@ const MyOrders = () => {
 
   useEffect(() => {
     if (user && userToken) {
-      fetchMyOrders();
+      const load = async () => {
+        await fetchMyOrders();
+      };
+      load();
     } else if (!loading) {
       // Only navigate if not loading (to avoid redirect during initial load)
       navigate("/login");

@@ -18,6 +18,9 @@ import FormData from "form-data";
 import labModel from "../../models/labModel.js";
 import { OAuth2Client } from "google-auth-library";
 import appleSignin from "apple-signin-auth";
+import Product from "../../models/Drug.js";
+import Address from "../../models/Address.js";
+import Order from "../../models/Order.js";
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -1353,6 +1356,7 @@ const getAuthToken = async () => {
       `Paymob Auth Token Error: ${
         error.response?.data?.message || error.message
       }`,
+      { cause: error },
     );
   }
 };
@@ -1380,6 +1384,7 @@ const registerAppointment = async (
       `Paymob register Appointment Error: ${
         error.response?.data?.message || error.message
       }`,
+      { cause: error },
     );
   }
 };
@@ -1429,6 +1434,7 @@ const getPaymentKey = async (
       `Paymob get payment key Error: ${
         error.response?.data?.message || error.message
       }`,
+      { cause: error },
     );
   }
 };
@@ -1441,10 +1447,8 @@ const payAppointmentPaymob = async (req, res) => {
     const { origin } = req.headers;
 
     let appointment = await appointmentDoctorModel.findById(appointmentId);
-    let isDoctorAppointment = true;
     if (!appointment) {
       appointment = await appointmentLabModel.findById(appointmentId);
-      isDoctorAppointment = false;
       if (!appointment) {
         return res.json({ success: false, message: "Appointment Not Found" });
       }
@@ -1603,7 +1607,7 @@ const placeOrderStripe = async (req, res) => {
       return (await acc) + product.offerPrice * item.quantity;
     }, 0);
     amount += Math.floor(amount * 0);
-    const Appointment = await Appointment.create({
+    const newOrder = await Order.create({
       userId,
       items,
       amount,
@@ -1629,7 +1633,7 @@ const placeOrderStripe = async (req, res) => {
       success_url: `${origin}/success`,
       cancel_url: `${origin}/cancel`,
       metadata: {
-        AppointmentId: Appointment._id.toString(),
+        AppointmentId: newOrder._id.toString(),
         userId,
       },
     });
@@ -1672,7 +1676,7 @@ const placeOrderPaymob = async (req, res) => {
       throw new Error("Amount must be greater than zero");
     }
 
-    const Appointment = await Appointment.create({
+    const newOrder = await Order.create({
       userId,
       items,
       amount: amount / 100,
@@ -1680,9 +1684,9 @@ const placeOrderPaymob = async (req, res) => {
       paymentType: "Online",
       status: "Pending Payment",
     });
-    console.log("DEBUG: Created Appointment:", Appointment._id);
+    console.log("DEBUG: Created Appointment:", newOrder._id);
 
-    const user = await User.findById(userId);
+    const user = await userModel.findById(userId);
     const addressDoc = await Address.findById(address);
     if (!addressDoc) throw new Error(`Address ${address} not found`);
     console.log("DEBUG: User Data:", {
@@ -1697,7 +1701,7 @@ const placeOrderPaymob = async (req, res) => {
     const paymobAppointmentId = await registerAppointment(
       authToken,
       amount,
-      Appointment._id,
+      newOrder._id,
     );
     console.log("DEBUG: Paymob Appointment ID:", paymobAppointmentId);
 

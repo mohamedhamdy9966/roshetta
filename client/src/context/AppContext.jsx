@@ -345,33 +345,45 @@ export const AppContextProvider = (props) => {
 
   // Load initial data
   useEffect(() => {
-    getDoctorsData();
-    getChatbotContext();
-    fetchDrugs();
+    const init = async () => {
+      await getDoctorsData();
+      await getChatbotContext();
+      await fetchDrugs();
+    };
+    init();
   }, [getDoctorsData, getChatbotContext, fetchDrugs]);
 
   // Load user profile when token changes
   useEffect(() => {
-    if (token) {
-      loadUserProfileData();
-    } else {
-      setUserData(false);
-    }
-  }, [token, loadUserProfileData]);
+    const load = async () => {
+      if (token) {
+        await loadUserProfileData();
+      } else if (userData !== false) {
+        setUserData(false);
+      }
+    };
+    load();
+  }, [token, loadUserProfileData, userData]);
 
   useEffect(() => {
-    if (userToken) {
-      loadUserProfile();
-    } else {
-      setUser(false);
-      setCartItems({});
-    }
-  }, [userToken, loadUserProfile]);
+    const load = async () => {
+      if (userToken) {
+        await loadUserProfile();
+      } else {
+        if (user !== false) setUser(false);
+        if (Object.keys(cartItems).length > 0) setCartItems({});
+      }
+    };
+    load();
+  }, [userToken, loadUserProfile, user, cartItems]);
 
   // Fetch cart when user is loaded
   useEffect(() => {
     if (user && userToken) {
-      fetchCart();
+      const loadCart = async () => {
+        await fetchCart();
+      };
+      loadCart();
     }
   }, [user, userToken, fetchCart]);
 

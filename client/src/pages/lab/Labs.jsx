@@ -72,23 +72,24 @@ const Labs = () => {
   }, [specialty]);
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get("/api/lab/list")
-      .then(({ data }) => {
+    const fetchLabs = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get("/api/lab/list");
         if (data.success) {
           setLabs(data.labs || []);
         } else {
           setLabs([]);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching labs:", error);
         setLabs([]);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchLabs();
   }, [axios]);
 
   const filteredLabs = useMemo(() => {

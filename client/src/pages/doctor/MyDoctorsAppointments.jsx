@@ -287,7 +287,10 @@ const MyDoctorsAppointments = () => {
 
   useEffect(() => {
     if (token) {
-      getUserAppointments(true);
+      const load = async () => {
+        await getUserAppointments(true);
+      };
+      load();
     }
   }, [token, getUserAppointments]);
 

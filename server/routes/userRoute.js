@@ -29,6 +29,8 @@ import authUser from "../middlewares/authUser.js";
 import upload from "../middlewares/multer.js";
 import doctorModel from "../models/doctorModel.js";
 import labModel from "../models/labModel.js";
+import axios from "axios";
+import { getSystemPrompt } from "../controllers/chatController.js";
 
 const userRouter = express.Router();
 

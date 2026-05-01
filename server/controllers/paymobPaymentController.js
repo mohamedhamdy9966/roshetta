@@ -33,7 +33,8 @@ const getAuthToken = async () => {
     throw new Error(
       `Paymob Auth Token Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
+      { cause: error }
     );
   }
 };
@@ -60,7 +61,8 @@ const registerAppointment = async (
     throw new Error(
       `Paymob register Appointment Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
+      { cause: error }
     );
   }
 };
@@ -109,7 +111,8 @@ const getPaymentKey = async (
     throw new Error(
       `Paymob get payment key Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
+      { cause: error }
     );
   }
 };
@@ -122,10 +125,8 @@ const payAppointmentPaymob = async (req, res) => {
     const { origin } = req.headers;
 
     let appointment = await appointmentDoctorModel.findById(appointmentId);
-    let isDoctorAppointment = true;
     if (!appointment) {
       appointment = await appointmentLabModel.findById(appointmentId);
-      isDoctorAppointment = false;
       if (!appointment) {
         return res.json({ success: false, message: "Appointment Not Found" });
       }

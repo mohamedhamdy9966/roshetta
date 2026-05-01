@@ -34,7 +34,8 @@ const getAuthToken = async () => {
     throw new Error(
       `Paymob Auth Token Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
+      { cause: error }
     );
   }
 };
@@ -57,7 +58,8 @@ const registerOrder = async (authToken, amountCents, merchantOrderId) => {
     throw new Error(
       `Paymob register order Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
+      { cause: error }
     );
   }
 };
@@ -104,7 +106,8 @@ const getPaymentKey = async (
     throw new Error(
       `Paymob get payment key Error: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
+      { cause: error }
     );
   }
 };

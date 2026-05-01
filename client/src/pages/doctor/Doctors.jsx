@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 const Doctors = () => {
   const { specialty } = useParams();
   const { doctors } = useContext(AppContext);
-  const [filterDoc, setFilterDoc] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [filters, setFilters] = useState({
     specialty: "",
@@ -19,15 +18,18 @@ const Doctors = () => {
   });
   const navigate = useNavigate();
 
-  const urlSpecialtyMap = {
-    "general-physician": "General Physician",
-    gynecologist: "Gynecologist",
-    dermatologist: "Dermatologist",
-    pediatrician: "Pediatrician",
-    bones: "Bones",
-    surgery: "Surgery",
-    ent: "ENT",
-  };
+  const urlSpecialtyMap = useMemo(
+    () => ({
+      "general-physician": "General Physician",
+      gynecologist: "Gynecologist",
+      dermatologist: "Dermatologist",
+      pediatrician: "Pediatrician",
+      bones: "Bones",
+      surgery: "Surgery",
+      ent: "ENT",
+    }),
+    [],
+  );
 
   const specialties = [
     "General Physician",
@@ -53,8 +55,8 @@ const Doctors = () => {
     { label: "5 Stars", value: "5" },
   ];
 
-  const applyFilter = useCallback(() => {
-    let filtered = doctors;
+  const filterDoc = useMemo(() => {
+    let filtered = doctors || [];
 
     // Specialty filter
     if (filters.specialty || specialty) {
@@ -110,8 +112,8 @@ const Doctors = () => {
       });
     }
 
-    setFilterDoc(filtered);
-}, [doctors, specialty, filters, urlSpecialtyMap]);
+    return filtered;
+  }, [doctors, specialty, filters, urlSpecialtyMap]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -129,10 +131,6 @@ const Doctors = () => {
     });
     navigate("/doctors");
   };
-
-  useEffect(() => {
-    applyFilter();
-  }, [applyFilter]);
 
   if (!doctors || doctors.length === 0) {
     return (
@@ -219,8 +217,7 @@ const Doctors = () => {
               ? `${
                   urlSpecialtyMap[specialty] || specialty
                 } Specialists - Your Healthcare Platform`
-              : "Find Doctors - Your Healthcare Platform"
-          }
+              : "Find Doctors - Your Healthcare Platform"}
         />
         <meta
           property="og:description"

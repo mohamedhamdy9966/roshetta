@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
@@ -22,23 +22,24 @@ const Cart = () => {
   } = useAppContext();
 
   const navigate = useNavigate();
-  const [cartArray, setCartArray] = useState([]);
   const [cartAddresses, setAddresses] = useState([]);
   const [showAddress, setShowAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentOption, setPaymentOption] = useState("COD");
   const [isLoading, setIsLoading] = useState(false);
 
-  const getCart = useCallback(() => {
+  const cartArray = useMemo(() => {
     let tempArray = [];
     for (const key in cartItems) {
-      const drug = drugs.find((item) => item._id === key);
+      const drug = drugs?.find((item) => item._id === key);
       if (drug) {
-        drug.quantity = cartItems[key];
-        tempArray.push(drug);
+        tempArray.push({
+          ...drug,
+          quantity: cartItems[key],
+        });
       }
     }
-    setCartArray(tempArray);
+    return tempArray;
   }, [drugs, cartItems]);
 
   const getUserAddress = useCallback(async () => {
@@ -50,7 +51,7 @@ const Cart = () => {
       });
       if (data.success) {
         setAddresses(data.addresses);
-        if (data.addresses.length > 0) {
+        if (data.addresses.length > 0 && !selectedAddress) {
           setSelectedAddress(data.addresses[0]);
         }
       } else {
@@ -60,7 +61,7 @@ const Cart = () => {
       console.error("Error fetching addresses:", error);
       toast.error("Failed to fetch addresses");
     }
-  }, [axios, userToken, user]);
+  }, [axios, userToken, user, selectedAddress]);
 
   const getShippingFee = () => {
     const stateFee = {
@@ -178,15 +179,12 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    if (drugs?.length > 0 && cartItems) {
-      getCart();
-    }
-  }, [drugs, cartItems, getCart]);
-
-  useEffect(() => {
-    if (user && userToken) {
-      getUserAddress();
-    }
+    const load = async () => {
+      if (user && userToken) {
+        await getUserAddress();
+      }
+    };
+    load();
   }, [user, userToken, getUserAddress]);
 
   // Show loading or empty state
