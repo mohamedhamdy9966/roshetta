@@ -29,6 +29,9 @@ jobs:
           - name: client
             path: client
             script: lint
+          - name: server
+            path: server
+            script: lint
     name: Lint (${{ matrix.name }})
 
     steps:

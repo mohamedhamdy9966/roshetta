@@ -29,6 +29,9 @@ jobs:
           - name: client
             path: client
             script: build
+          - name: server
+            path: server
+            script: build
     name: Build (${{ matrix.name }})
 
     steps:
