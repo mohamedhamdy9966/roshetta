@@ -250,6 +250,10 @@ const Login = () => {
 
   // Apple Sign-In/Up handler
   const handleAppleAuth = async () => {
+    if (!import.meta.env.VITE_APPLE_CLIENT_ID) {
+      toast.error("Apple Sign-In is not configured. Please check environment variables.");
+      return;
+    }
     try {
       const response = await window.AppleID.auth.signIn();
       const { data } = await axios.post(`${backendUrl}/api/user/apple-auth`, {
@@ -285,7 +289,7 @@ const Login = () => {
   }, [token, navigate]);
 
   useEffect(() => {
-    if (window.AppleID) {
+    if (window.AppleID && import.meta.env.VITE_APPLE_CLIENT_ID) {
       window.AppleID.auth.init({
         clientId: import.meta.env.VITE_APPLE_CLIENT_ID,
         scope: "name email",
@@ -1166,32 +1170,24 @@ const Login = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="mt-4">
-                        <GoogleLogin
-                          onSuccess={handleGoogleSuccess}
-                          onError={handleGoogleFailure}
-                          text={
-                            state === "Sign Up"
-                              ? "signup_with"
-                              : "continue_with"
-                          }
-                          shape="rectangular"
-                          width="100%"
-                          theme="outline"
-                          logo_alignment="left"
-                          render={(renderProps) => (
-                            <button
-                              onClick={renderProps.onClick}
-                              disabled={renderProps.disabled}
-                              className="w-full flex items-center justify-center py-3 border border-[#BDBDBD] rounded-lg bg-white text-[#212121] text-base font-semibold hover:bg-[#B2EBF2] focus:outline-none focus:ring-2 focus:ring-[#00BCD4] focus:ring-offset-2 transition-all duration-300 shadow-sm"
-                            >
-                              <FaGoogle className="mr-2 text-[#009688]" />
-                              {state === "Sign Up"
-                                ? "Sign Up with Google"
-                                : "Continue with Google"}
-                            </button>
-                          )}
-                        />
+                      <div className="mt-4 flex justify-center">
+                        {import.meta.env.VITE_GOOGLE_CLIENT_ID ? (
+                          <GoogleLogin
+                            onSuccess={handleGoogleSuccess}
+                            onError={handleGoogleFailure}
+                            text={
+                              state === "Sign Up"
+                                ? "signup_with"
+                                : "continue_with"
+                            }
+                            shape="rectangular"
+                            width="350"
+                            theme="outline"
+                            logo_alignment="left"
+                          />
+                        ) : (
+                          <div className="text-red-500 text-sm">Google Client ID is not configured.</div>
+                        )}
                       </div>
                     </div>
                     <div className="mt-4">
