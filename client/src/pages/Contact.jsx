@@ -71,7 +71,7 @@ const Contact = () => {
     >
       <Helmet>
         <title>{t("contact_page_title")}</title>
-        <meta name="description" content={t("contact_page_description")} /
+        <meta name="description" content={t("contact_page_description")} />
         <meta name="keywords" content={t("contact_page_keywords")} />
         <link rel="canonical" href="https://www.medconnect.com/contact" />
         <meta

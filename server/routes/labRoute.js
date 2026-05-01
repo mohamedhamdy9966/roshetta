@@ -8,7 +8,7 @@ import {
   labDashboard,
   labProfile,
   updateLabProfile,
-} from "../controllers/labController.js";
+} from "../controllers/lab/labController.js";
 import authLab from "../middlewares/authLab.js";
 
 const labRouter = express.Router();

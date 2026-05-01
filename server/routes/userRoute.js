@@ -23,8 +23,8 @@ import {
   resetPassword,
   getChatResponse,
   googleAuth,
-  appleAuth
-} from "../controllers/userController.js";
+  appleAuth,
+} from "../controllers/user/userController.js";
 import authUser from "../middlewares/authUser.js";
 import upload from "../middlewares/multer.js";
 import doctorModel from "../models/doctorModel.js";
@@ -47,7 +47,7 @@ userRouter.post(
   "/update-profile",
   upload.single("imageProfile"),
   authUser,
-  updateProfile
+  updateProfile,
 );
 userRouter.post("/book-appointment", authUser, bookAppointment);
 userRouter.get("/appointments", authUser, listAppointment);
@@ -160,33 +160,33 @@ userRouter.get("/debug-openai", async (req, res) => {
   try {
     console.log("OpenAI API Key exists:", !!process.env.OPENAI_API_KEY);
     console.log("API Key prefix:", process.env.OPENAI_API_KEY?.substring(0, 7));
-    
+
     // Test basic OpenAI connection
     const testResponse = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: "Hello" }],
-        max_tokens: 5
+        max_tokens: 5,
       },
       {
         headers: {
-          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-          "Content-Type": "application/json"
-        }
-      }
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      },
     );
-    
+
     res.json({
       success: true,
       message: "OpenAI API connection successful",
-      response: testResponse.data
+      response: testResponse.data,
     });
   } catch (error) {
     res.json({
       success: false,
       message: "OpenAI API connection failed",
-      error: error.response?.data || error.message
+      error: error.response?.data || error.message,
     });
   }
 });
@@ -197,20 +197,20 @@ userRouter.post("/test-audio", upload.single("audio"), async (req, res) => {
     if (!req.file) {
       return res.json({ success: false, message: "No file uploaded" });
     }
-    
+
     console.log("Test file:", {
       originalname: req.file.originalname,
       mimetype: req.file.mimetype,
-      size: req.file.size
+      size: req.file.size,
     });
-    
+
     const formData = new FormData();
     formData.append("file", req.file.buffer, {
       filename: "test.webm",
       contentType: req.file.mimetype,
     });
     formData.append("model", "whisper-1");
-    
+
     const response = await axios.post(
       "https://api.openai.com/v1/audio/transcriptions",
       formData,
@@ -220,20 +220,19 @@ userRouter.post("/test-audio", upload.single("audio"), async (req, res) => {
           ...formData.getHeaders(),
         },
         timeout: 30000,
-      }
+      },
     );
-    
+
     res.json({
       success: true,
       transcription: response.data.text,
-      originalResponse: response.data
+      originalResponse: response.data,
     });
-    
   } catch (error) {
     console.error("Test error:", error.response?.data || error.message);
     res.json({
       success: false,
-      error: error.response?.data || error.message
+      error: error.response?.data || error.message,
     });
   }
 });

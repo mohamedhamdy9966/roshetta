@@ -7,8 +7,8 @@ import adminRouter from "./routes/adminRoute.js";
 import doctorRouter from "./routes/doctorRoute.js";
 import userRouter from "./routes/userRoute.js";
 import labRouter from "./routes/labRoute.js";
-import { paymobWebhook } from "./webhooks/paymobWebhooks.js";
-import { stripeWebhooks } from "./webhooks/stripeWebhooks.js";
+import { paymobWebhook } from "./hooks/paymobWebhooks.js";
+import { stripeWebhooks } from "./hooks/stripeWebhooks.js";
 import rateLimit from "express-rate-limit";
 import cleanupTempFiles from "./cleanup.js";
 import session from "express-session";
@@ -31,15 +31,15 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URL,  // Use your MongoDB connection string
-      ttl: 1 * 24 * 60 * 60,  // Session TTL (e.g., 1 day in seconds)
-      autoRemove: 'native'  // Automatically remove expired sessions
+      mongoUrl: process.env.MONGODB_URL, // Use your MongoDB connection string
+      ttl: 1 * 24 * 60 * 60, // Session TTL (e.g., 1 day in seconds)
+      autoRemove: "native", // Automatically remove expired sessions
     }),
-    cookie: { 
+    cookie: {
       secure: process.env.NODE_ENV === "production",
-      maxAge: 14 * 24 * 60 * 60 * 1000  // Match TTL in milliseconds
+      maxAge: 14 * 24 * 60 * 60 * 1000, // Match TTL in milliseconds
     },
-  })
+  }),
 );
 
 // Rate limiting for sensitive authenticated endpoints
@@ -87,7 +87,14 @@ app.post("/paymob-webhook", express.json(), paymobWebhook);
 
 // middlewares
 app.use(express.json());
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "http://localhost:5175", "https://graduation-project-iti-itp-team-5-u.vercel.app", "https://graduation-project-iti-it-git-f1a234-mohamedhamdy9966s-projects.vercel.app", "https://graduation-project-iti-itp-team-5-u.vercel.app"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5175",
+  "https://graduation-project-iti-itp-team-5-u.vercel.app",
+  "https://graduation-project-iti-it-git-f1a234-mohamedhamdy9966s-projects.vercel.app",
+  "https://graduation-project-iti-itp-team-5-u.vercel.app",
+];
 
 app.use(
   cors({
@@ -99,7 +106,7 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }),
 );
 
 // api Endpoints
